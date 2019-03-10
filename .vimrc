@@ -34,6 +34,11 @@ call plug#end()
 "Custom Config
 set number
 set mouse=a
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+
 
 "Valloric/YouCompleteMe
 set completeopt-=preview
@@ -72,6 +77,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+let g:ale_list_window_size = 5
 
 "junegunn/fzf.vim
 nmap <leader><tab> <plug>(fzf-maps-n)
