@@ -21,24 +21,25 @@ Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'matze/vim-move'
 Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-repeat'
+Plug 'easymotion/vim-easymotion'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
 "Custom Config
 set number
 set mouse=a
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-
 
 "Valloric/YouCompleteMe
 set completeopt-=preview
@@ -56,6 +57,7 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
+\   'json': ['prettier'],
 \   'jsx': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'tslint'],
 \   'css': ['prettier', 'stylelint'],
@@ -65,6 +67,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \   'typescript': ['tslint'],
 \   'javascript': ['eslint'],
+\   'json': ['jsonlint'],
 \   'html': ['htmlhint'],
 \   'jsx': ['eslint'],
 \   'css': ['stylelint'],
@@ -74,8 +77,6 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
 
@@ -109,3 +110,46 @@ colorscheme onedark
 
 "matze/vim-move
 let g:move_key_modifier = 'S'
+
+"alvan/vim-closetag
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js,*.tsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
