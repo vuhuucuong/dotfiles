@@ -155,4 +155,4 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 "SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<c-b>'
+let g:UltiSnipsExpandTrigger = '<c-z>'
