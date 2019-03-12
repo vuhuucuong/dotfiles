@@ -14,7 +14,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
@@ -80,17 +79,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
 
-"junegunn/fzf.vim
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+"fzf
 nmap <c-p> :FZF<CR>
 
 "ryanoasis/vim-devicons
