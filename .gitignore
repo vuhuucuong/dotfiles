@@ -1,4 +1,4 @@
 *
-
-!.gitignore
-!.vimrc
+/!.gitignore
+/!.vimrc
+/!.tmux.conf
