@@ -1,2 +1,2 @@
 # vimrc
-My .vimrc file
+My .vimrc and relevant dot files
