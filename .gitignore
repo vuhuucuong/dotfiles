@@ -3,4 +3,6 @@
 !/.vimrc
 !/.tmux.conf
 !/.prettierrc.json
+!/.eslintrc.json
+!/.stylelintrc.json
 !/.zshrc
