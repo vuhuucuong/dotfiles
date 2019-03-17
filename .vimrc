@@ -53,6 +53,8 @@ let NERDTreeShowHidden=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 "w0rp/ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
