@@ -24,7 +24,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim'
 Plug 'matze/vim-move'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-repeat'
@@ -87,7 +87,6 @@ nmap <c-p> :FZF<CR>
 "ryanoasis/vim-devicons
 set encoding=UTF-8
 
-"joshdick/onedark.vim
 " Enable true color 启用终端24位色
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -96,7 +95,7 @@ if exists('+termguicolors')
 endif
 
 syntax on
-colorscheme onedark
+color dracula
 
 
 "matze/vim-move
