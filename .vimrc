@@ -39,7 +39,9 @@ call plug#end()
 "Custom Config
 set number
 set mouse=a
-
+if (has("termguicolors"))
+  set termguicolors
+endif
 "Valloric/YouCompleteMe
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
