@@ -118,9 +118,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls'
 export PATH="/usr/local/opt/curl/bin:$PATH"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
