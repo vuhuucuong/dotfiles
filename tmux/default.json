@@ -1,0 +1,26 @@
+{
+  "segments": {
+    "right": [
+      {
+        "function": "powerline.segments.common.players.spotify"
+      },
+      {
+        "function": "powerline.segments.common.time.date"
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "name": "time",
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        }
+      },
+      {
+        "function": "powerline.segments.common.bat.battery"
+      },
+      {
+        "function": "powerline.segments.tmux.attached_clients"
+      }
+    ]
+  }
+}
