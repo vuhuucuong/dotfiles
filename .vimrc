@@ -39,9 +39,14 @@ call plug#end()
 "Custom Config
 set number
 set mouse=a
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors
+syntax on
+
+"dracula/vim
+let g:dracula_italic = 0
+colorscheme dracula
+highlight Normal ctermbg=None
+
 "Valloric/YouCompleteMe
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
@@ -89,15 +94,6 @@ nmap <c-p> :FZF<CR>
 "ryanoasis/vim-devicons
 set encoding=UTF-8
 
-" Enable true color 启用终端24位色
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-syntax on
-color dracula
 
 
 "matze/vim-move
