@@ -12,6 +12,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
 Plug 'pangloss/vim-javascript'
@@ -144,3 +145,11 @@ let g:closetag_close_shortcut = '<leader>>'
 
 "SirVer/ultisnips
 let g:UltiSnipsExpandTrigger = '<c-z>'
+
+"mattn/emmet-vim
+
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
