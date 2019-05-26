@@ -1,0 +1,9 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "yaml.validate": false,
+  "css.validate": false,
+  "html.validate.html": false,
+  "html.validate.styles": false,
+  "html.validate.scripts": false
+}

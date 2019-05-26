@@ -1,6 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'w0rp/ale'
+Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -8,10 +10,8 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-gitgutter'
 Plug 'leafgarland/typescript-vim'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/emmet-vim'
 Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
@@ -30,9 +30,6 @@ Plug 'matze/vim-move'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
 Plug 'alvan/vim-closetag'
 
 call plug#end()
@@ -48,10 +45,6 @@ let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
 
-"Valloric/YouCompleteMe
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt=0
-
 "scrooloose/nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -59,35 +52,6 @@ let NERDTreeShowHidden=1
 
 "jistr/vim-nerdtree-tabs
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
-
-"w0rp/ale
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'json': ['prettier'],
-\   'jsx': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'tslint'],
-\   'css': ['prettier', 'stylelint'],
-\   'scss': ['prettier', 'stylelint'],
-\   'html': ['prettier'],
-\}
-let g:ale_linters = {
-\   'typescript': ['tslint'],
-\   'javascript': ['eslint'],
-\   'json': ['jsonlint'],
-\   'html': ['htmlhint'],
-\   'jsx': ['eslint'],
-\   'css': ['stylelint'],
-\   'scss': ['stylelint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_open_list = 1
-let g:ale_list_window_size = 5
 
 "fzf
 nmap <c-p> :FZF<CR>
@@ -143,13 +107,47 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-"SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<c-z>'
 
-"mattn/emmet-vim
+"neoclide/coc.nvim
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+"navigate between list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"confirm
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
+
+"w0rp/ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'javascript.jsx': ['prettier', 'eslint'],
+\   'json': ['prettier'],
+\   'typescript': ['prettier', 'tslint'],
+\   'css': ['prettier', 'stylelint'],
+\   'scss': ['prettier', 'stylelint'],
+\   'html': ['prettier'],
+\   'yaml': ['prettier'],
 \}
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\   'typescript': ['tslint'],
+\   'json': ['jsonlint'],
+\   'html': ['htmlhint'],
+\   'css': ['stylelint'],
+\   'scss': ['stylelint'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_open_list = 1
+let g:ale_list_window_size = 5
