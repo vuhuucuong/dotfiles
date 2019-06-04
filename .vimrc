@@ -34,6 +34,8 @@ Plug 'alvan/vim-closetag'
 call plug#end()
 
 "Custom Config
+set encoding=utf-8
+set fileencoding=utf-8
 set number
 set mouse=a
 set termguicolors
@@ -48,6 +50,7 @@ colorscheme dracula
 highlight Normal ctermbg=None
 
 "scrooloose/nerdtree
+let NERDTreeShowHidden=1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
@@ -56,10 +59,6 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 "fzf
 nmap <c-p> :FZF<CR>
-
-"ryanoasis/vim-devicons
-set encoding=UTF-8
-
 
 
 "matze/vim-move
