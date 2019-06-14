@@ -109,10 +109,6 @@ let g:closetag_close_shortcut = '<leader>>'
 
 
 "neoclide/coc.nvim
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 " use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 "navigate between list
