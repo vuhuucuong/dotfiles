@@ -119,4 +119,9 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/curl/bin:$PATH"
+# spaceship custom
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+SPACESHIP_CHAR_SYMBOL='\uf120  '
+SPACESHIP_GIT_BRANCH_PREFIX='\ue725 '
+SPACESHIP_PACKAGE_SYMBOL='\uf8d5 '
+SPACESHIP_NODE_SYMBOL='\uf898 '
