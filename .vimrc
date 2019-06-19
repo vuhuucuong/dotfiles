@@ -48,6 +48,7 @@ tnoremap <Esc> <C-\><C-n>
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
+hi Comment guifg=#9E9E9E
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
