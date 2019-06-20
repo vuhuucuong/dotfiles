@@ -42,7 +42,7 @@ set termguicolors
 syntax on
 set splitright
 set splitbelow
-tnoremap <Esc> <C-\><C-n>
+set backupcopy=yes
 
 "dracula/vim
 let g:dracula_italic = 0
