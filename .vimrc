@@ -62,7 +62,6 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 "fzf
 nmap <c-p> :FZF<CR>
 
-
 "matze/vim-move
 let g:move_key_modifier = 'S'
 
