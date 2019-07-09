@@ -81,6 +81,7 @@ plugins=(
   npm
   nvm
   pip
+  pyenv
   sudo
   tmux
   yarn
