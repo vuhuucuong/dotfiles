@@ -12,4 +12,4 @@ indent_size = 2
 indent_style = space
 # 4 space indentation
 [*.py]
-andent_size = 4
+indent_size = 4
