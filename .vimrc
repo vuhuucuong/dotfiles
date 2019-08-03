@@ -121,7 +121,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
@@ -129,10 +129,9 @@ let g:ale_fixers = {
 \   'typescript': ['prettier', 'eslint'],
 \   'python': ['yapf'],
 \   'json': ['prettier'],
+\   'html': ['prettier'],
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
-\   'html': ['prettier'],
-\   'yaml': ['prettier'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -151,4 +150,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
 " autoclose loclist when close buffer
-autocmd QuitPre * if empty(&bt) | lclose | endif
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
