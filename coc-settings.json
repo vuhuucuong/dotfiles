@@ -2,7 +2,6 @@
   "typescript.validate.enable": false,
   "javascript.validate.enable": false,
   "python.linting.enabled": false,
-  "yaml.validate": false,
   "css.validate": false,
   "html.validate.html": false,
   "html.validate.styles": false,
