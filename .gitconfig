@@ -1,0 +1,14 @@
+[user]
+	name = kencoder97
+  email = vuhuucuong97@gmail.com
+
+[alias]
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[core]
+	editor = nvim
