@@ -154,3 +154,7 @@ augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
+
+"scrooloose/nerdcommenter
+
+let NERDDefaultAlign="left"
