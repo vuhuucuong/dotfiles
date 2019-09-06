@@ -27,10 +27,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dracula/vim'
 Plug 'matze/vim-move'
-Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -44,6 +44,9 @@ syntax on
 set splitright
 set splitbelow
 set backupcopy=yes
+"used for autocomplete when adding dash
+set iskeyword+=\-
+
 
 "dracula/vim
 let g:dracula_italic = 0
@@ -130,7 +133,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 
 "w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
