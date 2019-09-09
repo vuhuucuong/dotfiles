@@ -7,8 +7,4 @@
   "html.validate.html": false,
   "html.validate.styles": false,
   "html.validate.scripts": false,
-  "snippets.extends": {
-    "javascriptreact": ["javascript"],
-    "typescript": ["javascript"]
-  }
 }

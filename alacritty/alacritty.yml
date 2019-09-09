@@ -136,34 +136,31 @@ persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
-# Colors (Dracula)
+# Colors (One Half Dark)
 colors:
-  # Default colors
   primary:
-    background: '0x282a36'
-    foreground: '0xf8f8f2'
+    background: '0x282c34'
+    foreground: '0xdcdfe4'
 
-  # Normal colors
   normal:
-    black: '0x000000'
-    red: '0xff5555'
-    green: '0x50fa7b'
-    yellow: '0xf1fa8c'
-    blue: '0xcaa9fa'
-    magenta: '0xff79c6'
-    cyan: '0x8be9fd'
-    white: '0xbfbfbf'
+    black: '0x282c34'
+    red: '0xe06c75'
+    green: '0x98c379'
+    yellow: '0xe5c07b'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0xdcdfe4'
 
-  # Bright colors
   bright:
-    black: '0x575b70'
-    red: '0xff6e67'
-    green: '0x5af78e'
-    yellow: '0xf4f99d'
-    blue: '0xcaa9fa'
-    magenta: '0xff92d0'
-    cyan: '0x9aedfe'
-    white: '0xe6e6e6'
+    black: '0x282c34'
+    red: '0xe06c75'
+    green: '0x98c379'
+    yellow: '0xe5c07b'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0xdcdfe4'
 
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
@@ -217,7 +214,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+background_opacity: 1.0
 
 # Mouse bindings
 #

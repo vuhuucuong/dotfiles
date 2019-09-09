@@ -11,7 +11,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-gitgutter'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-surround'
-Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -25,12 +24,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'dracula/vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'matze/vim-move'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'neoclide/jsonc.vim'
 
 call plug#end()
 
@@ -47,12 +48,10 @@ set backupcopy=yes
 "used for autocomplete when adding dash
 set iskeyword+=\-
 
-
-"dracula/vim
-let g:dracula_italic = 0
-colorscheme dracula
-highlight Normal ctermbg=None
-hi Comment guifg=#9E9E9E
+"sonph/onehalf
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+hi Comment guifg=#A9A9A9
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
@@ -139,9 +138,10 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'javascript.jsx': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'eslint'],
+\   'javascript': ['prettier'],
+\   'javascript.jsx': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescript.tsx': ['prettier'],
 \   'python': ['yapf'],
 \   'json': ['prettier'],
 \   'html': ['prettier'],
@@ -152,6 +152,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'javascript.jsx': ['eslint'],
 \   'typescript': ['eslint'],
+\   'typescript.tsx': ['eslint'],
 \   'python': ['flake8'],
 \   'json': ['jsonlint'],
 \   'html': ['htmlhint'],
