@@ -24,7 +24,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'joshdick/onedark.vim'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
@@ -40,17 +40,23 @@ set encoding=utf-8
 set fileencoding=utf-8
 set number
 set mouse=a
-set termguicolors
 syntax on
 set splitright
 set splitbelow
 set backupcopy=yes
+
+" Enable true color
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 "used for autocomplete when adding dash
 set iskeyword+=\-
 
-"sonph/onehalf
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+"joshdick/onedark.vim
+colorscheme onedark
 hi Comment guifg=#A9A9A9
 
 "scrooloose/nerdtree
