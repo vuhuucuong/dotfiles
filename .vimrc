@@ -57,7 +57,7 @@ set iskeyword+=\-
 
 "joshdick/onedark.vim
 colorscheme onedark
-hi Comment guifg=#A9A9A9
+hi Comment guifg=#808080
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
