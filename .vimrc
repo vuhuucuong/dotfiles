@@ -128,6 +128,12 @@ let g:closetag_close_shortcut = '<leader>>'
 "vim-airline/vim-airline-themes
 let g:airline_theme='fruit_punch'
 
+"ryanoasis/vim-devicons
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+let g:DevIconsDefaultFolderOpenSymbol = ''
 
 "vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 1
