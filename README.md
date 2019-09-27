@@ -1,4 +1,3 @@
-# vimrc
-My .vimrc and relevant dot files
-
+# dotfiles
+🌟My .vimrc and all relevant dot files💥
 ![screenshot](images/screenshot.png)
