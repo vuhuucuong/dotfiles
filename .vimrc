@@ -46,6 +46,7 @@ set splitright
 set splitbelow
 set backupcopy=yes
 
+
 " Enable true color
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -59,6 +60,11 @@ set iskeyword+=\-
 "joshdick/onedark.vim
 colorscheme onedark
 hi Comment guifg=#808080
+
+" set color split line
+set fillchars=vert:┃ " for vsplits
+set fillchars+=fold:· " for folds
+hi VertSplit guifg=#DC143C
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
