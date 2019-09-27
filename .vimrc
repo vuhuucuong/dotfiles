@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
