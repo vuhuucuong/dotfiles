@@ -19,7 +19,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdcommenter'
@@ -34,6 +33,7 @@ Plug 'alvan/vim-closetag'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/jsonc.vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -66,11 +66,17 @@ hi Comment guifg=#808080
 set fillchars=vert:┃ " for vsplits
 set fillchars+=fold:· " for folds
 hi VertSplit guifg=#DC143C
+" Directory color
+hi Directory guifg=#F08080
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" open close icon
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
 
 "jistr/vim-nerdtree-tabs
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
@@ -166,7 +172,7 @@ let g:airline_left_sep = "\ue0c4"
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = "\ue0c5"
 let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = 'שׂ'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
