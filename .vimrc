@@ -47,7 +47,7 @@ syntax on
 set splitright
 set splitbelow
 set backupcopy=yes
-
+set signcolumn=yes
 
 " Enable true color
 if exists('+termguicolors')
