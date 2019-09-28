@@ -65,7 +65,7 @@ hi Comment guifg=#808080
 " set color split line
 set fillchars=vert:┃ " for vsplits
 set fillchars+=fold:· " for folds
-hi VertSplit guifg=#DC143C
+hi VertSplit guifg=#F08080
 " Directory color
 hi Directory guifg=#F08080
 
