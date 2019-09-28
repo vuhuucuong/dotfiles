@@ -232,6 +232,10 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
+" custom error sign
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+
 " autoclose loclist when close buffer
 augroup CloseLoclistWindowGroup
   autocmd!
@@ -293,15 +297,5 @@ let g:startify_lists = [
 hi StartifyHeader guifg=#FFD700
 
 "liuchengxu/vista.vim
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
 
-set statusline+=%{NearestMethodOrFunction()}
-
-" By default vista.vim never run if you don't call it explicitly.
-"
-" If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 nmap <Leader>v :Vista coc<CR>
