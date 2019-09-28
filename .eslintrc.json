@@ -11,7 +11,8 @@
   "parserOptions": {
     "ecmaFeatures": { "jsx": true },
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
@@ -21,5 +22,27 @@
     "comma-dangle": ["error", "always-multiline"],
     "@typescript-eslint/no-explicit-any": 0
   },
-  "settings": { "react": { "version": "detect" } }
+  "settings": { "react": { "version": "detect" } },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "env": { "browser": true, "es6": true, "node": true },
+      "extends": ["eslint:recommended", "plugin:react/recommended"],
+      "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
+      "parser": "babel-eslint",
+      "parserOptions": {
+        "ecmaFeatures": { "jsx": true },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+      },
+      "plugins": ["react"],
+      "rules": {
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "comma-dangle": ["error", "always-multiline"],
+        "semi": ["error", "always"]
+      }
+    }
+  ]
 }
