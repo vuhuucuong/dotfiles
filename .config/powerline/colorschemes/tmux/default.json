@@ -1,18 +1,18 @@
 {
   "groups": {
     "date": {
-      "fg": "gray10",
-      "bg": "darkestpurple",
+      "fg": "gray8",
+      "bg": "gray2",
       "attrs": []
     },
     "time": {
       "fg": "gray10",
-      "bg": "darkestpurple",
+      "bg": "gray2",
       "attrs": ["bold"]
     },
     "time:divider": {
-      "fg": "gray90",
-      "bg": "darkestpurple",
+      "fg": "gray5",
+      "bg": "gray2",
       "attrs": []
     },
     "attached_clients": {
@@ -21,28 +21,28 @@
       "attrs": []
     },
     "player": {
-      "fg": "gray90",
-      "bg": "darkestblue",
+      "fg": "gray10",
+      "bg": "black",
       "attrs": []
     },
     "battery": {
       "fg": "white_red",
-      "bg": "yellow",
+      "bg": "red",
       "attrs": []
     },
     "battery_gradient": {
       "fg": "white_red",
-      "bg": "yellow",
+      "bg": "red",
       "attrs": []
     },
     "battery_full": {
       "fg": "white_red",
-      "bg": "yellow",
+      "bg": "red",
       "attrs": []
     },
     "battery_empty": {
       "fg": "white_red",
-      "bg": "yellow",
+      "bg": "red",
       "attrs": []
     },
     "active_window_status": {
