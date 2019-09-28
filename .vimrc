@@ -7,7 +7,6 @@ Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-gitgutter'
@@ -48,6 +47,8 @@ set splitright
 set splitbelow
 set backupcopy=yes
 set signcolumn=yes
+nmap <Leader>o :w\|:%bd\|e#\|:NERDTree<CR>
+
 
 " Enable true color
 if exists('+termguicolors')
@@ -78,10 +79,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " open close icon
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
-
-
-"jistr/vim-nerdtree-tabs
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
 
 "fzf
 nmap <c-p> :FZF<CR>
