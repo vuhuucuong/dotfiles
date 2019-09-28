@@ -2,7 +2,15 @@
   "segments": {
     "right": [
       {
-        "function": "powerline.segments.common.players.spotify"
+        "function": "powerline.segments.common.players.spotify",
+        "args": {
+          "state_symbols": {
+            "fallback": " ",
+            "play": " ",
+            "pause": " ",
+            "stop": " "
+          }
+        }
       },
       {
         "function": "powerline.segments.common.time.date"
@@ -16,11 +24,25 @@
         }
       },
       {
-        "function": "powerline.segments.common.bat.battery"
+        "function": "powerline.segments.common.bat.battery",
+        "args": {
+          "online": " ",
+          "offline": " "
+        }
       },
       {
         "function": "powerline.segments.tmux.attached_clients"
       }
     ]
+  },
+  "dividers": {
+    "left": {
+      "hard": " ",
+      "soft": " "
+    },
+    "right": {
+      "hard": " ",
+      "soft": " "
+    }
   }
 }

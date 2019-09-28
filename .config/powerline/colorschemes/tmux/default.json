@@ -1,5 +1,50 @@
 {
   "groups": {
+    "date": {
+      "fg": "gray10",
+      "bg": "darkestpurple",
+      "attrs": []
+    },
+    "time": {
+      "fg": "gray10",
+      "bg": "darkestpurple",
+      "attrs": ["bold"]
+    },
+    "time:divider": {
+      "fg": "gray90",
+      "bg": "darkestpurple",
+      "attrs": []
+    },
+    "attached_clients": {
+      "fg": "gray8",
+      "bg": "gray0",
+      "attrs": []
+    },
+    "player": {
+      "fg": "gray90",
+      "bg": "darkestblue",
+      "attrs": []
+    },
+    "battery": {
+      "fg": "white_red",
+      "bg": "yellow",
+      "attrs": []
+    },
+    "battery_gradient": {
+      "fg": "white_red",
+      "bg": "yellow",
+      "attrs": []
+    },
+    "battery_full": {
+      "fg": "white_red",
+      "bg": "yellow",
+      "attrs": []
+    },
+    "battery_empty": {
+      "fg": "white_red",
+      "bg": "yellow",
+      "attrs": []
+    },
     "active_window_status": {
       "fg": "red",
       "bg": "gray0",
