@@ -235,6 +235,8 @@ let g:ale_list_window_size = 5
 " custom error sign
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
+highlight ALEErrorSign guifg=#FF0000
+highlight ALEWarningSign guifg=#FFA500
 
 " autoclose loclist when close buffer
 augroup CloseLoclistWindowGroup
