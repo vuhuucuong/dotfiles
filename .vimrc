@@ -134,7 +134,6 @@ let g:airline_theme='fruit_punch'
 
 "ryanoasis/vim-devicons
 
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
