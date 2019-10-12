@@ -33,6 +33,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
+Plug 'elzr/vim-json'
 
 call plug#end()
 
