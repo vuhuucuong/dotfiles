@@ -8,7 +8,6 @@
   "html.validate.styles": false,
   "html.validate.scripts": false,
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "typescript.tsx": "javascriptreact"
+    "javascript": "javascriptreact"
   }
 }
