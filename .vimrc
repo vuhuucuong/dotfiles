@@ -237,6 +237,7 @@ augroup END
 "scrooloose/nerdcommenter
 
 let NERDDefaultAlign="left"
+let NERDSpaceDelims=1
 
 " mhinz/vim-startify
 
