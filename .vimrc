@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -190,43 +190,51 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+"coc.nvim extension settings
+command! -nargs=0 Format :call CocAction('format')
+"set formatter
+nmap <leader>f :Format<CR>
+"display linting error
+nmap <leader>l :CocList diagnostics<CR>
+
 "w0rp/ale
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier'],
-\   'javascript.jsx': ['prettier'],
-\   'typescript': ['prettier'],
-\   'typescript.tsx': ['prettier'],
-\   'python': ['yapf'],
-\   'json': ['prettier'],
-\   'html': ['prettier'],
-\   'css': ['prettier', 'stylelint'],
-\   'scss': ['prettier', 'stylelint'],
-\}
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'javascript.jsx': ['eslint'],
-\   'typescript': ['eslint'],
-\   'typescript.tsx': ['eslint'],
-\   'python': ['flake8'],
-\   'json': ['jsonlint'],
-\   'html': ['htmlhint'],
-\   'css': ['stylelint'],
-\   'scss': ['stylelint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_open_list = 1
-let g:ale_list_window_size = 5
-" custom error sign
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-highlight ALEErrorSign guifg=#FF0000
-highlight ALEWarningSign guifg=#FFA500
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \   'javascript': ['prettier'],
+" \   'javascript.jsx': ['prettier'],
+" \   'typescript': ['prettier'],
+" \   'typescript.tsx': ['prettier'],
+" \   'python': ['yapf'],
+" \   'json': ['prettier'],
+" \   'html': ['prettier'],
+" \   'css': ['prettier', 'stylelint'],
+" \   'scss': ['prettier', 'stylelint'],
+" \}
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'javascript.jsx': ['eslint'],
+" \   'typescript': ['eslint'],
+" \   'typescript.tsx': ['eslint'],
+" \   'python': ['flake8'],
+" \   'json': ['jsonlint'],
+" \   'html': ['htmlhint'],
+" \   'css': ['stylelint'],
+" \   'scss': ['stylelint'],
+" \}
+" let g:ale_fix_on_save = 1
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_open_list = 1
+" let g:ale_list_window_size = 5
+" " custom error sign
+" let g:ale_sign_error = ''
+" let g:ale_sign_warning = ''
+" highlight ALEErrorSign guifg=#FF0000
+" highlight ALEWarningSign guifg=#FFA500
 
 " autoclose loclist when close buffer
 augroup CloseLoclistWindowGroup
@@ -364,3 +372,7 @@ function! BufOnly(buffer, bang)
 endfunction
 
 nmap <Leader>o :BufOnly<CR>
+
+
+
+

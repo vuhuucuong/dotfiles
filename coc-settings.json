@@ -1,13 +1,10 @@
 {
-  "typescript.validate.enable": false,
-  "javascript.validate.enable": false,
-  "python.linting.enabled": false,
   "css.validate": false,
-  "scss.validate": false,
-  "html.validate.html": false,
-  "html.validate.styles": false,
-  "html.validate.scripts": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "yapf",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  }
+  },
+  "eslint.packageManager": "yarn"
 }
