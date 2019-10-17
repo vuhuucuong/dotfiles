@@ -55,7 +55,7 @@ set iskeyword+=\-
 "joshdick/onedark.vim
 colorscheme onedark
 hi Comment guifg=#808080
-
+hi CursorLine guibg=#808080 guifg=#FFFAFA
 " set color split line
 set fillchars=vert:┃ " for vsplits
 set fillchars+=fold:· " for folds
