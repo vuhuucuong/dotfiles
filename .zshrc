@@ -72,7 +72,7 @@ ZSH_THEME="spaceship"
 plugins=(
   git
   brew
-  cp
+  dotenv
   docker-compose
   docker
   fzf
@@ -85,6 +85,8 @@ plugins=(
   sudo
   tmux
   yarn
+  man
+  npx
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
