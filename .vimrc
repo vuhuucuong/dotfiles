@@ -334,7 +334,3 @@ function! BufOnly(buffer, bang)
 endfunction
 
 nmap <Leader>o :BufOnly<CR>
-
-
-
-
