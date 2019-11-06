@@ -1,7 +1,6 @@
 [user]
-	name = vuhuucuong97
+  name = vuhuucuong97
   email = vuhuucuong97@gmail.com
-
 [alias]
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [merge]
