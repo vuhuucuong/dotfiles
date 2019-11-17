@@ -3,7 +3,6 @@
   "diagnostic.errorSign":" ",
   "list.indicator":" ",
   "list.selectedSignText":" ",
-  "css.validate": false,
   "typescript.validate.enable":false,
   "javascript.validate.enable":false,
   "python.linting.pylintEnabled": false,
