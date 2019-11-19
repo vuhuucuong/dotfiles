@@ -170,6 +170,27 @@ let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 
 "neoclide/coc.nvim
+" list extensions
+ let g:coc_global_extensions = [
+       \ 'coc-lists',
+       \ 'coc-prettier',
+       \ 'coc-eslint',
+       \ 'coc-snippets',
+       \ 'coc-emmet',
+       \ 'coc-yank',
+       \ 'jest-snippets',
+       \ 'coc-highlight',
+       \ 'coc-tsserver',
+       \ 'coc-python',
+       \ 'coc-html',
+       \ 'coc-json',
+       \ 'coc-stylelint',
+       \ 'coc-yaml',
+       \ 'coc-markdownlint',
+       \ 'coc-css',
+       \]
+
+
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -192,8 +213,12 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "coc.nvim extension settings
 command! -nargs=0 Format :call CocAction('format')
-"set formatter
+" set formatter
+" format all lines of current buffer
 nmap <leader>f :Format<CR>
+" format selected
+nmap <leader>F  <Plug>(coc-format-selected)
+xmap <leader>F  <Plug>(coc-format-selected)
 "display linting error
 nmap <leader>l :CocList diagnostics<CR>
 
