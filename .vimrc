@@ -184,7 +184,6 @@ let g:airline_symbols.maxlinenr = ''
        \ 'coc-python',
        \ 'coc-html',
        \ 'coc-json',
-       \ 'coc-stylelint',
        \ 'coc-yaml',
        \ 'coc-markdownlint',
        \ 'coc-css',
