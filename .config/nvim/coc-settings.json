@@ -1,16 +1,15 @@
 {
-  "diagnostic.warningSign":" ",
-  "diagnostic.errorSign":" ",
-  "list.indicator":" ",
-  "list.selectedSignText":" ",
-  "typescript.validate.enable":false,
-  "javascript.validate.enable":false,
+  "diagnostic.warningSign": " ",
+  "diagnostic.errorSign": " ",
+  "list.indicator": " ",
+  "list.selectedSignText": " ",
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "yapf",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "eslint.packageManager": "yarn",
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+  "eslint.packageManager": "yarn"
 }
