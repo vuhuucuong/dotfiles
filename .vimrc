@@ -177,7 +177,6 @@ let g:airline_symbols.maxlinenr = ''
        \ 'coc-lists',
        \ 'coc-prettier',
        \ 'coc-eslint',
-       \ 'coc-tslint',
        \ 'coc-snippets',
        \ 'coc-emmet',
        \ 'coc-yank',
