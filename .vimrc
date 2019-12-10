@@ -73,6 +73,7 @@ autocmd BufWinEnter * NERDTreeMirror
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 nmap <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>nf :NERDTreeFind<CR>
 
 "fzf
 nmap <c-p> :FZF<CR>
@@ -176,6 +177,7 @@ let g:airline_symbols.maxlinenr = ''
        \ 'coc-lists',
        \ 'coc-prettier',
        \ 'coc-eslint',
+       \ 'coc-tslint',
        \ 'coc-snippets',
        \ 'coc-emmet',
        \ 'coc-yank',
