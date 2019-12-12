@@ -1,4 +1,5 @@
 {
+  "coc.preferences.jumpCommand": "tabe",
   "diagnostic.warningSign": " ",
   "diagnostic.errorSign": " ",
   "list.indicator": " ",
