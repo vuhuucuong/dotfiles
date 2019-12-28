@@ -25,7 +25,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -52,10 +52,11 @@ endif
 set iskeyword+=\-
 
 " arcticicestudio/nord-vim
-colorscheme nord
+colorscheme onedark
 hi Normal guibg=NONE
 hi Comment guifg=#A9A9A9
 hi CursorLine guibg=#708090 guifg=#FFFFFF
+hi Visual guibg=#708090 guifg=#FFFFFF
 
 " set color split line
 set fillchars=vert:┃ " for vsplits
