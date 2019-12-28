@@ -122,15 +122,15 @@ source $ZSH/oh-my-zsh.sh
 
 # Set default $EDIOR as nvim
 
-export EDITOR=nvim
+export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
 # spaceship custom
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
-SPACESHIP_CHAR_SYMBOL='\uf120  '
-SPACESHIP_GIT_BRANCH_PREFIX='\ue725 '
-SPACESHIP_PACKAGE_SYMBOL='\uf8d5 '
-SPACESHIP_NODE_SYMBOL='\uf898 '
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
+SPACESHIP_CHAR_SYMBOL=' '
+SPACESHIP_GIT_BRANCH_PREFIX=' '
+SPACESHIP_PACKAGE_SYMBOL=' '
+SPACESHIP_NODE_SYMBOL=' '

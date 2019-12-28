@@ -1,7 +1,7 @@
 {
   "groups": {
     "date": {
-      "fg": "gray8",
+      "fg": "gray10",
       "bg": "gray2",
       "attrs": []
     },
@@ -11,13 +11,13 @@
       "attrs": ["bold"]
     },
     "time:divider": {
-      "fg": "gray5",
+      "fg": "brightcyan",
       "bg": "gray2",
       "attrs": []
     },
     "attached_clients": {
       "fg": "gray8",
-      "bg": "gray0",
+      "bg": "gray2",
       "attrs": []
     },
     "player": {
@@ -26,42 +26,42 @@
       "attrs": []
     },
     "battery": {
-      "fg": "white_red",
-      "bg": "red",
+      "fg": "white",
+      "bg": "darkcyan",
       "attrs": []
     },
     "battery_gradient": {
-      "fg": "white_red",
-      "bg": "red",
+      "fg": "white",
+      "bg": "darkcyan",
       "attrs": []
     },
     "battery_full": {
-      "fg": "white_red",
-      "bg": "red",
+      "fg": "white",
+      "bg": "darkcyan",
       "attrs": []
     },
     "battery_empty": {
-      "fg": "white_red",
-      "bg": "red",
+      "fg": "white",
+      "bg": "darkcyan",
       "attrs": []
     },
     "active_window_status": {
-      "fg": "red",
+      "fg": "darkcyan",
       "bg": "gray0",
       "attrs": []
     },
     "window_status": {
       "fg": "gray10",
-      "bg": "gray0",
+      "bg": "darkcyan",
       "attrs": []
     },
     "activity_status": {
-      "fg": "yellow",
+      "fg": "brightcyan",
       "bg": "gray0",
       "attrs": []
     },
     "bell_status": {
-      "fg": "red",
+      "fg": "brightcyan",
       "bg": "gray0",
       "attrs": []
     },
@@ -71,18 +71,18 @@
       "attrs": []
     },
     "window:divider": {
-      "fg": "red",
+      "fg": "brightcyan",
       "bg": "gray0",
       "attrs": []
     },
     "window:current": {
       "fg": "white",
-      "bg": "red",
+      "bg": "darkcyan",
       "attrs": []
     },
     "window_name": {
       "fg": "white",
-      "bg": "red",
+      "bg": "darkcyan",
       "attrs": ["bold"]
     },
     "session": {
@@ -92,7 +92,7 @@
     },
     "session:prefix": {
       "fg": "gray90",
-      "bg": "red",
+      "bg": "darkcyan",
       "attrs": ["bold"]
     }
   }

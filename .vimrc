@@ -5,7 +5,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'terryma/vim-multiple-cursors'
@@ -20,13 +19,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'joshdick/onedark.vim'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -40,6 +39,7 @@ set splitright
 set splitbelow
 set backupcopy=yes
 set signcolumn=yes
+set nofoldenable
 
 " Enable true color
 if exists('+termguicolors')
@@ -48,23 +48,28 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-"used for autocomplete when adding dash
+"u sed for autocomplete when adding dash
 set iskeyword+=\-
 
-"joshdick/onedark.vim
-colorscheme onedark
-hi Comment guifg=#808080
-hi CursorLine guibg=#808080 guifg=#FFFAFA
+" arcticicestudio/nord-vim
+colorscheme nord
+hi Normal guibg=NONE
+hi Comment guifg=#A9A9A9
+hi CursorLine guibg=#708090 guifg=#FFFFFF
+
 " set color split line
 set fillchars=vert:┃ " for vsplits
 set fillchars+=fold:· " for folds
-hi VertSplit guifg=#F08080
+hi VertSplit guifg=#87CEFA
+
 " Directory color
-hi Directory guifg=#F08080
+hi Directory guifg=#87CEFA
 
 "scrooloose/nerdtree
-let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let NERDTreeMinimalMenu=1
+let NERDTreeCascadeSingleChildDir=0
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd BufWinEnter * NERDTreeMirror
@@ -124,10 +129,6 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-
-"vim-airline/vim-airline-themes
-let g:airline_theme='fruit_punch'
-
 "ryanoasis/vim-devicons
 
 let g:DevIconsEnableFoldersOpenClose = 1
@@ -162,9 +163,9 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 " powerline symbols
-let g:airline_left_sep = "\ue0c4"
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = "\ue0c5"
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ""
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = 'שׂ'
 let g:airline_symbols.readonly = ''
@@ -238,56 +239,6 @@ augroup END
 
 let NERDDefaultAlign="left"
 let NERDSpaceDelims=1
-
-let g:startify_custom_header=[
-      \ '                                            %.#                                             ',
-      \ '                                          %%% ###                                           ',
-      \ '      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   % ****###       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  ',
-      \ '      @%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/   ********###     &%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% / ',
-      \ '      @%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/   **********##    &%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% / ',
-      \ '      @ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%,/   ************    @*%%%%%%%%%%%%%%%%%%%%%%%%%%%%/// ',
-      \ '           &@%%%%%%%%%%%%%%%%%% //       ,*************        @&%%%%%%%%%%%%%%%%%%%%%///   ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //      *****************    @@@&%%%%%%%%%%%%%%%%%%%///     ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *******************   @@@@%%%%%%%%%%%%%%%%%%%,//       ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *****************   @@@@%%%%%%%%%%%%%%%%%%% //         ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   ***************   @@@@%%%%%%%%%%%%%%%%%%% //           ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *************   @@@@%%%%%%%%%%%%%%%%%%% //             ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   ***********   @@@@%%%%%%%%%%%%%%%%%%% //               ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *********   @@@@%%%%%%%%%%%%%%%%%%% //                 ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *******   @@@@%%%%%%%%%%%%%%%%%%% //.                  ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *****   @@@@%%%%%%%%%%%%%%%%%%%*//*   ##               ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   ***   @@@@%%%%%%%%%%%%%%%%%%%#///   **,###             ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //   *   @@@@%%%%%%%%%%%%%%%%%%%%///   ******.###           ',
-      \ '           @@%%%%%%%%%%%%%%%%%% //     @@@@%%%%%%%%%%%%%%%%%%%%///   **********.###         ',
-      \ '      %%   @@%%%%%%%%%%%%%%%%%% //   @@@@%%%%%%%%%%%%%%%%%%%%///   **************.###       ',
-      \ '    %%%*   @@%%%%%%%%%%%%%%%%%% // @@@@%%%%%%%%%%%%%%%%%%%%///   ******************.###     ',
-      \ '  %%%/**   @@%%%%%%%%%%%%%%%%%% //@@@#%%%%%%%%%%%%%%%%%%%///   .********************* ###   ',
-      \ '%%%/****   @@%%%%%%%%%%%%%%%%%% /@@(%%%%%%%%%%%%%%%%%%%///    ************************* ### ',
-      \ ',,,*****   @@%%%%%%%%%%%%%%%%%% @*%%%%%%%%%%%%%%%%%%%*//    ****************************,,, ',
-      \ '  ,,,***   @@%%%%%%%%%%%%%%%%%%.%%%%%%%%%%%%%%%%%%%.//    ****************************,,,   ',
-      \ '    ,,,*   @@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#        ****************************,,,     ',
-      \ '      ,,   @@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  %%%%%  ****************************,,,       ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%  **************************,,,         ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  .%%%%%( *************************.,,           ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%%%%%% //        ************************.,,             ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%%%%.//    ****************************.,,               ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%%(/  ........  **          ****                         ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%%%//     %%%%%% **    %%%%%%%    %%%%%%%%    %%%%%%%%     ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%%%//    * %%%%%%  **** (%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     ',
-      \ '           @@%%%%%%%%%%%%%%%%%%%//    ** /%%%%%, ****  %%%%%        %%%%%       %%%%%%      ',
-      \ '           @@%%%%%%%%%%%%%%%%%//    ***  %%%%%% ***** %%%%%  ***.  %%%%%        %%%%%       ',
-      \ '           @@%%%%%%%%%%%%%%%//.   ***** %%%%%%  **** #%%%%% ** ,, %%%%%%       %%%%%%       ',
-      \ '           @@%%%%%%%%%%%%%//*   ****** %%%%%%  ****  %%%%%   ,,   %%%%%       /%%%%%        ',
-      \ '           @@%%%%%%%%%%%*//   ,,,****  %%%%%% ***** %%%%%. ,,    %%%%%(       %%%%%%        ',
-      \ '           @@%%%%%%%%%.//       ,,,*  %%%%%%  **** %%%%%% ,     .%%%%%       %%%%%%         ',
-      \ '           @@*%%%%%% //           ,, %%%%%%... **  %%%%%..      %%%%%        %%%%%..        ',
-      \ '                                               **                                           ',
-      \ '                                      ,,,********* ,,                                       ',
-      \ '                                        ,,,***** ,,                                         ',
-      \ '                                          ,,,* ,,                                           ',
-      \ '                                            , ,                                             ',
-      \ '                                                                                            ',
-      \ ]
 
 "liuchengxu/vista.vim
 let g:vista_default_executive = 'coc'
