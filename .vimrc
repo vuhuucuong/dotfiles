@@ -48,13 +48,13 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-"u sed for autocomplete when adding dash
+" Used for autocomplete when adding dash
 set iskeyword+=\-
 
-" arcticicestudio/nord-vim
+" joshdick/onedark.vim
 colorscheme onedark
 hi Normal guibg=NONE
-hi Comment guifg=#A9A9A9
+hi Comment guifg=#A9A9A9 gui=italic
 hi CursorLine guibg=#708090 guifg=#FFFFFF
 hi Visual guibg=#708090 guifg=#FFFFFF
 
