@@ -121,13 +121,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# ls after cd
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}
 
 # Set default $EDIOR as nvim
 
 export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
