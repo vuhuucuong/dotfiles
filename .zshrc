@@ -9,7 +9,7 @@ export ZSH="/Users/vuhuucuong/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -90,6 +90,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
+  osx
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -120,6 +121,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
 # Set default $EDIOR as nvim
 
 export EDITOR="nvim"
@@ -128,9 +130,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
-# spaceship custom
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
-SPACESHIP_CHAR_SYMBOL=' '
-SPACESHIP_GIT_BRANCH_PREFIX=' '
-SPACESHIP_PACKAGE_SYMBOL=' '
-SPACESHIP_NODE_SYMBOL=' '
+
+eval "$(starship init zsh)"
