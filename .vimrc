@@ -40,6 +40,7 @@ set splitbelow
 set backupcopy=yes
 set signcolumn=yes
 set nofoldenable
+set clipboard^=unnamed
 
 " Enable true color
 if exists('+termguicolors')
