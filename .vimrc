@@ -30,17 +30,22 @@ Plug 'joshdick/onedark.vim'
 call plug#end()
 
 "Custom Config
+syntax on
 set encoding=utf-8
 set fileencoding=utf-8
 set number
 set mouse=a
-syntax on
 set splitright
 set splitbelow
-set backupcopy=yes
-set signcolumn=yes
 set nofoldenable
 set clipboard^=unnamed
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " Enable true color
 if exists('+termguicolors')
@@ -58,6 +63,7 @@ hi Normal guibg=NONE
 hi Comment guifg=#A9A9A9 gui=italic
 hi CursorLine guibg=#708090 guifg=#FFFFFF
 hi Visual guibg=#708090 guifg=#FFFFFF
+hi CocHighlightText guibg=#708090 guifg=#FFFFFF
 
 " set color split line
 set fillchars=vert:┃ " for vsplits
@@ -115,7 +121,6 @@ let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 "
 let g:closetag_emptyTags_caseSensitive = 1
 
-" dict
 " Disables auto-close if not in a "valid" region (based on filetype)
 "
 let g:closetag_regions = {
@@ -194,10 +199,6 @@ let g:airline_symbols.maxlinenr = ''
        \ 'coc-css',
        \]
 
-
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -209,15 +210,12 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"coc.nvim extension settings
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 command! -nargs=0 Format :call CocAction('format')
-" set formatter
 " format all lines of current buffer
 nmap <leader>f :Format<CR>
 " format selected
@@ -230,6 +228,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 " autoclose loclist when close buffer
 augroup CloseLoclistWindowGroup
