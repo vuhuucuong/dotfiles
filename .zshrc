@@ -121,21 +121,28 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# Set default $EDIOR as nvim
+
 # ls after cd
+
 function chpwd() {
     emulate -L zsh
     ls -a
 }
 
-# Set default $EDIOR as nvim
+alias lg='lazygit'
 
 export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 # PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
+
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
 
 eval "$(starship init zsh)"
