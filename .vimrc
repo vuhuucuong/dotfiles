@@ -89,7 +89,7 @@ nmap <Leader>nf :NERDTreeFind<CR>
 
 "fzf
 nmap <c-p> :FZF<CR>
-nmap <c-t> :Ag<CR>
+nmap <c-f> :Ag<CR>
 
 "matze/vim-move
 let g:move_key_modifier = 'S'
