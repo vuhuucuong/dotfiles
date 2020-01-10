@@ -317,4 +317,5 @@ function! BufOnly(buffer, bang)
 
 endfunction
 
-nmap <Leader>o :BufOnly<CR>
+nmap <Leader>bo :BufOnly<CR>
+nmap <Leader>to :tabonly<CR>
