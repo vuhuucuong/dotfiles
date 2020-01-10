@@ -88,7 +88,8 @@ nmap <Leader>n :NERDTreeToggle<CR>
 nmap <Leader>nf :NERDTreeFind<CR>
 
 "fzf
-nmap <c-p> :GFiles<CR>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+nmap <c-p> :FZF<CR>
 nmap <c-f> :Ag<CR>
 
 "matze/vim-move
