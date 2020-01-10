@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-sensible'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -87,7 +88,7 @@ nmap <Leader>n :NERDTreeToggle<CR>
 nmap <Leader>nf :NERDTreeFind<CR>
 
 "fzf
-nmap <c-p> :FZF<CR>
+nmap <c-p> :GFiles<CR>
 nmap <c-f> :Ag<CR>
 
 "matze/vim-move
