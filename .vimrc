@@ -57,6 +57,11 @@ endif
 " Used for autocomplete when adding dash
 set iskeyword+=\-
 
+" Custom map for switch buffer
+nmap gb :bn<CR>
+nmap gB :bp<CR>
+nmap <leader>bl :ls<CR>:b<space>
+
 " joshdick/onedark.vim
 colorscheme onedark
 hi Normal guibg=NONE
