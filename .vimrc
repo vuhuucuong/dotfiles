@@ -13,7 +13,6 @@ Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
@@ -53,10 +52,15 @@ endif
 " Used for autocomplete when adding dash
 set iskeyword+=\-
 
-" Custom map for switch buffer
+" Custom map
 nmap gb :bn<CR>
 nmap gB :bp<CR>
 nmap <leader>bl :ls<CR>:b<space>
+nmap <C-J> <C-W>w
+nmap <C-K> <C-W>W
+nmap <C-L> <C-W>l
+nmap <C-H> <C-W>h
+
 
 " joshdick/onedark.vim
 colorscheme onedark
