@@ -38,10 +38,7 @@ set splitright
 set splitbelow
 set nofoldenable
 set clipboard^=unnamed
-set hidden
 set backupcopy=yes
-set nobackup
-set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
@@ -202,6 +199,7 @@ let g:airline_symbols.maxlinenr = ''
        \ 'coc-yaml',
        \ 'coc-markdownlint',
        \ 'coc-css',
+       \ 'coc-go',
        \]
 
 inoremap <silent><expr> <TAB>
@@ -224,8 +222,7 @@ command! -nargs=0 Format :call CocAction('format')
 " format all lines of current buffer
 nmap <leader>f :Format<CR>
 " format selected
-nmap <leader>F  <Plug>(coc-format-selected)
-xmap <leader>F  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
 "display linting error
 nmap <leader>l :CocList diagnostics<CR>
 " Remap keys for gotos
