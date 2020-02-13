@@ -73,7 +73,6 @@ plugins=(
   vi-mode
   git
   brew
-  dotenv
   docker-compose
   docker
   fzf
