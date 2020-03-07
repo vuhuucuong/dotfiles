@@ -13,7 +13,7 @@ Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
@@ -242,11 +242,6 @@ augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
-
-"scrooloose/nerdcommenter
-
-let NERDDefaultAlign="left"
-let NERDSpaceDelims=1
 
 "liuchengxu/vista.vim
 let g:vista_default_executive = 'coc'
