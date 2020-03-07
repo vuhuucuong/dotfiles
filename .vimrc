@@ -6,6 +6,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
@@ -23,11 +24,13 @@ Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
-Plug 'joshdick/onedark.vim'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 "Custom Config
+filetype plugin on
 syntax on
 set encoding=utf-8
 set fileencoding=utf-8
@@ -62,21 +65,11 @@ nmap <C-L> <C-W>l
 nmap <C-H> <C-W>h
 
 
-" joshdick/onedark.vim
-colorscheme onedark
+" morhetz/gruvbox
+colorscheme gruvbox
 hi Normal guibg=NONE
 hi Comment guifg=#A9A9A9 gui=italic
 hi CursorLine guibg=#708090 guifg=#FFFFFF
-hi Visual guibg=#708090 guifg=#FFFFFF
-hi CocHighlightText guibg=#708090 guifg=#FFFFFF
-
-" set color split line
-set fillchars=vert:┃ " for vsplits
-set fillchars+=fold:· " for folds
-hi VertSplit guifg=#87CEFA
-
-" Directory color
-hi Directory guifg=#87CEFA
 
 "scrooloose/nerdtree
 let NERDTreeShowHidden=1
@@ -96,6 +89,9 @@ nmap <Leader>nf :NERDTreeFind<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nmap <c-p> :FZF<CR>
 nmap <c-f> :Ag<CR>
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
 
 "matze/vim-move
 let g:move_key_modifier = 'S'
@@ -155,6 +151,9 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+"vim-airline/vim-airline-themes
+let g:airline_theme='bubblegum'
 
 " unicode symbols
 let g:airline_left_sep = '»'
