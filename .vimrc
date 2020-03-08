@@ -46,7 +46,6 @@ set mouse=a
 set splitright
 set splitbelow
 set nofoldenable
-set clipboard^=unnamed
 set backupcopy=yes
 set cmdheight=2
 set updatetime=300
