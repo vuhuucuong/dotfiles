@@ -13,7 +13,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
@@ -28,6 +28,9 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/BufOnly.vim'
 
 call plug#end()
+
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
 " Custom configs
 if exists('+termguicolors')
@@ -52,6 +55,10 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set iskeyword+=\-
+
+hi Normal guibg=NONE
+hi Comment guifg=#A9A9A9 gui=italic
+hi CursorLine guibg=#708090 guifg=#FFFFFF
 
 " Custom key mapping
 nmap gb :bn<CR>
@@ -85,12 +92,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" morhetz/gruvbox
-colorscheme gruvbox
-hi Normal guibg=NONE
-hi Comment guifg=#A9A9A9 gui=italic
-hi CursorLine guibg=#708090 guifg=#FFFFFF
-
 " scrooloose/nerdtree
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
@@ -101,6 +102,10 @@ let g:NERDTreeDirArrowCollapsible = ''
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd BufWinEnter * NERDTreeMirror
+
+"scrooloose/nerdcommenter
+let NERDDefaultAlign="left"
+let NERDSpaceDelims=1
 
 " junegunn/fzf.vim
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
