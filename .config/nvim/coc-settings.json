@@ -1,4 +1,5 @@
 {
+  "diagnostic.signOffset": 9999999,
   "diagnostic.warningSign": " ",
   "diagnostic.errorSign": " ",
   "list.indicator": " ",
@@ -11,16 +12,5 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "eslint.packageManager": "yarn",
-  "languageserver": {
-    "golang": {
-      "command": "go-langserver",
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
-        "lintTool": "golint"
-      }
-    }
-  }
+  "eslint.packageManager": "yarn"
 }
