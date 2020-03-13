@@ -1,5 +1,5 @@
 [user]
-  name = vuhuucuong
+  name = Cuong Vu
   email = vuhuucuong1310@gmail.com
 [alias]
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
