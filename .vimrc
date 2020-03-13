@@ -61,9 +61,6 @@ hi Comment guifg=#A9A9A9 gui=italic
 hi CursorLine guibg=#708090 guifg=#FFFFFF
 
 " Custom key mapping
-nmap gb :bn<CR>
-nmap gB :bp<CR>
-nmap <leader>bl :ls<CR>:b<space>
 nmap <C-J> <C-W>w
 nmap <C-K> <C-W>W
 nmap <C-L> <C-W>l
@@ -82,7 +79,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <Leader>v :Vista!!<CR>
 nmap <Leader>bo :BufOnly<CR>
-nmap <Leader>to :tabonly<CR>
 xmap <leader>f  <Plug>(coc-format-selected)
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
