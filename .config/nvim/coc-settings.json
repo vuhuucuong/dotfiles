@@ -12,5 +12,15 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "eslint.packageManager": "yarn"
+  "eslint.packageManager": "yarn",
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "svelte"
+  ],
+  "svelte.plugin.svelte.diagnostics.enable": false,
+  "svelte.plugin.css.diagnostics.enable": false,
+  "svelte.plugin.typescript.diagnostics.enable": false
 }

@@ -189,6 +189,7 @@ let g:coc_global_extensions = [
      \ 'coc-markdownlint',
      \ 'coc-css',
      \ 'coc-go',
+     \ 'coc-svelte',
      \]
 
 function! s:check_back_space() abort
