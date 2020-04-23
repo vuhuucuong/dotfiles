@@ -180,8 +180,9 @@ augroup END
 let g:tmuxline_theme = 'zenburn'
 let g:tmuxline_preset = {
     \'a'    : '#S',
-    \'b'    : ["華You've been working for", '#(uptime | cut -d " " -f 1,2,3)'],
+    \'b'    : '#(dirs -c; dirs)',
     \'win'  : ['#I', '#W'],
     \'cwin' : ['#I', '#W', '#F'],
-    \'z'    : '#(dirs -c; dirs)',
+    \'y'    : '#(curl -s wttr.in\?format\="%%l:+%%C%%c%%20%%t&period=60")',
+    \'z'    : ["華Working for", '#(uptime | cut -d " " -f 1,2,3)'],
     \}
