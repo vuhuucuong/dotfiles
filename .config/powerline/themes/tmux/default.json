@@ -1,9 +1,0 @@
-{
-  "segments": {
-    "right": [
-      {
-        "function": "powerline.segments.shell.cwd"
-      }
-    ]
-  }
-}
