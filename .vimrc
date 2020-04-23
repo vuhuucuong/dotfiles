@@ -183,6 +183,5 @@ let g:tmuxline_preset = {
     \'b'    : '#(dirs -c; dirs)',
     \'win'  : ['#I', '#W'],
     \'cwin' : ['#I', '#W', '#F'],
-    \'y'    : '#(curl -s wttr.in\?format\="%%l:+%%C%%c%%20%%t&period=60")',
     \'z'    : ["華Working for", '#(uptime | cut -d " " -f 1,2,3)'],
     \}
