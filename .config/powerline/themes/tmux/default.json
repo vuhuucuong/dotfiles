@@ -2,29 +2,8 @@
   "segments": {
     "right": [
       {
-        "function": "powerline.segments.common.players.spotify",
-        "args": {
-          "state_symbols": {
-            "fallback": " ",
-            "play": " ",
-            "pause": " ",
-            "stop": " "
-          }
-        }
-      },
-      {
-        "function": "powerline.segments.tmux.attached_clients"
+        "function": "powerline.segments.shell.cwd"
       }
     ]
-  },
-  "dividers": {
-    "left": {
-      "hard": "",
-      "soft": " "
-    },
-    "right": {
-      "hard": "",
-      "soft": " "
-    }
   }
 }
