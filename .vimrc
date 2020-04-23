@@ -23,6 +23,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -173,3 +174,14 @@ augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
+
+" edkolev/tmuxline.vim
+
+let g:tmuxline_theme = 'zenburn'
+let g:tmuxline_preset = {
+    \'a'    : '#S',
+    \'b'    : ["華You've been working for", '#(uptime | cut -d " " -f 1,2,3)'],
+    \'win'  : ['#I', '#W'],
+    \'cwin' : ['#I', '#W', '#F'],
+    \'z'    : '#(dirs -c; dirs)',
+    \}
