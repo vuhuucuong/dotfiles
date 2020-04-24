@@ -180,8 +180,7 @@ augroup END
 let g:tmuxline_theme = 'zenburn'
 let g:tmuxline_preset = {
     \'a'    : '#S',
-    \'b'    : ' #(dirs -c; dirs)',
     \'win'  : ['#I', '#W'],
     \'cwin' : ['#I', '#W', '#F'],
-    \'z'    : '華 Working for #(uptime | cut -d " " -f 1,2,3) ',
+    \'z'    : ' #(dirs -c; dirs)',
     \}
