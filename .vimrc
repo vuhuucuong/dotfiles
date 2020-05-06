@@ -21,20 +21,23 @@ Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
 Plug 'ryanoasis/vim-devicons'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
+let g:onedark_terminal_italics=1
+colorscheme onedark
 
 " Custom configs
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
 
 filetype plugin on
@@ -125,7 +128,7 @@ let g:DevIconsDefaultFolderOpenSymbol = ' '
 " itchyny/lightline.vim#one 
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
