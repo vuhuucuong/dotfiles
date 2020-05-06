@@ -31,14 +31,7 @@ let g:onedark_terminal_italics=1
 colorscheme onedark
 
 " Custom configs
-if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
+set termguicolors
 
 filetype plugin on
 syntax on
@@ -56,9 +49,10 @@ set shortmess+=c
 set signcolumn=yes
 set iskeyword+=\-
 
-hi Normal guibg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 hi Comment guifg=#A9A9A9 gui=italic
 hi CursorLine guibg=#708090 guifg=#FFFFFF
+hi Visual guibg=#708090 guifg=#FFFFFF
 
 " Custom key mapping
 nmap <C-J> <C-W>w
