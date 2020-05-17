@@ -23,6 +23,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'matze/vim-move'
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
@@ -181,3 +182,6 @@ let g:tmuxline_preset = {
     \'cwin' : ['#I', '#W', '#F'],
     \'z'    : ' #(dirs -c; dirs)',
     \}
+
+" matze/vim-move
+let g:move_key_modifier = 's'
