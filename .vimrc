@@ -153,7 +153,6 @@ let g:coc_global_extensions = [
      \ 'coc-snippets',
      \ 'coc-emmet',
      \ 'coc-yank',
-     \ 'jest-snippets',
      \ 'coc-highlight',
      \ 'coc-tsserver',
      \ 'coc-python',
@@ -178,6 +177,8 @@ augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
+
+let g:coc_snippet_next = '<tab>'
 
 " edkolev/tmuxline.vim
 
