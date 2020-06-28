@@ -161,7 +161,6 @@ let g:coc_global_extensions = [
      \ 'coc-yaml',
      \ 'coc-markdownlint',
      \ 'coc-css',
-     \ 'coc-go',
      \ 'coc-svelte',
      \]
 

@@ -33,8 +33,6 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
 
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
