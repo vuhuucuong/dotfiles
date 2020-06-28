@@ -39,11 +39,6 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 
-function chpwd() {
-    emulate -L zsh
-    ls -a
-}
-
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic 
