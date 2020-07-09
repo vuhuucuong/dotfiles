@@ -78,6 +78,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh :call <SID>show_documentation()<CR>
 nmap <Leader>bo :BufOnly<CR>
 xmap <leader>f  <Plug>(coc-format-selected)
 inoremap <silent><expr> <TAB>
@@ -167,6 +168,14 @@ let g:coc_global_extensions = [
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 command! -nargs=0 Format :call CocAction('format')
