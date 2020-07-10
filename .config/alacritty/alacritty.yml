@@ -101,17 +101,17 @@ tabspaces: 8
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka Nerd Font
-    style: Regular
+    family: OperatorMono Nerd Font
+    style: Book
 
   # The bold font face
   bold:
-    family: Iosevka Nerd Font
+    family: OperatorMono Nerd Font
     style: Bold
 
   # The italic font face
   italic:
-    family: Iosevka Nerd Font
+    family: OperatorMono Nerd Font
     style: Bold Italic
 
   # Point size
