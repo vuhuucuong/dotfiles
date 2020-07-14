@@ -38,6 +38,7 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
+bindkey '^ ' autosuggest-accept
 
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
