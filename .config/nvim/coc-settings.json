@@ -1,9 +1,5 @@
 {
   "diagnostic.signOffset": 9999999,
-  "diagnostic.warningSign": " ",
-  "diagnostic.errorSign": " ",
-  "list.indicator": " ",
-  "list.selectedSignText": " ",
   "typescript.validate.enable": false,
   "javascript.validate.enable": false,
   "python.linting.pylintEnabled": false,
