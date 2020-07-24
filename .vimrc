@@ -26,7 +26,6 @@ Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
 Plug 'ryanoasis/vim-devicons'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'matze/vim-move'
