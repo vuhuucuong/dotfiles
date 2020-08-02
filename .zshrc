@@ -1,4 +1,5 @@
 export LANG=en_US.UTF-8
+export ZSH_DISABLE_COMPFIX=true
 export ZSH="~/.oh-my-zsh"
 
 ZSH_THEME=""
