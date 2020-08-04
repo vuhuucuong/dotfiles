@@ -177,8 +177,9 @@ bindsym $mod+r mode "resize"
 client.focused #4c7899 #285577 #ffffff #2e9ef4  #285577
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id feh --bg-fill ~/Pictures/bg.jpg
 
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 4
 gaps outer 0
 gaps inner 15
 smart_gaps on
@@ -186,3 +187,5 @@ smart_gaps inverse_outer
 smart_borders on
 smart_borders no_gaps
 hide_edge_borders smart_no_gaps
+
+bindsym Print exec flameshot gui
