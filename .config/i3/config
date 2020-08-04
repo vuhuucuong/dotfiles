@@ -176,6 +176,7 @@ bindsym $mod+r mode "resize"
 
 client.focused #4c7899 #285577 #ffffff #2e9ef4  #285577
 
+exec --no-startup-id redshift
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id feh --bg-fill ~/Pictures/bg.jpg
 
@@ -189,3 +190,4 @@ smart_borders no_gaps
 hide_edge_borders smart_no_gaps
 
 bindsym Print exec flameshot gui
+bindsym $mod+period exec --no-startup-id rofimoji
