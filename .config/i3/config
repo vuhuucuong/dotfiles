@@ -312,4 +312,4 @@ smart_borders no_gaps
 hide_edge_borders smart_no_gaps
 
 bindsym Print exec flameshot gui
-bindsym $mod+period exec --no-startup-id rofimoji
+bindsym $mod+period exec --no-startup-id rofimoji -p
