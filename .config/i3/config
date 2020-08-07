@@ -298,9 +298,10 @@ mode "$mode_gaps_left" {
 
 client.focused #4c7899 #285577 #ffffff #2e9ef4  #285577
 
-exec --no-startup-id redshift
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id redshift
 exec --no-startup-id feh --bg-fill ~/Pictures/bg.jpg
+exec --no-startup-id xfce4-power-manager
 
 for_window [class=".*"] border pixel 4
 gaps outer 0
