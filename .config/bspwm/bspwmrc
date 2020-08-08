@@ -12,5 +12,4 @@ bspc config gapless_monocle      true
 # CUSTOM CONFIG
 feh --bg-fill ~/Pictures/bg.jpg
 $HOME/.config/polybar/launch.sh
-redshift
 xfce4-power-manager
