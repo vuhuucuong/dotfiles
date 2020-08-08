@@ -55,4 +55,4 @@ export XMODIFIER=@im=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx
 
-exec i3
+exec bspwm
