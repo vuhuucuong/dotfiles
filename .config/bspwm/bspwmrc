@@ -10,7 +10,7 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 # CUSTOM CONFIG
-feh --bg-fill ~/Pictures/bg.jpg
+$HOME/.fehbg
 $HOME/.config/polybar/launch.sh
 systemctl --user start redshift
 xfce4-power-manager
