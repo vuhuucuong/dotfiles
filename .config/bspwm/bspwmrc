@@ -10,6 +10,8 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 # CUSTOM CONFIG
+# keyboard rate
+xset r rate 200 30
 $HOME/.fehbg
 $HOME/.config/polybar/launch.sh
 systemctl --user start redshift

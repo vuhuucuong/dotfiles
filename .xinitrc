@@ -47,8 +47,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  done
  unset f
 fi
-# keyboard rate
-xset r rate 220 20
 # ibus
 export GTK_IM_MODULE=ibus
 export XMODIFIER=@im=ibus
