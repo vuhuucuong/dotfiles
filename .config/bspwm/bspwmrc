@@ -12,7 +12,8 @@ bspc config gapless_monocle      true
 # CUSTOM CONFIG
 # keyboard rate
 xset r rate 200 30
-$HOME/.fehbg
-$HOME/.config/polybar/launch.sh
-systemctl --user start redshift
-xfce4-power-manager
+picom --config ~/.config/picom/picom.conf &
+$HOME/.fehbg &
+$HOME/.config/polybar/launch.sh &
+systemctl --user start redshift &
+xfce4-power-manager &
