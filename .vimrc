@@ -12,8 +12,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
@@ -25,7 +23,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'alvan/vim-closetag'
-Plug 'ryanoasis/vim-devicons'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'matze/vim-move'
@@ -65,8 +62,6 @@ nmap <C-J> <C-W>w
 nmap <C-K> <C-W>W
 nmap <C-L> <C-W>l
 nmap <C-H> <C-W>h
-nmap <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>nf :NERDTreeFind<CR>
 nmap <c-p> :FZF<CR>
 nmap <c-f> :Ag<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -87,17 +82,10 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" scrooloose/nerdtree
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
-let NERDTreeCascadeSingleChildDir=0
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-autocmd BufWinEnter * NERDTreeMirror
+nmap <space>e :CocCommand explorer<CR>
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+nmap <space>el :CocList explPresets<CR>
 
 "scrooloose/nerdcommenter
 let NERDDefaultAlign="left"
@@ -120,11 +108,6 @@ let g:closetag_regions = {
     \ }
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
-
-" ryanoasis/vim-devicons
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
-let g:DevIconsDefaultFolderOpenSymbol = ' '
 
 " itchyny/lightline.vim#one 
 
@@ -204,3 +187,38 @@ let g:tmuxline_preset = {
 
 " matze/vim-move
 let g:move_key_modifier = 's'
+
+" coc-explorer
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
