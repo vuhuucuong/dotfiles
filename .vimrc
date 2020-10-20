@@ -27,6 +27,7 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'matze/vim-move'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
