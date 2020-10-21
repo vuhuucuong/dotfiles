@@ -135,6 +135,7 @@ endfunction
 
 " neoclide/coc.nvim
 let g:coc_global_extensions = [
+     \ 'coc-explorer',
      \ 'coc-lists',
      \ 'coc-prettier',
      \ 'coc-eslint',
