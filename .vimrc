@@ -27,7 +27,6 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'matze/vim-move'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -36,6 +35,7 @@ colorscheme onedark
 
 " Custom configs
 set termguicolors
+let loaded_netrwPlugin = 1
 
 filetype plugin on
 syntax on
@@ -224,4 +224,3 @@ let g:coc_explorer_global_presets = {
 \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   }
 \ }
-let loaded_netrwPlugin = 1
