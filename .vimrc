@@ -68,7 +68,7 @@ nmap <c-f> :Ag<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <leader>f :Format<CR>
-nmap <leader>l :CocList diagnostics<CR>
+nmap <leader>l :CocDiagnostics<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
