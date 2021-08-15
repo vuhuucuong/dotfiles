@@ -13,7 +13,6 @@ plugins=(
   fzf
   gem
   node
-  npm
   nvm
   pip
   pyenv
@@ -21,7 +20,7 @@ plugins=(
   tmux
   yarn
   man
-  npx
+  npm
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
@@ -33,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # Custom configs
 export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
-export PATH="$(yarn global bin):/usr/local/opt/curl/bin:$PATH"
+export PATH="$(yarn global bin):$HOME/.local/bin:/usr/local/opt/curl/bin:$PATH"
 
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
@@ -54,3 +53,5 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
