@@ -30,7 +30,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Custom configs
-export EDITOR="nvim"
+export EDITOR="vim"
 export NVM_DIR="$HOME/.nvm"
 export PATH="$(yarn global bin):$HOME/.local/bin:/usr/local/opt/curl/bin:$PATH"
 
