@@ -24,7 +24,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
-  osx
+  macos
 )
 
 source $ZSH/oh-my-zsh.sh
