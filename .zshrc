@@ -15,7 +15,6 @@ plugins=(
   node
   nvm
   pip
-  pyenv
   sudo
   tmux
   yarn
@@ -24,7 +23,6 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
-  macos
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -48,6 +46,8 @@ pasteinit() {
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
+
+bindkey '^R' history-incremental-search-backward
 
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
