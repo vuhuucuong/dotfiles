@@ -55,3 +55,11 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pnpm
+export PNPM_HOME="/home/cuong/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
