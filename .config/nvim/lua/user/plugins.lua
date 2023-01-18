@@ -1,9 +1,9 @@
 -- Automatically install Packer.nvim
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
 
   -- cmp
-  use { "ms-jpq/coq_nvim", branch =  "coq" }
+  use { "ms-jpq/coq_nvim", branch = "coq" }
   -- 9000+ Snippets
   use { "ms-jpq/coq.artifacts", branch = "artifacts" }
 
@@ -37,6 +37,47 @@ return require('packer').startup(function(use)
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "neovim/nvim-lspconfig"
+  use "b0o/schemastore.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
+
+  -- language parser
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+
+  -- file explorer
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
+
+  -- auto bracket pair
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup({}) end
+  }
+
+  -- surround
+  use({
+    "kylechui/nvim-surround",
+    tag = "*",
+    config = function()
+      require("nvim-surround").setup({
+      })
+    end
+  })
+
+  -- indent
+  use "lukas-reineke/indent-blankline.nvim"
+
+  -- UI
+  use "norcalli/nvim-colorizer.lua"
 
 
   -- Automatically set up your configuration after cloning packer.nvim

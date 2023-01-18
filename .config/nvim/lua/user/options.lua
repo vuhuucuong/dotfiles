@@ -1,4 +1,5 @@
 local options = {
+  fileformats = 'unix',                    -- set fileformat to unix, for LF line ending
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
@@ -9,7 +10,7 @@ local options = {
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
-  showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
+ -- showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
@@ -48,3 +49,7 @@ vim_opt.shortmess:append "c"
 vim_opt.whichwrap:append("<,>,[,],h,l")
 vim_opt.iskeyword:append("-")
 vim_opt.formatoptions:remove("cro")        -- TODO: this doesn't seem to work
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
