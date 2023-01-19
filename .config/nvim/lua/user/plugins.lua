@@ -39,6 +39,19 @@ return require('packer').startup(function(use)
   use "neovim/nvim-lspconfig"
   use "b0o/schemastore.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("user.whichkey").config_which_key()
+    end
+  }
+
+  -- fuzzy finder
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  }
 
   -- language parser
   use {
