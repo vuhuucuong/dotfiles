@@ -1,11 +1,8 @@
-local M = {}
+local wk = require("which-key")
 
-M.config_which_key = function()
-  vim.o.timeout = true
-  vim.o.timeoutlen = 300
-  require('which-key').setup({
-  })
-end
-
-
-return M
+wk.register({
+  ["<leader>f"] = { name = "Find" },
+  ["<leader>v"] = { name = "Vim" },
+  ["<leader>g"] = { name = "Git" },
+  ["<leader>l"] = { name = "LSP" },
+})

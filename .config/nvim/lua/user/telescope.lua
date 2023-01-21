@@ -4,7 +4,20 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
+    layout_strategy = 'horizontal',
+    layout_config = {
+      height = 0.95,
+      width = 0.95,
+      preview_width = 0.5
+    },
     mappings = {
+      i = {
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
+
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      }
     }
   },
   pickers = {
@@ -15,20 +28,18 @@ telescope.setup {
 
 local keymap = vim.keymap.set
 
--- Mapping to empty function just for displaying prefix in which-key
-keymap("n", "<leader>f", function()end, { desc = "Find...", noremap = true, silent = true })
--- File & text
-keymap("n", "<leader>ff", builtin.find_files, { desc = "Find file", noremap = true, silent = true })
-keymap("n", "<leader>ft", builtin.live_grep, { desc = "Find text", noremap = true, silent = true })
--- vim
-keymap("n", "<leader>fb", builtin.buffers, { desc = "Find buffer", noremap = true, silent = true })
-keymap("n", "<leader>fc", builtin.command_history, { desc = "Command history", noremap = true, silent = true })
-keymap("n", "<leader>fs", builtin.search_history, { desc = "Search history", noremap = true, silent = true })
-keymap("n", "<leader>fr", builtin.registers, { desc = "List registers", noremap = true, silent = true })
-keymap("n", "<leader>fq", builtin.quickfix, { desc = "List quickfix items", noremap = true, silent = true })
-keymap("n", "<leader>fk", builtin.keymaps, { desc = "List normal mode keymaps", noremap = true, silent = true })
--- git
-keymap("n", "<leader>fgc", builtin.git_commits, { desc = "List git commit history", noremap = true, silent = true })
-keymap("n", "<leader>fgb", builtin.git_branches, { desc = "List git branches", noremap = true, silent = true })
-keymap("n", "<leader>fgs", builtin.git_status, { desc = "Git status", noremap = true, silent = true })
-keymap("n", "<leader>fgS", builtin.git_stash, { desc = "List git stash", noremap = true, silent = true })
+-- Find
+keymap("n", "<leader>ff", builtin.find_files, { desc = "Find file", noremap = true, })
+keymap("n", "<leader>fs", builtin.live_grep, { desc = "Grep string", noremap = true, })
+-- Vim
+keymap("n", "<leader>vb", builtin.buffers, { desc = "Buffers", noremap = true, })
+keymap("n", "<leader>vc", builtin.command_history, { desc = "Command history", noremap = true, })
+keymap("n", "<leader>vs", builtin.search_history, { desc = "Search history", noremap = true, })
+keymap("n", "<leader>vr", builtin.registers, { desc = "Registers", noremap = true, })
+keymap("n", "<leader>vq", builtin.quickfix, { desc = "Quickfix items", noremap = true, })
+keymap("n", "<leader>vk", builtin.keymaps, { desc = "List normal mode keymaps", noremap = true, })
+-- Git
+keymap("n", "<leader>gc", builtin.git_commits, { desc = "Commit history", noremap = true, })
+keymap("n", "<leader>gb", builtin.git_branches, { desc = "Git branches", noremap = true, })
+keymap("n", "<leader>gs", builtin.git_status, { desc = "Git status", noremap = true, })
+keymap("n", "<leader>gS", builtin.git_stash, { desc = "Git stashes", noremap = true, })

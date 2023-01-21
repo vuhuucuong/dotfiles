@@ -1,4 +1,3 @@
-
 local catppuccin = "catppuccin-mocha"
 
 require("catppuccin").setup {
