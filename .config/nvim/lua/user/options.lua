@@ -1,5 +1,5 @@
 local options = {
-  fileformats = 'unix',                    -- set fileformat to unix, for LF line ending
+  fileformats = "unix",                    -- set fileformat to unix, for LF line ending
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
@@ -10,7 +10,7 @@ local options = {
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
- -- showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
+  showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
@@ -37,6 +37,7 @@ local options = {
   sidescrolloff = 8,                       -- minimal number of screen columns either side of cursor if wrap is `false`
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   whichwrap = "bs<>[]hl",                  -- which "horizontal" keys are allowed to travel to prev/next line
+  laststatus = 3                           -- single global statusline for the current window
 }
 
 for k, v in pairs(options) do
@@ -53,3 +54,8 @@ vim_opt.formatoptions:remove("cro")        -- TODO: this doesn't seem to work
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Auto-start coq
+vim.g.coq_settings = {
+  auto_start = "shut-up",
+  ["keymap.jump_to_mark"] = "",
+}

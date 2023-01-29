@@ -1,56 +1,118 @@
-local keymap = vim.keymap.set
+local M = {}
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", { noremap = true, })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local builtin = require("telescope.builtin")
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+M.keymap_set_default = function()
+  local keymap_set_fn = vim.keymap.set
+  -- GENERIC KEYMAPS --
 
--- Normal --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", { desc = "Left window", noremap = true, })
-keymap("n", "<C-j>", "<C-w>j", { desc = "Bottom window", noremap = true, })
-keymap("n", "<C-k>", "<C-w>k", { desc = "Top window", noremap = true, })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Right window", noremap = true, })
+  --Remap space as leader key
+  keymap_set_fn("", "<Space>", "<Nop>", { noremap = true, })
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", { desc = "Resize up", noremap = true, })
-keymap("n", "<C-Down>", ":resize +2<CR>", { desc = "Resize down", noremap = true, })
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize left", noremap = true, })
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize right", noremap = true, })
+  -- Modes
+  --   normal_mode = "n",
+  --   insert_mode = "i",
+  --   visual_mode = "v",
+  --   visual_block_mode = "x",
+  --   term_mode = "t",
+  --   command_mode = "c",
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer", noremap = true, })
-keymap("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer", noremap = true, })
-keymap("n", "<S-j>", ":b#<CR>", { desc = "Last buffer", noremap = true, })
+  -- Normal --
+  -- Better window navigation
+  keymap_set_fn("n", "<C-h>", "<C-w>h", { desc = "Left window", noremap = true, })
+  keymap_set_fn("n", "<C-j>", "<C-w>j", { desc = "Bottom window", noremap = true, })
+  keymap_set_fn("n", "<C-k>", "<C-w>k", { desc = "Top window", noremap = true, })
+  keymap_set_fn("n", "<C-l>", "<C-w>l", { desc = "Right window", noremap = true, })
+  -- Resize with arrows
+  keymap_set_fn("n", "<C-Up>", ":resize -2<cr>", { desc = "Resize up", noremap = true, })
+  keymap_set_fn("n", "<C-Down>", ":resize +2<cr>", { desc = "Resize down", noremap = true, })
+  keymap_set_fn("n", "<C-Left>", ":vertical resize -2<cr>", { desc = "Resize left", noremap = true, })
+  keymap_set_fn("n", "<C-Right>", ":vertical resize +2<cr>", { desc = "Resize right", noremap = true, })
+  -- Navigate buffers
+  keymap_set_fn("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer", noremap = true, })
+  keymap_set_fn("n", "<S-h>", ":bprevious<cr>", { desc = "Previous buffer", noremap = true, })
+  -- Move text up and down
+  keymap_set_fn("n", "<A-j>", "<Esc>:m .+1<cr>==", { desc = "Move line up", noremap = true, })
+  keymap_set_fn("n", "<A-k>", "<Esc>:m .-2<cr>==", { desc = "Move line down", noremap = true, })
+  -- Visual --
+  -- Stay in indent mode
+  keymap_set_fn("v", "<", "<gv", { desc = "Shift indent left", noremap = true, })
+  keymap_set_fn("v", ">", ">gv", { desc = "Shift indent right", noremap = true, })
+  -- Move text up and down
+  keymap_set_fn("v", "<A-j>", ":m .+1<cr>==", { desc = "Move selected line(s) up", noremap = true, })
+  keymap_set_fn("v", "<A-k>", ":m .-2<cr>==", { desc = "Move selected line(s) down", noremap = true, })
+  -- Disable yank when pasting into visually selected text
+  keymap_set_fn("v", "p", '"_dP', { desc = "Disable yank when pasting", noremap = true, })
+  -- Visual Block --
+  -- Move text up and down
+  keymap_set_fn("x", "J", ":move '>+1<cr>gv-gv", { desc = "", noremap = true, })
+  keymap_set_fn("x", "K", ":move '<-2<cr>gv-gv", { desc = "", noremap = true, })
+  keymap_set_fn("n", "<S-j>", "<cmd>b#<cr>", { desc = "Last buffer", noremap = true, })
+  -- Delete all buffers except current
+  vim.api.nvim_create_user_command("Bo", ":%bd|e#|bd#", { nargs = 0 })
 
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==", { desc = "Move line up", noremap = true, })
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", { desc = "Move line down", noremap = true, })
 
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", { desc = "Shift indent left", noremap = true, })
-keymap("v", ">", ">gv", { desc = "Shift indent right", noremap = true, })
+  -- PLUGINS KEYMAPS --
 
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", { desc = "Move selected line(s) up", noremap = true, })
-keymap("v", "<A-k>", ":m .-2<CR>==", { desc = "Move selected line(s) down", noremap = true, })
+  -- Find
+  keymap_set_fn("n", "<leader>ff", builtin.find_files, { desc = "Find files", noremap = true, })
+  keymap_set_fn("n", "<leader>fs", builtin.live_grep, { desc = "Live grep", noremap = true, })
+  keymap_set_fn("n", "<leader>fr", builtin.resume, { desc = "Resume previous search", noremap = true, })
+  -- Vim
+  keymap_set_fn("n", "<leader>vb", builtin.buffers, { desc = "Buffers", noremap = true, })
+  keymap_set_fn("n", "<leader>vc", builtin.command_history, { desc = "Command history", noremap = true, })
+  keymap_set_fn("n", "<leader>vs", builtin.search_history, { desc = "Search history", noremap = true, })
+  keymap_set_fn("n", "<leader>vr", builtin.registers, { desc = "Registers", noremap = true, })
+  keymap_set_fn("n", "<leader>vq", builtin.quickfix, { desc = "Quickfix items", noremap = true, })
+  keymap_set_fn("n", "<leader>vk", builtin.keymaps, { desc = "List normal mode keymaps", noremap = true, })
+  -- Git
+  keymap_set_fn("n", "<leader>gc", builtin.git_commits, { desc = "Commit history", noremap = true, })
+  keymap_set_fn("n", "<leader>gb", builtin.git_branches, { desc = "Git branches", noremap = true, })
+  keymap_set_fn("n", "<leader>gs", builtin.git_status, { desc = "Git status", noremap = true, })
+  keymap_set_fn("n", "<leader>gS", builtin.git_stash, { desc = "Git stashes", noremap = true, })
+  -- NvimTree explorer
+  keymap_set_fn("n", "<leader>et", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle", noremap = true, })
+  keymap_set_fn("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh", noremap = true, })
+  keymap_set_fn("n", "<leader>ef", "<cmd>NvimTreeFindFile<cr>", { desc = "Find current buffer", noremap = true, })
+end
 
--- Disable yank when pasting into visually selected text
-keymap("v", "p", '"_dP', { desc = "Disable yank when pasting", noremap = true, })
+M.keymap_set_buffer = function(buffer)
+  local keymap_set_fn = vim.keymap.set
 
--- Visual Block --
--- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", { desc = "", noremap = true, })
-keymap("x", "K", ":move '<-2<CR>gv-gv", { desc = "", noremap = true, })
+  -- go to keymapping
+  keymap_set_fn("n", "gr", builtin.lsp_references,
+    { desc = "[LSP] List references", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gd", builtin.lsp_definitions,
+    { desc = "[LSP] Go to definitions", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gI", builtin.lsp_implementations,
+    { desc = "[LSP] Go to implementation", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>",
+    { desc = "[LSP] Go to declarations", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "[LSP] Hover", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gl", builtin.diagnostics, { desc = "[LSP] List diagnostics", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>",
+    { desc = "[LSP] Signature help", buffer = buffer, noremap = true })
 
--- Delete all buffers except current
-vim.api.nvim_create_user_command("Bufo", ":%bd|e#|bd#", { nargs = 0 })
+  -- <leader>l prefix LSP keymapping
+  keymap_set_fn("n", "<leader>ll", "<cmd>lua vim.diagnostic.setloclist()<cr>",
+    { desc = "List diagnostics in location list", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",
+    { desc = "Code actions", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "<leader>li", "<cmd>LspInfo<cr>",
+    { desc = "LSP Info", buffer = buffer, noremap = true })
+  -- keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>",
+  --   { desc = "Next diagnostic", buffer = bufnr, noremap = true })
+  -- keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
+  --   { desc = "Previous diagnostic", buffer = bufnr, noremap = true })
+  keymap_set_fn("n", "<leader>ls", builtin.lsp_document_symbols,
+    { desc = "List current buffer symbols", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",
+    { desc = "Rename symbol", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
+    { desc = "Format document", buffer = buffer, noremap = true })
+
+end
+
+return M
