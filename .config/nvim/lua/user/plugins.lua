@@ -12,7 +12,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- automatically run :PackerCompile whenever plugins.lua is updated 
+-- automatically run :PackerCompile whenever plugins.lua is updated
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -20,7 +20,7 @@ vim.cmd([[
   augroup end
 ]])
 
-return require("packer").startup(function(use)
+return require("packer").startup({ function(use)
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim" -- common lua functions used by other plugins
   -- List plugins here
@@ -150,6 +150,24 @@ return require("packer").startup(function(use)
       api.events.subscribe(api.events.Event.FileCreated, function(file)
         vim.cmd("edit " .. file.fname)
       end)
+      -- auto open on start up
+      local function open_nvim_tree(data)
+
+        -- buffer is a directory
+        local directory = vim.fn.isdirectory(data.file) == 1
+
+        if not directory then
+          return
+        end
+
+        -- change to the directory
+        vim.cmd.cd(data.file)
+
+        -- open the tree
+        require("nvim-tree.api").tree.open()
+      end
+
+      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end
 
   }
@@ -214,32 +232,32 @@ return require("packer").startup(function(use)
     config = function()
       require("nvim-navic").setup {
         icons = {
-          File = " ",
-          Module = " ",
-          Namespace = " ",
-          Package = " ",
-          Class = " ",
-          Method = " ",
-          Property = " ",
-          Field = " ",
-          Constructor = " ",
-          Enum = " ",
-          Interface = " ",
-          Function = " ",
-          Variable = " ",
-          Constant = " ",
-          String = " ",
-          Number = " ",
-          Boolean = " ",
-          Array = " ",
-          Object = " ",
-          Key = " ",
-          Null = " ",
-          EnumMember = " ",
-          Struct = " ",
-          Event = " ",
-          Operator = " ",
-          TypeParameter = " "
+          File          = " ",
+          Module        = " ",
+          Namespace     = " ",
+          Package       = " ",
+          Class         = " ",
+          Method        = " ",
+          Property      = " ",
+          Field         = " ",
+          Constructor   = " ",
+          Enum          = "練",
+          Interface     = "練",
+          Function      = " ",
+          Variable      = " ",
+          Constant      = " ",
+          String        = " ",
+          Number        = " ",
+          Boolean       = "◩ ",
+          Array         = " ",
+          Object        = " ",
+          Key           = " ",
+          Null          = "ﳠ ",
+          EnumMember    = " ",
+          Struct        = " ",
+          Event         = " ",
+          Operator      = " ",
+          TypeParameter = " ",
         },
         highlight = false,
         separator = " > ",
@@ -251,10 +269,17 @@ return require("packer").startup(function(use)
     end
   }
   use "norcalli/nvim-colorizer.lua"
+  -- window seperator border
+  use {
+    "nvim-zh/colorful-winsep.nvim",
+    config = function()
+      require('colorful-winsep').setup()
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require("packer").sync()
   end
-end)
+end, config = { snapshot = "latest", snapshot_path = vim.fn.stdpath("config") .. "/packer_snapshot" } })
