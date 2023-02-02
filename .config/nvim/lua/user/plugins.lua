@@ -269,6 +269,23 @@ return require("packer").startup({ function(use)
     end
   }
   use "norcalli/nvim-colorizer.lua"
+
+  -- git
+
+  use { "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+  -- utils
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
+  -- LSP api for configuring neovim
+  use "folke/neodev.nvim"
+
   -- window seperator border
   use {
     "nvim-zh/colorful-winsep.nvim",

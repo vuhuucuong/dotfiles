@@ -1,5 +1,4 @@
 local options = {
-  fileformats = "unix",                    -- set fileformat to unix, for LF line ending
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
