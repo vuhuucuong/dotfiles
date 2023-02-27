@@ -1,5 +1,5 @@
-export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME=""
@@ -57,7 +57,17 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pnpm
-export PNPM_HOME="/Users/vuhuucuong/Library/pnpm"
+export PNPM_HOME="/home/cuong/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# FZF
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+# pnpm end
+# tabtab source for packages
+# uninstall by removing these lines
+
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

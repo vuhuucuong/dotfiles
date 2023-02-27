@@ -5,6 +5,7 @@ local lspconfig = require("lspconfig")
 local coq = require("coq")
 local builtin = require("telescope.builtin")
 local navic = require("nvim-navic")
+require("neodev").setup({})
 
 local servers = {
   "cssls",
@@ -115,6 +116,21 @@ mason_lspconfig.setup_handlers {
           schemas = require("schemastore").json.schemas(),
           validate = { enable = true },
         },
+      }
+    }))
+  end,
+
+  -- neodev
+  ["lua_ls"] = function()
+    lspconfig["lua_ls"].setup(coq.lsp_ensure_capabilities({
+      on_attach = on_attach,
+      flags = lsp_flags,
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = "Replace"
+          }
+        }
       }
     }))
   end,

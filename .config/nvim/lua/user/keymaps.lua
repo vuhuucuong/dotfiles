@@ -55,7 +55,6 @@ M.keymap_set_default = function()
 
 
   -- PLUGINS KEYMAPS --
-
   -- Find
   keymap_set_fn("n", "<leader>ff", builtin.find_files, { desc = "Find files", noremap = true, })
   keymap_set_fn("n", "<leader>fs", builtin.live_grep, { desc = "Live grep", noremap = true, })

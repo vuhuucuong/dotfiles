@@ -38,6 +38,7 @@ return require("packer").startup({ function(use)
   use "neovim/nvim-lspconfig"
   use "b0o/schemastore.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
+  use "folke/neodev.nvim"
   use {
     "folke/which-key.nvim",
     config = function()
@@ -282,9 +283,6 @@ return require("packer").startup({ function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
-
-  -- LSP api for configuring neovim
-  use "folke/neodev.nvim"
 
   -- window seperator border
   use {
