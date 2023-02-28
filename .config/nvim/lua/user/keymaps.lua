@@ -56,9 +56,14 @@ M.keymap_set_default = function()
 
   -- PLUGINS KEYMAPS --
   -- Find
-  keymap_set_fn("n", "<leader>ff", builtin.find_files, { desc = "Find files", noremap = true, })
+  keymap_set_fn("n", "<leader>ff", function() builtin.find_files({ hidden = true }) end,
+    { desc = "Find files", noremap = true, })
+  keymap_set_fn("n", "<leader>fF", function() builtin.find_files({ hidden = true, no_ignore = true }) end,
+    { desc = "Find files - include .gitignore", noremap = true, })
   keymap_set_fn("n", "<leader>fs", builtin.live_grep, { desc = "Live grep", noremap = true, })
   keymap_set_fn("n", "<leader>fr", builtin.resume, { desc = "Resume previous search", noremap = true, })
+  keymap_set_fn("n", "<leader>fS", function() builtin.live_grep { additional_args = { '--case-sensitive' } } end,
+    { desc = "Live grep - case sensitive", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", builtin.buffers, { desc = "Buffers", noremap = true, })
   keymap_set_fn("n", "<leader>vc", builtin.command_history, { desc = "Command history", noremap = true, })

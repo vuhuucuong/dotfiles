@@ -15,7 +15,7 @@ local servers = {
   "html",
   "jsonls",
   "tsserver",
-  "sumneko_lua",
+  "lua_ls",
   "marksman",
   "prismals",
   "jedi_language_server",
@@ -30,26 +30,6 @@ mason_lspconfig.setup({
   ensure_installed = servers,
   automatic_installation = false,
 })
-
--- highlight keywords under cursor, powered by LSP
-local lsp_document_highlight = function(client, bufnr)
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
-    vim.api.nvim_create_autocmd("CursorHold", {
-      callback = vim.lsp.buf.document_highlight,
-      buffer = bufnr,
-      group = "lsp_document_highlight",
-      desc = "Document Highlight",
-    })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      callback = vim.lsp.buf.clear_references,
-      buffer = bufnr,
-      group = "lsp_document_highlight",
-      desc = "Clear All the References",
-    })
-  end
-end
 
 -- Avoiding LSP formatting conflictslsp
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -82,7 +62,6 @@ end
 
 local on_attach = function(client, bufnr)
   avoid_formatter_conflict(client, bufnr)
-  lsp_document_highlight(client, bufnr)
   attach_navic(client, bufnr)
 
   require("user.keymaps").keymap_set_buffer(bufnr)

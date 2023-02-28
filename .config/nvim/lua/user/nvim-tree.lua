@@ -11,21 +11,11 @@ local swap_then_open_tab = function()
 end
 
 tree.setup {
-  live_filter = {
-    prefix = "[FILTER]: ",
-    always_show_folders = false,
-  },
-  view = {
-    mappings = {
-      custom_only = false,
-      list = {
-        { key = "t", action = "swap_then_open_tab", action_cb = swap_then_open_tab },
-      }
-    },
+  filters = {
+    dotfiles = true,
   },
 }
 
 api.events.subscribe(api.events.Event.FileCreated, function(file)
   vim.cmd("edit " .. file.fname)
 end)
-
