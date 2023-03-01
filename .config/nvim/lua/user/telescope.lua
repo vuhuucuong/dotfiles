@@ -1,10 +1,10 @@
 local builtin = require("telescope.builtin")
 local telescope = require("telescope")
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
 telescope.setup {
   defaults = {
-    layout_strategy = 'horizontal',
+    layout_strategy = "horizontal",
     layout_config = {
       height = 0.95,
       width = 0.95,

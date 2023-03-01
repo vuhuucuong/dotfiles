@@ -39,7 +39,7 @@ return require("packer").startup({
     use "neovim/nvim-lspconfig"
     use { "RRethy/vim-illuminate",
       config = function()
-        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#45475A", underline = true })
+        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#585B70", underline = true })
       end
     }
     use "b0o/schemastore.nvim"
@@ -128,52 +128,7 @@ return require("packer").startup({
         "nvim-tree/nvim-web-devicons", -- optional, for file icons
       },
       config = function()
-        local tree = require("nvim-tree")
-        local api = require("nvim-tree.api")
-        local lib = require("nvim-tree.lib")
-
-        -- Fix tab titles when opening file in new tab
-        local swap_then_open_tab = function()
-          local node = lib.get_node_at_cursor()
-          vim.cmd("wincmd l")
-          api.node.open.tab(node)
-        end
-
-        tree.setup {
-          live_filter = {
-            prefix = "[FILTER]: ",
-            always_show_folders = false,
-          },
-          view = {
-            mappings = {
-              custom_only = false,
-              list = {
-                { key = "t", action = "swap_then_open_tab", action_cb = swap_then_open_tab },
-              }
-            },
-          },
-        }
-
-        api.events.subscribe(api.events.Event.FileCreated, function(file)
-          vim.cmd("edit " .. file.fname)
-        end)
-        -- auto open on start up
-        local function open_nvim_tree(data)
-          -- buffer is a directory
-          local directory = vim.fn.isdirectory(data.file) == 1
-
-          if not directory then
-            return
-          end
-
-          -- change to the directory
-          vim.cmd.cd(data.file)
-
-          -- open the tree
-          require("nvim-tree.api").tree.open()
-        end
-
-        vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+        require("user.nvim-tree")
       end
 
     }
@@ -280,9 +235,12 @@ return require("packer").startup({
 
     use { "lewis6991/gitsigns.nvim",
       config = function()
-        require('gitsigns').setup()
+        require("gitsigns").setup()
       end
     }
+
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
     -- utils
     use({
       "iamcco/markdown-preview.nvim",
@@ -293,9 +251,12 @@ return require("packer").startup({
     use {
       "nvim-zh/colorful-winsep.nvim",
       config = function()
-        require('colorful-winsep').setup()
+        require("colorful-winsep").setup()
       end
     }
+
+    -- quickfix
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

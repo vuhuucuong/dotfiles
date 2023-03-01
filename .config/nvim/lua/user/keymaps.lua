@@ -62,7 +62,7 @@ M.keymap_set_default = function()
     { desc = "Find files - include .gitignore", noremap = true, })
   keymap_set_fn("n", "<leader>fs", builtin.live_grep, { desc = "Live grep", noremap = true, })
   keymap_set_fn("n", "<leader>fr", builtin.resume, { desc = "Resume previous search", noremap = true, })
-  keymap_set_fn("n", "<leader>fS", function() builtin.live_grep { additional_args = { '--case-sensitive' } } end,
+  keymap_set_fn("n", "<leader>fS", function() builtin.live_grep { additional_args = { "--case-sensitive" } } end,
     { desc = "Live grep - case sensitive", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", builtin.buffers, { desc = "Buffers", noremap = true, })
