@@ -48,18 +48,7 @@ return require("packer").startup({
     use {
       "folke/which-key.nvim",
       config = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 500
-        local wk = require("which-key")
-
-        wk.setup {}
-        wk.register({
-          ["<leader>f"] = { name = "Find" },
-          ["<leader>v"] = { name = "Vim" },
-          ["<leader>g"] = { name = "Git" },
-          ["<leader>l"] = { name = "LSP" },
-          ["<leader>e"] = { name = "Explorer" },
-        })
+        require("user.whichkey")
       end
     }
 
@@ -74,40 +63,7 @@ return require("packer").startup({
         }
       },
       config = function()
-        local telescope = require("telescope")
-        local builtin = require("telescope.builtin")
-        local actions = require "telescope.actions"
-
-        telescope.setup {
-          defaults = {
-            layout_strategy = "horizontal",
-            layout_config = {
-              height = 0.95,
-              width = 0.95,
-              preview_width = 0.5
-            },
-            mappings = {
-              i = {
-                ["<C-n>"] = actions.cycle_history_next,
-                ["<C-p>"] = actions.cycle_history_prev,
-
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-              }
-            }
-          },
-          pickers = {
-          },
-          extensions = {
-            fzf = {
-              fuzzy = true,
-              override_generic_sorter = true,
-              override_file_sorter = true,
-              case_mode = "smart_case",
-            }
-          }
-        }
-        telescope.load_extension("fzf")
+        require("user.telescope")
       end
     }
 
@@ -191,42 +147,7 @@ return require("packer").startup({
       "SmiteshP/nvim-navic",
       requires = { "neovim/nvim-lspconfig" },
       config = function()
-        require("nvim-navic").setup {
-          icons = {
-            File          = " ",
-            Module        = " ",
-            Namespace     = " ",
-            Package       = " ",
-            Class         = " ",
-            Method        = " ",
-            Property      = " ",
-            Field         = " ",
-            Constructor   = " ",
-            Enum          = "練",
-            Interface     = "練",
-            Function      = " ",
-            Variable      = " ",
-            Constant      = " ",
-            String        = " ",
-            Number        = " ",
-            Boolean       = "◩ ",
-            Array         = " ",
-            Object        = " ",
-            Key           = " ",
-            Null          = "ﳠ ",
-            EnumMember    = " ",
-            Struct        = " ",
-            Event         = " ",
-            Operator      = " ",
-            TypeParameter = " ",
-          },
-          highlight = false,
-          separator = " > ",
-          depth_limit = 0,
-          depth_limit_indicator = "..",
-          safe_output = true
-        }
-        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        require("user.nvim-navic")
       end
     }
     use "norcalli/nvim-colorizer.lua"

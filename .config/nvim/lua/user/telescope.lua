@@ -1,6 +1,6 @@
-local builtin = require("telescope.builtin")
 local telescope = require("telescope")
-local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
+local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
@@ -23,5 +23,13 @@ telescope.setup {
   pickers = {
   },
   extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
   }
 }
+telescope.load_extension("fzf")
+

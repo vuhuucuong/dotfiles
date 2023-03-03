@@ -51,7 +51,7 @@ M.keymap_set_default = function()
   keymap_set_fn("x", "K", ":move '<-2<cr>gv-gv", { desc = "", noremap = true, })
   keymap_set_fn("n", "<S-j>", "<cmd>b#<cr>", { desc = "Last buffer", noremap = true, })
   -- Delete all buffers except current
-  vim.api.nvim_create_user_command("Bo", ":%bd|e#|bd#", { nargs = 0 })
+  vim.api.nvim_create_user_command("Bo", ":%bd|e#|bd#", { nargs = 0, desc = "Close all other buffers" })
 
 
   -- PLUGINS KEYMAPS --
@@ -66,7 +66,8 @@ M.keymap_set_default = function()
     { desc = "Live grep - case sensitive", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", builtin.buffers, { desc = "Buffers", noremap = true, })
-  keymap_set_fn("n", "<leader>vc", builtin.command_history, { desc = "Command history", noremap = true, })
+  keymap_set_fn("n", "<leader>vc", builtin.commands, { desc = "Plugin/User commands list", noremap = true, })
+  keymap_set_fn("n", "<leader>vC", builtin.command_history, { desc = "Command history", noremap = true, })
   keymap_set_fn("n", "<leader>vs", builtin.search_history, { desc = "Search history", noremap = true, })
   keymap_set_fn("n", "<leader>vr", builtin.registers, { desc = "Registers", noremap = true, })
   keymap_set_fn("n", "<leader>vq", builtin.quickfix, { desc = "Quickfix items", noremap = true, })
@@ -116,7 +117,6 @@ M.keymap_set_buffer = function(buffer)
     { desc = "Rename symbol", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
     { desc = "Format document", buffer = buffer, noremap = true })
-
 end
 
 return M
