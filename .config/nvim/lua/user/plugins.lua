@@ -97,6 +97,15 @@ return require("packer").startup({
       end,
     }
 
+    -- auto tag
+    use { "windwp/nvim-ts-autotag", requires = { "nvim-treesitter/nvim-treesitter" }, config = function()
+      require("nvim-treesitter.configs").setup {
+        autotag = {
+          enable = true,
+        }
+      }
+    end }
+
     -- file explorer
     use {
       "nvim-tree/nvim-tree.lua",
@@ -187,6 +196,7 @@ return require("packer").startup({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     })
+
 
     -- window seperator border
     use {

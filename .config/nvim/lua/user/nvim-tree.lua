@@ -200,11 +200,12 @@ tree.setup {
         { key = "<C-Space>", action = "tree actions",       action_cb = tree_actions_menu }
       }
     },
-    filter = {
-      git_clean = true
-    }
 
   },
+  filters = {
+    dotfiles = true,
+    git_clean = false
+  }
 }
 
 tree_api.events.subscribe(tree_api.events.Event.FileCreated, function(file)
