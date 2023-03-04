@@ -200,6 +200,10 @@ tree.setup {
         { key = "<C-Space>", action = "tree actions",       action_cb = tree_actions_menu }
       }
     },
+    filter = {
+      git_clean = true
+    }
+
   },
 }
 
