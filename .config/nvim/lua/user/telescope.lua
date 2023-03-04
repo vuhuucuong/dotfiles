@@ -8,7 +8,6 @@ telescope.setup {
     layout_config = {
       height = 0.95,
       width = 0.95,
-      preview_width = 0.5
     },
     mappings = {
       i = {
@@ -32,4 +31,3 @@ telescope.setup {
   }
 }
 telescope.load_extension("fzf")
-

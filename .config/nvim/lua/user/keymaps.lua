@@ -62,7 +62,8 @@ M.keymap_set_default = function()
     { desc = "Find files - include .gitignore", noremap = true, })
   keymap_set_fn("n", "<leader>fs", telescope_builtin.live_grep, { desc = "Live grep", noremap = true, })
   keymap_set_fn("n", "<leader>fr", telescope_builtin.resume, { desc = "Resume previous search", noremap = true, })
-  keymap_set_fn("n", "<leader>fS", function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
+  keymap_set_fn("n", "<leader>fS",
+    function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
     { desc = "Live grep - case sensitive", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", telescope_builtin.buffers, { desc = "Buffers", noremap = true, })
@@ -123,7 +124,14 @@ M.keymap_set_buffer = function(buffer)
   keymap_set_fn("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>",
     { desc = "[LSP] Go to declarations", buffer = buffer, noremap = true })
   keymap_set_fn("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "[LSP] Hover", buffer = buffer, noremap = true })
-  keymap_set_fn("n", "gl", telescope_builtin.diagnostics, { desc = "[LSP] List diagnostics", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "gl",
+    function()
+      telescope_builtin.diagnostics({
+        layout_strategy = "vertical",
+        layout_config = { width = 0.95, height = 0.95 }
+      })
+    end,
+    { desc = "[LSP] List diagnostics", buffer = buffer, noremap = true })
   keymap_set_fn("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>",
     { desc = "[LSP] Signature help", buffer = buffer, noremap = true })
 

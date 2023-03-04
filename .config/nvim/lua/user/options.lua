@@ -75,3 +75,13 @@ vim.g.coq_settings = {
   auto_start = "shut-up",
   ["keymap.jump_to_mark"] = "",
 }
+
+-- auto wrap lines in quickfix
+local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+augroup('QuickFix', { clear = true })
+autocmd('FileType', {
+  group   = 'QuickFix',
+  command = "setlocal wrap"
+})
+

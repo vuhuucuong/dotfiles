@@ -207,7 +207,10 @@ return require("packer").startup({
     }
 
     -- quickfix
-    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = function()
+      require('bqf').setup({ preview = { wrap = true } })
+    end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
