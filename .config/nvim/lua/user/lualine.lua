@@ -37,7 +37,7 @@ local conditions = {
 local config = {
   options = {
     globalstatus         = true,
-    disabled_filetypes   = {},
+    disabled_filetypes   = { "packer", "NVimTree" },
     -- Disable sections and component separators
     component_separators = "",
     section_separators   = "",

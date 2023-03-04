@@ -29,7 +29,7 @@ return require("packer").startup({
     use { "catppuccin/nvim", as = "catppuccin" }
 
     -- completion
-    use { "ms-jpq/coq_nvim", branch = "coq", run = "python3 -m coq deps" }
+    use { "ms-jpq/coq_nvim", commit = "5eddd31bf8a98d1b893b0101047d0bb31ed20c49", run = "python3 -m coq deps" }
     -- 9000+ Snippets
     use { "ms-jpq/coq.artifacts", branch = "artifacts" }
 

@@ -4,6 +4,7 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
+    wrap_results = true,
     layout_strategy = "horizontal",
     layout_config = {
       height = 0.95,
