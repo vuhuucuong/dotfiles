@@ -23,7 +23,7 @@ local servers = {
   "tailwindcss",
   "terraformls",
   "yamlls",
-  "rust_analyzer"
+  "rust_analyzer",
 }
 
 mason_lspconfig.setup({

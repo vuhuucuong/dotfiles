@@ -9,4 +9,5 @@ wk.register({
   ["<leader>g"] = { name = "Git" },
   ["<leader>l"] = { name = "LSP" },
   ["<leader>e"] = { name = "Explorer" },
+  ["<leader>d"] = { name = "Debugger" },
 })

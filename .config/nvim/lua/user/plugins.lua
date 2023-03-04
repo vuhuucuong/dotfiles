@@ -44,13 +44,33 @@ return require("packer").startup({
     }
     use "b0o/schemastore.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
-    use "folke/neodev.nvim"
+    use { "folke/neodev.nvim", config = function()
+      require("user.neodev")
+    end
+    }
     use {
       "folke/which-key.nvim",
       config = function()
         require("user.whichkey")
       end
     }
+
+    -- Debugger
+    use { "mfussenegger/nvim-dap", config = function()
+      -- require("user.dap")
+    end
+    }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function()
+      require("dapui").setup()
+    end
+    }
+    -- use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+    -- -- language specific debug adapter
+    -- use {
+    --   "microsoft/vscode-js-debug",
+    --   opt = true,
+    --   run = "npm install --legacy-peer-deps && npm run compile"
+    -- }
 
     -- finder
     use {
