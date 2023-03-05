@@ -48,6 +48,20 @@ return require("packer").startup({
       require("user.neodev")
     end
     }
+
+    use {
+      "weilbith/nvim-code-action-menu",
+      cmd = "CodeActionMenu",
+    }
+    use {
+      "folke/trouble.nvim",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("trouble").setup({})
+      end
+    }
+
+    -- keymap menu
     use {
       "folke/which-key.nvim",
       config = function()

@@ -131,19 +131,11 @@ M.keymap_set_buffer = function(buffer)
   keymap_set_fn("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>",
     { desc = "[LSP] Go to declarations", buffer = buffer, noremap = true })
   keymap_set_fn("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "[LSP] Hover", buffer = buffer, noremap = true })
-  keymap_set_fn("n", "gl",
-    function()
-      telescope_builtin.diagnostics({
-        layout_strategy = "vertical",
-        layout_config = { width = 0.95, height = 0.95 }
-      })
-    end,
-    { desc = "[LSP] List diagnostics", buffer = buffer, noremap = true })
   keymap_set_fn("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>",
     { desc = "[LSP] Signature help", buffer = buffer, noremap = true })
 
   -- <leader>l prefix LSP keymapping
-  keymap_set_fn("n", "<leader>ll", "<cmd>lua vim.diagnostic.setloclist()<cr>",
+  keymap_set_fn("n", "<leader>ll", "<cmd>TroubleToggle<cr>",
     { desc = "List diagnostics in location list", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",
     { desc = "Code actions", buffer = buffer, noremap = true })
