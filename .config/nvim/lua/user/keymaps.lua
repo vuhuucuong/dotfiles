@@ -137,7 +137,7 @@ M.keymap_set_buffer = function(buffer)
   -- <leader>l prefix LSP keymapping
   keymap_set_fn("n", "<leader>ll", "<cmd>TroubleToggle<cr>",
     { desc = "List diagnostics in location list", buffer = buffer, noremap = true })
-  keymap_set_fn("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",
+  keymap_set_fn("n", "<leader>la", "<cmd>CodeActionMenu<cr>",
     { desc = "Code actions", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>li", "<cmd>LspInfo<cr>",
     { desc = "LSP Info", buffer = buffer, noremap = true })
