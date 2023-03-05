@@ -88,6 +88,20 @@ return require("packer").startup({
     }
 
 
+    -- project management
+    use {
+      "ahmedkhalf/project.nvim",
+      requires = {
+        "nvim-telescope/telescope.nvim"
+      },
+      config = function()
+        require("project_nvim").setup {
+          require('telescope').load_extension('projects')
+        }
+      end
+    }
+
+
     -- language parser
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -212,11 +226,19 @@ return require("packer").startup({
     end
     }
 
+    -- command autocomplete
+    use {
+      "gelguy/wilder.nvim",
+      config = function()
+        require("user.wilder")
+      end,
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
       require("packer").sync()
     end
   end,
-  config = { snapshot = "latest", snapshot_path = vim.fn.stdpath("config") .. "/packer_snapshot" }
+  config = { snapshot_path = vim.fn.stdpath("config") .. "/packer_snapshot" }
 })

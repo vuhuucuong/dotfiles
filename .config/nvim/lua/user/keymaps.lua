@@ -1,5 +1,7 @@
 local M = {}
 
+local telescope = require("telescope")
+local telescope_extensions = telescope.extensions
 local telescope_builtin = require("telescope.builtin")
 
 M.keymap_set_default = function()
@@ -65,6 +67,8 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>fS",
     function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
     { desc = "Live grep - case sensitive", noremap = true, })
+  keymap_set_fn("n", "<leader>fp", function() telescope_extensions.projects.projects({}) end,
+    { desc = "Find projects", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", telescope_builtin.buffers, { desc = "Buffers", noremap = true, })
   keymap_set_fn("n", "<leader>vc", telescope_builtin.commands, { desc = "Plugin/User commands list", noremap = true, })
@@ -78,6 +82,9 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>gb", telescope_builtin.git_branches, { desc = "Git branches", noremap = true, })
   keymap_set_fn("n", "<leader>gs", telescope_builtin.git_status, { desc = "Git status", noremap = true, })
   keymap_set_fn("n", "<leader>gS", telescope_builtin.git_stash, { desc = "Git stashes", noremap = true, })
+  keymap_set_fn("n", "<leader>gdo", ":DiffviewOpen ", { desc = "Git diff open", noremap = true, })
+  keymap_set_fn("n", "<leader>gdc", "<cmd>DiffviewClose<cr>", { desc = "Git diff close", noremap = true, })
+  keymap_set_fn("n", "<leader>gdf", ":DiffviewFileHistory ", { desc = "Git diff file history", noremap = true, })
   -- NvimTree explorer
   keymap_set_fn("n", "<leader>et", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle", noremap = true, })
   keymap_set_fn("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh", noremap = true, })
