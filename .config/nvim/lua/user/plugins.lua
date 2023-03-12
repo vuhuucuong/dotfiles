@@ -28,11 +28,6 @@ return require("packer").startup({
     -- colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }
 
-    -- completion
-    use { "ms-jpq/coq_nvim", commit = "5eddd31bf8a98d1b893b0101047d0bb31ed20c49", run = "python3 -m coq deps" }
-    -- 9000+ Snippets
-    use { "ms-jpq/coq.artifacts", branch = "artifacts" }
-
     -- lsp
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
@@ -60,6 +55,22 @@ return require("packer").startup({
         require("trouble").setup({})
       end
     }
+
+    -- completion
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/nvim-cmp"
+    use({
+      "L3MON4D3/LuaSnip",
+      -- follow latest release.
+      tag = "v<CurrentMajor>.*",
+      -- install jsregexp (optional!:).
+      run = "make install_jsregexp"
+    })
+    use "saadparwaiz1/cmp_luasnip"
+    use "rafamadriz/friendly-snippets"
 
     -- keymap menu
     use {
@@ -100,21 +111,6 @@ return require("packer").startup({
         require("user.telescope")
       end
     }
-
-
-    -- project management
-    use {
-      "ahmedkhalf/project.nvim",
-      requires = {
-        "nvim-telescope/telescope.nvim"
-      },
-      config = function()
-        require("project_nvim").setup {
-          require('telescope').load_extension('projects')
-        }
-      end
-    }
-
 
     -- language parser
     use {
@@ -227,25 +223,17 @@ return require("packer").startup({
 
 
     -- window seperator border
-    use {
-      "nvim-zh/colorful-winsep.nvim",
-      config = function()
-        require("colorful-winsep").setup()
-      end
-    }
+    -- use {
+    --   "nvim-zh/colorful-winsep.nvim",
+    --   config = function()
+    --     require("colorful-winsep").setup()
+    --   end
+    -- }
 
     -- quickfix
     use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = function()
       require('bqf').setup({ preview = { wrap = true } })
     end
-    }
-
-    -- command autocomplete
-    use {
-      "gelguy/wilder.nvim",
-      config = function()
-        require("user.wilder")
-      end,
     }
 
     -- Automatically set up your configuration after cloning packer.nvim

@@ -67,8 +67,6 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>fS",
     function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
     { desc = "Live grep - case sensitive", noremap = true, })
-  keymap_set_fn("n", "<leader>fp", function() telescope_extensions.projects.projects({}) end,
-    { desc = "Find projects", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", telescope_builtin.buffers, { desc = "Buffers", noremap = true, })
   keymap_set_fn("n", "<leader>vc", telescope_builtin.commands, { desc = "Plugin/User commands list", noremap = true, })
