@@ -55,6 +55,13 @@ return require("packer").startup({
         require("trouble").setup({})
       end
     }
+    use "ray-x/lsp_signature.nvim"
+    use {
+      "j-hui/fidget.nvim",
+      config = function()
+        require "fidget".setup {}
+      end
+    }
 
     -- completion
     use "hrsh7th/cmp-nvim-lsp"
@@ -192,7 +199,15 @@ return require("packer").startup({
     }
     use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons",
       config = function()
-        require("bufferline").setup {}
+        require("bufferline").setup {
+          options = {
+            diagnostics = "nvim_lsp",
+            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+              local icon = level:match("error") and " " or " "
+              return " " .. icon .. count
+            end
+          }
+        }
       end
     }
     -- Simple winbar/statusline plugin that shows your current code context

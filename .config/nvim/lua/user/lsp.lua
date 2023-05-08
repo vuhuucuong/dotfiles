@@ -4,7 +4,7 @@ local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local cmp = require("cmp")
 local builtin = require("telescope.builtin")
-local navic = require("nvim-navic")
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local luasnip = require("luasnip")
 
@@ -58,7 +58,7 @@ end
 -- Attach nvim-navic for displaying context status
 local attach_navic = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
   end
 end
 
@@ -67,6 +67,12 @@ local on_attach = function(client, bufnr)
   attach_navic(client, bufnr)
 
   require("user.keymaps").keymap_set_buffer(bufnr)
+  require "lsp_signature".on_attach({
+    bind = true,
+    handler_opts = {
+      border = "rounded"
+    }
+  }, bufnr)
 end
 
 local lsp_flags = {

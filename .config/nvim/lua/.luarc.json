@@ -6,5 +6,12 @@
     ],
     "Lua.diagnostics.globals": [
         "vim"
+    ],
+    "workspace.library": [
+        "/home/cuong/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/cuong/.local/share/nvim/site/pack/packer/start/nvim-dap-ui/lua",
+        "/home/cuong/.config/nvim/lua",
+        "${3rd}/luv/library"
     ]
 }
