@@ -58,6 +58,7 @@ return require("packer").startup({
     use "ray-x/lsp_signature.nvim"
     use {
       "j-hui/fidget.nvim",
+      branch = 'legacy',
       config = function()
         require "fidget".setup {}
       end

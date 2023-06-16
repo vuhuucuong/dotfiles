@@ -69,6 +69,9 @@ vim_opt.formatoptions:remove("cro")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- markdown preview
+vim.g.mkdp_auto_close = 0
+
 -- Auto-start coq
 vim.g.coq_settings = {
   auto_start = "shut-up",

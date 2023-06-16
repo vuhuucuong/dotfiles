@@ -82,6 +82,7 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>gS", telescope_builtin.git_stash, { desc = "Git stashes", noremap = true, })
   keymap_set_fn("n", "<leader>gdo", ":DiffviewOpen ", { desc = "Git diff open", noremap = true, })
   keymap_set_fn("n", "<leader>gdc", "<cmd>DiffviewClose<cr>", { desc = "Git diff close", noremap = true, })
+  keymap_set_fn("n", "<leader>gdc", "<cmd>DiffviewRefresh<cr>", { desc = "Git diff refresh", noremap = true, })
   keymap_set_fn("n", "<leader>gdf", ":DiffviewFileHistory ", { desc = "Git diff file history", noremap = true, })
   -- NvimTree explorer
   keymap_set_fn("n", "<leader>et", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle", noremap = true, })
