@@ -59,13 +59,6 @@ return require("packer").startup({
       end
     }
     use "ray-x/lsp_signature.nvim"
-    use {
-      "j-hui/fidget.nvim",
-      branch = 'legacy',
-      config = function()
-        require "fidget".setup {}
-      end
-    }
 
     ---------- COMPLETION ----------
     use "hrsh7th/cmp-nvim-lsp"
@@ -75,9 +68,7 @@ return require("packer").startup({
     use "hrsh7th/nvim-cmp"
     use({
       "L3MON4D3/LuaSnip",
-      -- follow latest release.
       tag = "v<CurrentMajor>.*",
-      -- install jsregexp (optional!:).
       run = "make install_jsregexp"
     })
     use "saadparwaiz1/cmp_luasnip"
@@ -183,7 +174,6 @@ return require("packer").startup({
         require("barbecue").setup()
       end,
     })
-    use 'rcarriga/nvim-notify'
     use {
       "folke/noice.nvim",
       requires = {
@@ -191,37 +181,7 @@ return require("packer").startup({
         "rcarriga/nvim-notify",
       },
       config = function()
-        require("noice").setup({
-          views = {
-            cmdline_popup = {
-              position = {
-                row = "50%",
-                col = "50%",
-              },
-              size = {
-                width = 60,
-                height = "auto",
-              },
-            },
-          },
-          lsp = {
-            override = {
-              ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-              ["vim.lsp.util.stylize_markdown"] = true,
-              ["cmp.entry.get_documentation"] = true,
-            },
-            signature = {
-              enabled = false,
-            },
-          },
-          presets = {
-            bottom_search = false, -- use a classic bottom cmdline for search
-            command_palette = true, -- position the cmdline and popupmenu together
-            long_message_to_split = true, -- long messages will be sent to a split
-            inc_rename = false, -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = false, -- add a border to hover docs and signature help
-          },
-        })
+        require("user.noice")
       end
     }
     use "norcalli/nvim-colorizer.lua"
