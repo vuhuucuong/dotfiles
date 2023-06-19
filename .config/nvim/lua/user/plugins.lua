@@ -25,10 +25,11 @@ return require("packer").startup({
     use "wbthomason/packer.nvim"
     use "nvim-lua/plenary.nvim" -- common lua functions used by other plugins
     -- List plugins here
-    -- colorscheme
+
+    ---------- COLORSCHEME ----------
     use { "catppuccin/nvim", as = "catppuccin" }
 
-    -- lsp
+    ---------- LSP ----------
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
@@ -43,10 +44,12 @@ return require("packer").startup({
       require("user.neodev")
     end
     }
-
     use {
-      "weilbith/nvim-code-action-menu",
-      cmd = "CodeActionMenu",
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+        ts_update()
+      end,
     }
     use {
       "folke/trouble.nvim",
@@ -64,7 +67,7 @@ return require("packer").startup({
       end
     }
 
-    -- completion
+    ---------- COMPLETION ----------
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -80,7 +83,7 @@ return require("packer").startup({
     use "saadparwaiz1/cmp_luasnip"
     use "rafamadriz/friendly-snippets"
 
-    -- keymap menu
+    ---------- KEYMAP UI ----------
     use {
       "folke/which-key.nvim",
       config = function()
@@ -89,14 +92,14 @@ return require("packer").startup({
     }
 
     -- Debugger
-    use { "mfussenegger/nvim-dap", config = function()
-      -- require("user.dap")
-    end
-    }
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function()
-      require("dapui").setup()
-    end
-    }
+    -- use { "mfussenegger/nvim-dap", config = function()
+    --   -- require("user.dap")
+    -- end
+    -- }
+    -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function()
+    --   require("dapui").setup()
+    -- end
+    -- }
     -- use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
     -- -- language specific debug adapter
     -- use {
@@ -105,7 +108,7 @@ return require("packer").startup({
     --   run = "npm install --legacy-peer-deps && npm run compile"
     -- }
 
-    -- finder
+    ---------- FUZZY FINDER ----------
     use {
       "nvim-telescope/telescope.nvim", tag = "0.1.1",
       requires = {
@@ -119,17 +122,7 @@ return require("packer").startup({
         require("user.telescope")
       end
     }
-
-    -- language parser
-    use {
-      "nvim-treesitter/nvim-treesitter",
-      run = function()
-        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-        ts_update()
-      end,
-    }
-
-    -- auto tag
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
     use { "windwp/nvim-ts-autotag", requires = { "nvim-treesitter/nvim-treesitter" }, config = function()
       require("nvim-treesitter.configs").setup {
         autotag = {
@@ -138,7 +131,7 @@ return require("packer").startup({
       }
     end }
 
-    -- file explorer
+    ---------- EXPLORER ----------
     use {
       "nvim-tree/nvim-tree.lua",
       requires = {
@@ -150,47 +143,7 @@ return require("packer").startup({
 
     }
 
-    -- auto bracket pair
-    use {
-      "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup({}) end
-    }
-
-    -- surround
-    use {
-      "kylechui/nvim-surround",
-      tag = "*",
-      config = function()
-        require("nvim-surround").setup({
-        })
-      end
-    }
-
-    -- indent
-    use {
-      "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        require("indent_blankline").setup {
-          show_current_context = true,
-          show_current_context_start = true,
-        }
-      end
-    }
-    -- comment
-    use {
-      "numToStr/Comment.nvim",
-      requires = {
-        "JoosepAlviste/nvim-ts-context-commentstring"
-      },
-      config = function()
-        require("Comment").setup {
-          pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-        }
-      end
-    }
-
-
-    -- UI
+    ---------- UI ----------
     use {
       "nvim-lualine/lualine.nvim",
       requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-navic" },
@@ -204,49 +157,118 @@ return require("packer").startup({
           options = {
             diagnostics = "nvim_lsp",
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
-              local icon = level:match("error") and " " or " "
-              return " " .. icon .. count
-            end
-          }
+              local s = " "
+              for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                    or (e == "warning" and " " or "")
+                s = s .. n .. sym
+              end
+              return s
+            end }
         }
       end
     }
-    -- Simple winbar/statusline plugin that shows your current code context
     use {
       "SmiteshP/nvim-navic",
       requires = { "neovim/nvim-lspconfig" },
+    }
+    use({
+      "utilyre/barbecue.nvim",
+      tag = "*",
+      requires = {
+        "SmiteshP/nvim-navic",
+        "nvim-tree/nvim-web-devicons",
+      },
       config = function()
-        require("user.nvim-navic")
+        require("barbecue").setup()
+      end,
+    })
+    use 'rcarriga/nvim-notify'
+    use {
+      "folke/noice.nvim",
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+      config = function()
+        require("noice").setup({
+          views = {
+            cmdline_popup = {
+              position = {
+                row = "50%",
+                col = "50%",
+              },
+              size = {
+                width = 60,
+                height = "auto",
+              },
+            },
+          },
+          lsp = {
+            override = {
+              ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+              ["vim.lsp.util.stylize_markdown"] = true,
+              ["cmp.entry.get_documentation"] = true,
+            },
+            signature = {
+              enabled = false,
+            },
+          },
+          presets = {
+            bottom_search = false, -- use a classic bottom cmdline for search
+            command_palette = true, -- position the cmdline and popupmenu together
+            long_message_to_split = true, -- long messages will be sent to a split
+            inc_rename = false, -- enables an input dialog for inc-rename.nvim
+            lsp_doc_border = false, -- add a border to hover docs and signature help
+          },
+        })
       end
     }
     use "norcalli/nvim-colorizer.lua"
-
-    -- git
-
     use { "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup()
       end
     }
-
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
-    -- utils
+    ---------- UTILS ----------
+    use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup({}) end
+    }
+    use {
+      "kylechui/nvim-surround",
+      tag = "*",
+      config = function()
+        require("nvim-surround").setup({
+        })
+      end
+    }
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require("indent_blankline").setup {
+          show_current_context = true,
+          show_current_context_start = true,
+        }
+      end
+    }
+    use {
+      "numToStr/Comment.nvim",
+      requires = {
+        "JoosepAlviste/nvim-ts-context-commentstring"
+      },
+      config = function()
+        require("Comment").setup {
+          pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        }
+      end
+    }
     use({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     })
-
-
-    -- window seperator border
-    -- use {
-    --   "nvim-zh/colorful-winsep.nvim",
-    --   config = function()
-    --     require("colorful-winsep").setup()
-    --   end
-    -- }
-
-    -- quickfix
     use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = function()
       require('bqf').setup({ preview = { wrap = true } })
     end
