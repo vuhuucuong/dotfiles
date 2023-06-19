@@ -92,29 +92,29 @@ M.keymap_set_default = function()
 
   -- Debugger
 
---   keymap_set_fn("n", "<leader>dc", function() require("dap").continue() end, { desc = "Continue" })
---   keymap_set_fn("n", "<leader>do", function() require("dap").step_over() end, { desc = "Step over" })
---   keymap_set_fn("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step into" })
---   keymap_set_fn("n", "<leader>dO", function() require("dap").step_out() end, { desc = "Step out" })
---   keymap_set_fn("n", "<Leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Step out" })
---   keymap_set_fn("n", "<Leader>dB", function() require("dap").set_breakpoint() end, { desc = "Step " })
---   keymap_set_fn("n", "<Leader>dl",
---     function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { desc = "Log point" })
---   keymap_set_fn("n", "<Leader>dr", function() require("dap").repl.open() end, { desc = "REPL Open" })
---   keymap_set_fn({ "n", "v" }, "<Leader>dh", function()
---     require("dap.ui.widgets").hover()
---   end, { desc = "Hover" })
---   keymap_set_fn({ "n", "v" }, "<Leader>dp", function()
---     require("dap.ui.widgets").preview()
---   end, { desc = "Preview" })
---   keymap_set_fn("n", "<Leader>df", function()
---     local widgets = require("dap.ui.widgets")
---     widgets.centered_float(widgets.frames)
---   end, { desc = "Float" })
---   keymap_set_fn("n", "<Leader>ds", function()
---     local widgets = require("dap.ui.widgets")
---     widgets.centered_float(widgets.scopes)
---   end, { desc = "Center Float" })
+  --   keymap_set_fn("n", "<leader>dc", function() require("dap").continue() end, { desc = "Continue" })
+  --   keymap_set_fn("n", "<leader>do", function() require("dap").step_over() end, { desc = "Step over" })
+  --   keymap_set_fn("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step into" })
+  --   keymap_set_fn("n", "<leader>dO", function() require("dap").step_out() end, { desc = "Step out" })
+  --   keymap_set_fn("n", "<Leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Step out" })
+  --   keymap_set_fn("n", "<Leader>dB", function() require("dap").set_breakpoint() end, { desc = "Step " })
+  --   keymap_set_fn("n", "<Leader>dl",
+  --     function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { desc = "Log point" })
+  --   keymap_set_fn("n", "<Leader>dr", function() require("dap").repl.open() end, { desc = "REPL Open" })
+  --   keymap_set_fn({ "n", "v" }, "<Leader>dh", function()
+  --     require("dap.ui.widgets").hover()
+  --   end, { desc = "Hover" })
+  --   keymap_set_fn({ "n", "v" }, "<Leader>dp", function()
+  --     require("dap.ui.widgets").preview()
+  --   end, { desc = "Preview" })
+  --   keymap_set_fn("n", "<Leader>df", function()
+  --     local widgets = require("dap.ui.widgets")
+  --     widgets.centered_float(widgets.frames)
+  --   end, { desc = "Float" })
+  --   keymap_set_fn("n", "<Leader>ds", function()
+  --     local widgets = require("dap.ui.widgets")
+  --     widgets.centered_float(widgets.scopes)
+  --   end, { desc = "Center Float" })
 end
 
 M.keymap_set_buffer = function(buffer)
@@ -138,10 +138,10 @@ M.keymap_set_buffer = function(buffer)
     { desc = "Code actions", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>li", "<cmd>LspInfo<cr>",
     { desc = "LSP Info", buffer = buffer, noremap = true })
-  -- keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>",
-  --   { desc = "Next diagnostic", buffer = bufnr, noremap = true })
-  -- keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-  --   { desc = "Previous diagnostic", buffer = bufnr, noremap = true })
+  keymap_set_fn("n", "<leader>lj", function() require("trouble").next({ skip_groups = true, jump = true }) end,
+    { desc = "Next diagnostic", buffer = buffer, noremap = true })
+  keymap_set_fn("n", "<leader>lk", function() require("trouble").previous({ skip_groups = true, jump = true }) end,
+    { desc = "Previous diagnostic", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>ls", telescope_builtin.lsp_document_symbols,
     { desc = "List current buffer symbols", buffer = buffer, noremap = true })
   keymap_set_fn("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",
