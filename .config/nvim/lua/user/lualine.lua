@@ -79,13 +79,6 @@ local function ins_right(component)
 end
 
 ins_left {
-  require("noice").api.statusline.mode.get,
-  cond = require("noice").api.statusline.mode.has,
-  color = { fg = colors.blue },
-  padding = { left = 0, right = 1 },
-}
-
-ins_left {
   function()
     return '▊'
   end,
@@ -94,10 +87,14 @@ ins_left {
 }
 
 ins_left {
-  -- mode component
-  function()
-    return ''
-  end,
+  require("noice").api.statusline.mode.get,
+  cond = require("noice").api.statusline.mode.has,
+  color = { fg = colors.blue },
+  padding = { left = 0, right = 1 },
+}
+
+ins_left {
+  'mode',
   color = function()
     -- auto change color according to neovims mode
     local mode_color = {
@@ -139,9 +136,13 @@ ins_left {
   color = { fg = colors.magenta, gui = 'bold' },
 }
 
-ins_left { 'location' }
+ins_left {
+  'filetype',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.orange, gui = 'bold' },
+}
 
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_left { 'location' }
 
 ins_left {
   'diagnostics',
