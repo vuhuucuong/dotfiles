@@ -33,6 +33,12 @@ require("noice").setup({
       },
     },
   },
+  routes = {
+    {
+      view = "notify",
+      filter = { event = "msg_showmode" },
+    },
+  },
   lsp = {
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
