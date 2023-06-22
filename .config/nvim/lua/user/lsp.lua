@@ -100,7 +100,7 @@ local cmp_setup = function()
       documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-k>'] = cmp.mapping.scroll_docs( -4),
+      ['<C-k>'] = cmp.mapping.scroll_docs(-4),
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
@@ -122,8 +122,8 @@ local cmp_setup = function()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable( -1) then
-          luasnip.jump( -1)
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
@@ -219,6 +219,7 @@ null_ls.setup({
   sources = {
     -- code actions
     null_ls.builtins.code_actions.eslint,
+    null_ls.builtins.code_actions.gitsigns,
     -- diagnostics
     null_ls.builtins.diagnostics.tidy,
     null_ls.builtins.diagnostics.eslint,

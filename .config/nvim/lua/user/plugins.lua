@@ -30,6 +30,7 @@ return require("packer").startup({
     use { "catppuccin/nvim", as = "catppuccin" }
 
     ---------- LSP ----------
+    use "folke/neodev.nvim"
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
@@ -40,10 +41,7 @@ return require("packer").startup({
     }
     use "b0o/schemastore.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
-    use { "folke/neodev.nvim", config = function()
-      require("user.neodev")
-    end
-    }
+
     use {
       "nvim-treesitter/nvim-treesitter",
       run = function()
@@ -82,23 +80,6 @@ return require("packer").startup({
       end
     }
 
-    -- Debugger
-    -- use { "mfussenegger/nvim-dap", config = function()
-    --   -- require("user.dap")
-    -- end
-    -- }
-    -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function()
-    --   require("dapui").setup()
-    -- end
-    -- }
-    -- use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
-    -- -- language specific debug adapter
-    -- use {
-    --   "microsoft/vscode-js-debug",
-    --   opt = true,
-    --   run = "npm install --legacy-peer-deps && npm run compile"
-    -- }
-
     ---------- FUZZY FINDER ----------
     use {
       "nvim-telescope/telescope.nvim", tag = "0.1.1",
@@ -106,7 +87,8 @@ return require("packer").startup({
         -- telescope plugins
         {
           "nvim-telescope/telescope-fzf-native.nvim",
-          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+          run =
+          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         }
       },
       config = function()
@@ -155,7 +137,8 @@ return require("packer").startup({
                 s = s .. n .. sym
               end
               return s
-            end }
+            end
+          }
         }
       end
     }
@@ -178,7 +161,6 @@ return require("packer").startup({
       "folke/noice.nvim",
       requires = {
         "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
       },
       config = function()
         require("user.noice")
