@@ -34,6 +34,7 @@ return require("packer").startup({
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
+    use "jose-elias-alvarez/typescript.nvim"
     use { "RRethy/vim-illuminate",
       config = function()
         vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#585B70", underline = true })
@@ -89,13 +90,13 @@ return require("packer").startup({
           "nvim-telescope/telescope-fzf-native.nvim",
           run =
           "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-        }
+        },
+        "nvim-telescope/telescope-ui-select.nvim",
       },
       config = function()
         require("user.telescope")
       end
     }
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
     use { "windwp/nvim-ts-autotag", requires = { "nvim-treesitter/nvim-treesitter" }, config = function()
       require("nvim-treesitter.configs").setup {
         autotag = {
@@ -172,9 +173,9 @@ return require("packer").startup({
         require("gitsigns").setup()
       end
     }
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     ---------- UTILS ----------
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use {
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup({}) end

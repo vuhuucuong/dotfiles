@@ -220,8 +220,8 @@ null_ls.setup({
     -- code actions
     null_ls.builtins.code_actions.eslint,
     null_ls.builtins.code_actions.gitsigns,
+    require("typescript.extensions.null-ls.code-actions"),
     -- diagnostics
-    null_ls.builtins.diagnostics.tidy,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.diagnostics.stylelint,
     null_ls.builtins.diagnostics.tsc,
