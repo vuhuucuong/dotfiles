@@ -1,6 +1,8 @@
-export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
+export EDITOR="nvim"
+
 
 ZSH_THEME=""
 
@@ -27,11 +29,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Custom configs
-export EDITOR="vim"
-export NVM_DIR="$HOME/.nvm"
-export PATH="$(yarn global bin):$HOME/.local/bin:/usr/local/opt/curl/bin:$PATH"
-
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
@@ -56,18 +53,19 @@ eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# pnpm
-export PNPM_HOME="/home/cuong/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-# tabtab source for packages
-# uninstall by removing these lines
 
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+
+export NVM_DIR="$HOME/.nvm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+
+path+="$PNPM_HOME:$PATH"
+path+="$(yarn global bin)"
+path+="$HOME/.local/bin"
+path+="/usr/local/opt/curl/bin"
+export PATH
+
