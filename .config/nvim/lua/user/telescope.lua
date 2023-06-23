@@ -32,9 +32,13 @@ telescope.setup {
 
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {}
+    },
+    project = {
+      hidden_files = true
     }
   }
 }
 
 telescope.load_extension("fzf")
 telescope.load_extension("ui-select")
+telescope.load_extension("project")

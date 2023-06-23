@@ -92,6 +92,7 @@ return require("packer").startup({
           "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
         "nvim-telescope/telescope-ui-select.nvim",
+        "nvim-telescope/telescope-project.nvim"
       },
       config = function()
         require("user.telescope")
@@ -173,23 +174,10 @@ return require("packer").startup({
         require("gitsigns").setup()
       end
     }
-    use {
-      "sunjon/shade.nvim",
-      config = function()
-        require("shade").setup({
-          overlay_opacity = 80,
-          opacity_step = 1,
-          keys = {
-            brightness_up   = "<Nop>",
-            brightness_down = "<Nop>",
-            toggle          = "<Nop>",
-          }
-        })
-      end
-    }
 
     ---------- UTILS ----------
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim" }
+    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
     use {
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup({}) end
