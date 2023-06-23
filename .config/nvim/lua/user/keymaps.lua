@@ -63,10 +63,10 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>fF", function() telescope_builtin.find_files({ hidden = true, no_ignore = true }) end,
     { desc = "Find files - include .gitignore", noremap = true, })
   keymap_set_fn("n", "<leader>fs", telescope_builtin.live_grep, { desc = "Live grep", noremap = true, })
-  keymap_set_fn("n", "<leader>fr", telescope_builtin.resume, { desc = "Resume previous search", noremap = true, })
   keymap_set_fn("n", "<leader>fS",
     function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
     { desc = "Live grep - case sensitive", noremap = true, })
+  keymap_set_fn("n", "<leader>fr", telescope_builtin.resume, { desc = "Resume previous search", noremap = true, })
   -- Vim
   keymap_set_fn("n", "<leader>vb", telescope_builtin.buffers, { desc = "Buffers", noremap = true, })
   keymap_set_fn("n", "<leader>vc", telescope_builtin.commands, { desc = "Plugin/User commands list", noremap = true, })
@@ -88,7 +88,6 @@ M.keymap_set_default = function()
   keymap_set_fn("n", "<leader>et", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle", noremap = true, })
   keymap_set_fn("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh", noremap = true, })
   keymap_set_fn("n", "<leader>ef", "<cmd>NvimTreeFindFile<cr>", { desc = "Find current buffer", noremap = true, })
-
 end
 
 M.keymap_set_buffer = function(buffer)

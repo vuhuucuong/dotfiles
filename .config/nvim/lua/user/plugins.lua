@@ -173,6 +173,28 @@ return require("packer").startup({
         require("gitsigns").setup()
       end
     }
+    use {
+      "sunjon/shade.nvim",
+      config = function()
+        require("shade").setup({
+          overlay_opacity = 80,
+          opacity_step = 1,
+          keys = {
+            brightness_up   = "<Nop>",
+            brightness_down = "<Nop>",
+            toggle          = "<Nop>",
+          }
+        })
+      end
+    }
+    use {
+      "glepnir/dashboard-nvim",
+      event = "VimEnter",
+      config = function()
+        require("dashboard").setup {}
+      end,
+      requires = { 'nvim-tree/nvim-web-devicons' }
+    }
 
     ---------- UTILS ----------
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
