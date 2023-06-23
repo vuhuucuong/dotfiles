@@ -187,14 +187,6 @@ return require("packer").startup({
         })
       end
     }
-    use {
-      "glepnir/dashboard-nvim",
-      event = "VimEnter",
-      config = function()
-        require("dashboard").setup {}
-      end,
-      requires = { 'nvim-tree/nvim-web-devicons' }
-    }
 
     ---------- UTILS ----------
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -214,6 +206,7 @@ return require("packer").startup({
       "lukas-reineke/indent-blankline.nvim",
       config = function()
         require("indent_blankline").setup {
+          space_char_blankline = " ",
           show_current_context = true,
           show_current_context_start = true,
         }

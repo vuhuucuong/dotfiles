@@ -5,12 +5,8 @@
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [merge]
   tool = vimdiff
-  conflictstyle = diff3
-[mergetool]
-  prompt = true
-	keepBackup = false
 [mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  path = nvim
 [core]
 	editor = nvim
   pager = delta
