@@ -53,6 +53,20 @@ return require("packer").startup({
     use {
       "folke/trouble.nvim",
       requires = "nvim-tree/nvim-web-devicons",
+      setup = function()
+        -- lsp gutter icons
+        local signs = {
+          Error = " ",
+          Warn = " ",
+          Hint = " ",
+          Info = " "
+        }
+
+        for type, icon in pairs(signs) do
+          local hl = "DiagnosticSign" .. type
+          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
+      end,
       config = function()
         require("trouble").setup({})
       end
@@ -98,13 +112,16 @@ return require("packer").startup({
         require("user.telescope")
       end
     }
-    use { "windwp/nvim-ts-autotag", requires = { "nvim-treesitter/nvim-treesitter" }, config = function()
-      require("nvim-treesitter.configs").setup {
-        autotag = {
-          enable = true,
+    use {
+      "windwp/nvim-ts-autotag",
+      requires = { "nvim-treesitter/nvim-treesitter" },
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          autotag = {
+            enable = true,
+          }
         }
-      }
-    end }
+      end }
 
     ---------- EXPLORER ----------
     use {
@@ -112,6 +129,11 @@ return require("packer").startup({
       requires = {
         "nvim-tree/nvim-web-devicons", -- optional, for file icons
       },
+      setup = function()
+        -- disable netrw
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+      end,
       config = function()
         require("user.nvim-tree")
       end
@@ -192,6 +214,11 @@ return require("packer").startup({
     }
     use {
       "lukas-reineke/indent-blankline.nvim",
+      setup = function()
+        vim.opt.list = true
+        vim.opt.listchars:append "eol:↴"
+        vim.opt.listchars:append "space:⋅"
+      end,
       config = function()
         require("indent_blankline").setup {
           space_char_blankline = " ",
@@ -214,6 +241,10 @@ return require("packer").startup({
     use({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
+      setup = function()
+        -- markdown preview
+        vim.g.mkdp_auto_close = 0
+      end
     })
     use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = function()
       require('bqf').setup({ preview = { wrap = true } })

@@ -6,6 +6,10 @@ local cmp = require("cmp")
 local builtin = require("telescope.builtin")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
 local luasnip = require("luasnip")
 
 require("neodev").setup({})
