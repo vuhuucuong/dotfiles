@@ -5,10 +5,7 @@ require("noice").setup({
         style = "rounded",
         padding = { 0, 1 },
       },
-      position = {
-        row = "50%",
-        col = "50%",
-      },
+      position = "50%",
       size = {
         width = 60,
         height = "auto",

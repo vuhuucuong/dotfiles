@@ -87,8 +87,8 @@ ins_left {
 }
 
 ins_left {
-  require("noice").api.statusline.mode.get,
-  cond = require("noice").api.statusline.mode.has,
+  require("noice").api.status.mode.get,
+  cond = require("noice").api.status.mode.has,
   color = { fg = colors.blue },
   padding = { left = 0, right = 1 },
 }

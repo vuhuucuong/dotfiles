@@ -18,9 +18,6 @@ else
   vim.g.maplocalleader = " "
   require("lazy").setup({
 
-    "nvim-lua/plenary.nvim",
-    -- List plugins here
-
     ---------- COLORSCHEME ----------
     {
       "catppuccin/nvim",
@@ -36,13 +33,14 @@ else
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
       config = function()
-        require("plugins.nvim-treesitter")
+        require("plugins.treesitter")
       end
     },
     {
       "neovim/nvim-lspconfig",
       dependencies = {
         "folke/neodev.nvim",
+        "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "ray-x/lsp_signature.nvim",
         "folke/trouble.nvim",
@@ -52,19 +50,19 @@ else
         "RRethy/vim-illuminate",
       },
       config = function()
-        require("plugins.nvim-lspconfig")
+        require("plugins.lsp")
       end
     },
     {
       "jose-elias-alvarez/null-ls.nvim",
       dependencies = {
+        "nvim-lua/plenary.nvim",
         "jose-elias-alvarez/typescript.nvim",
       },
       config = function()
         require("plugins.null-ls")
       end
     },
-    { "folke/neodev.nvim",                        opts = {} },
     {
       "williamboman/mason.nvim",
       build = ":MasonUpdate",
@@ -104,7 +102,7 @@ else
         "rafamadriz/friendly-snippets",
       },
       config = function()
-        require("plugins.nvim-cmp")
+        require("plugins.cmp")
       end
 
     },
@@ -151,14 +149,14 @@ else
         vim.g.loaded_netrwPlugin = 1
       end,
       config = function()
-        require("plugins.nvim-tree")
+        require("plugins.tree")
       end,
     },
 
     ---------- UI ----------
     {
       "nvim-lualine/lualine.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
+      dependencies = { "nvim-tree/nvim-web-devicons", "folke/noice.nvim" },
       config = function()
         require("plugins.lualine")
       end
@@ -184,9 +182,6 @@ else
       }
     },
     {
-      "SmiteshP/nvim-navic",
-    },
-    {
       "utilyre/barbecue.nvim",
       name = "barbecue",
       version = "*",
@@ -205,7 +200,12 @@ else
         require("plugins.noice")
       end
     },
-    "norcalli/nvim-colorizer.lua",
+    {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup()
+      end
+    },
     {
       "lewis6991/gitsigns.nvim",
       opts = {}
@@ -243,7 +243,7 @@ else
     },
     {
       "kylechui/nvim-surround",
-      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      version = "*",
       event = "VeryLazy",
       opts = {}
     },
