@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 if vim.g.vscode then
   -- VSCode extension
 else
@@ -34,7 +35,8 @@ else
       build = ":TSUpdate",
       config = function()
         require("plugins.treesitter")
-      end
+      end,
+      keys = require("plugins.keymaps").nvim_tree
     },
     {
       "neovim/nvim-lspconfig",
@@ -108,7 +110,7 @@ else
     },
     {
       "L3MON4D3/LuaSnip",
-      version = "<CurrentMajor>.*",
+      version = "2.*",
       build = "make install_jsregexp"
     },
     ---------- KEYMAP UI ----------
@@ -125,15 +127,18 @@ else
     },
     ---------- FUZZY FINDER ----------
     {
+      tag = "0.1.1",
       "nvim-telescope/telescope.nvim",
-      tag          = "0.1.1",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-fzf-native.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
         "nvim-telescope/telescope-project.nvim"
       },
-      keys         = require("plugins.keymaps").telescope
+      keys         = require("plugins.keymaps").telescope,
+      config       = function()
+        require("plugins.telescope")
+      end
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
@@ -142,6 +147,7 @@ else
       "nvim-tree/nvim-tree.lua",
       dependencies = {
         "nvim-tree/nvim-web-devicons",
+        "nvim-telescope/telescope.nvim",
       },
       init = function()
         -- disable netrw
@@ -234,8 +240,8 @@ else
       dependencies = "nvim-lua/plenary.nvim",
       config = function()
         require("plugins.diffview")
-      end
-
+      end,
+      keys = require("plugins.keymaps").diffview
     },
     {
       "windwp/nvim-autopairs",
