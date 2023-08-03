@@ -71,7 +71,7 @@ end
 
 local lsp_flags = {
   debounce_text_changes = 150,
- }
+}
 
 mason_lspconfig.setup({
   ensure_installed = mason_servers_to_install,
@@ -121,5 +121,5 @@ mason_lspconfig.setup_handlers {
       }
     })
   end,
-
 }
+require('ufo').setup()

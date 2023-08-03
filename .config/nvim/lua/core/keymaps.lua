@@ -33,6 +33,8 @@ M.default = function()
   -- Move text up and down
   vim.keymap.set("x", "J", ":move '>+1<cr>gv-gv", { desc = "", noremap = true, })
   vim.keymap.set("x", "K", ":move '<-2<cr>gv-gv", { desc = "", noremap = true, })
+  -- Enable <leader> in visual mode
+  vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
   -- Delete all buffers except current
   vim.api.nvim_create_user_command("Bo", ":%bd|e#|bd#", { nargs = 0, desc = "Close all other buffers" })
 end

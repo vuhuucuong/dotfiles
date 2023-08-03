@@ -1,6 +1,30 @@
 ---@diagnostic disable: assign-type-mismatch
 if vim.g.vscode then
+  vim.opt.clipboard:append("unnamedplus")
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+    })
+  end
+  vim.opt.rtp:prepend(lazypath)
+
+  -- Remap space as leader key
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
   -- VSCode extension
+  require("lazy").setup({
+    {
+      "kylechui/nvim-surround",
+      version = "*",
+      event = "VeryLazy",
+      opts = {}
+    },
+    {
+      "numToStr/Comment.nvim",
+      dependencies = {},
+      opts = {}
+    }
+  })
 else
   -- default settings
   require("core.options")
@@ -50,6 +74,7 @@ else
         "b0o/schemastore.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "RRethy/vim-illuminate",
+        "kevinhwang91/nvim-ufo"
       },
       config = function()
         require("plugins.lsp")
@@ -232,8 +257,8 @@ else
     {
       "nvim-pack/nvim-spectre",
       dependencies = "nvim-lua/plenary.nvim",
-      ---@diagnostic disable-next-line: assign-type-mismatch
-      keys = require("plugins.keymaps").nvim_spectre
+      keys = require("plugins.keymaps").nvim_spectre,
+      config = function() require("plugins.spectre") end
     },
     {
       "sindrets/diffview.nvim",
@@ -276,11 +301,16 @@ else
       end
     },
     {
-      'kevinhwang91/nvim-bqf',
-      ft = 'qf',
+      "kevinhwang91/nvim-bqf",
+      ft = "qf",
       opts = {
         preview = { wrap = true }
       }
+    },
+    {
+      "kevinhwang91/nvim-ufo",
+      dependencies = { "kevinhwang91/promise-async" },
+      config = function() require("plugins.ufo") end
     }
   })
 end

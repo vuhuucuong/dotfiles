@@ -17,36 +17,75 @@ M.telescope = function()
   local telescope_builtin = require("telescope.builtin")
   local telescope_extensions = require("telescope").extensions
 
+  function vim.getVisualSelection()
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg('v')
+    vim.fn.setreg('v', {})
+
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+      return text
+    else
+      return ''
+    end
+  end
+
   return {
     {
       "<leader>ff",
-      function() telescope_builtin.find_files({ hidden = true, no_ignore = true }) end,
+      function() telescope_builtin.find_files({ hidden = false, no_ignore = false }) end,
       desc =
-      "Find All Files"
+      "Find Files"
+    },
+    {
+      "<leader>fF",
+      function()
+        telescope_builtin.find_files({
+          hidden = vim.fn.input({ prompt = 'hidden (y/n): ', default = 'y' }) == 'y' and true or false,
+          no_ignore = vim.fn.input({ prompt = 'no_ignore (y/n): ', default = 'y' }) == 'y' and true or false
+        })
+      end,
+      desc =
+      "Find Files - Customize"
     },
     {
       "<leader>fg",
-      function() telescope_builtin.git_files({ show_untracked = true }) end,
+      function() telescope_builtin.live_grep() end,
       desc =
-      "Find Git Files"
+      "Live Grep in Project"
     },
     {
       "<leader>fs",
-      function() telescope_builtin.live_grep() end,
+      function()
+        telescope_builtin.live_grep({ default_text = vim.getVisualSelection() })
+      end,
+      mode = 'v',
       desc =
-      "Live Grep"
+      "Grep Current in Project"
     },
     {
-      "<leader>fS",
-      function() telescope_builtin.live_grep { additional_args = { "--case-sensitive" } } end,
+      "<leader>fG",
+      function()
+        local isCaseSensitive = vim.fn.input({ prompt = 'case-sensitive (y/n): ' })
+        local args = isCaseSensitive == 'y' and { "--case-sensitive" } or {}
+        telescope_builtin.live_grep { additional_args = args }
+      end,
       desc =
-      "Live Grep - Case Sensitive"
+      "Live Grep in Project - Customize"
+    },
+    {
+      "<leader>fu",
+      function()
+        telescope_builtin.current_buffer_fuzzy_find()
+      end,
+      desc =
+      "Fuzzy in Buffer"
     },
     {
       "<leader>fr",
       function() telescope_builtin.resume() end,
       desc =
-      "Resume revious"
+      "Resume Previous"
     },
     {
       "<leader>vb",
@@ -151,7 +190,14 @@ end
 M.nvim_spectre = function()
   local spectre = require("spectre")
   return {
-    { "<leader>so", spectre.open, desc = "Search and Replace" },
+    { "<leader>so", spectre.open, desc = "Open Spectre" },
+    {
+      "<leader>ss",
+      function()
+        spectre.open_visual({ select_word = true })
+      end,
+      desc = "Search current string"
+    },
   }
 end
 
