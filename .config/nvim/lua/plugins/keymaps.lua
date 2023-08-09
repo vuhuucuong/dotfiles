@@ -17,6 +17,7 @@ M.telescope = function()
   local telescope_builtin = require("telescope.builtin")
   local telescope_extensions = require("telescope").extensions
 
+---@diagnostic disable-next-line: duplicate-set-field
   function vim.getVisualSelection()
     vim.cmd('noau normal! "vy"')
     local text = vim.fn.getreg('v')
@@ -57,7 +58,7 @@ M.telescope = function()
     {
       "<leader>fs",
       function()
-        telescope_builtin.live_grep({ default_text = vim.getVisualSelection() })
+        telescope_builtin.live_grep({ default_text = vim.getVisualSelection(), additional_args = { '--hidden' } })
       end,
       mode = 'v',
       desc =
@@ -66,8 +67,15 @@ M.telescope = function()
     {
       "<leader>fG",
       function()
-        local isCaseSensitive = vim.fn.input({ prompt = 'case-sensitive (y/n): ' })
-        local args = isCaseSensitive == 'y' and { "--case-sensitive" } or {}
+        local isCaseSensitive = vim.fn.input({ prompt = 'case-sensitive (y/n): ', default = 'y' })
+        local isHidden = vim.fn.input({ prompt = 'hidden (y/n): ', default = 'y' })
+        local args = {}
+        if isCaseSensitive == 'y' then
+          table.insert(args, "--case-sensitive")
+        end
+        if isHidden == 'y' then
+          table.insert(args, "--hidden")
+        end
         telescope_builtin.live_grep { additional_args = args }
       end,
       desc =
