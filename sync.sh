@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-for f in $(ls -d -- .config/*)
+
+cp -av home/. ~/ 
+echo "Done syncing home dotfiles!"
+
+for folder in $(ls -d -- .config/*)
 do
-  rsync -avu --delete $f ~/.config
+  rsync -avu --delete $folder ~/.config
 done
 echo "Done syncing config!"
