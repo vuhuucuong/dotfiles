@@ -1,10 +1,14 @@
-local opts = {
-  foldcolumn = '1',
-  foldlevel = 99,
-  foldlevelstart = 99,
-  foldenable = true
-}
+local opt          = vim.opt
 
-for k, v in pairs(opts) do
-  vim.opt[k] = v
-end
+opt.foldcolumn     = '1'
+opt.foldlevel      = 99
+opt.foldlevelstart = 99
+opt.foldenable     = true
+opt.fillchars      = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+require('ufo').setup({
+  ---@diagnostic disable-next-line: unused-local
+  provider_selector = function(bufnr, filetype, buftype)
+    return { 'treesitter', 'indent' }
+  end
+})

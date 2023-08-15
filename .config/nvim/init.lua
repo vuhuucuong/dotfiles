@@ -305,9 +305,21 @@ else
       }
     },
     {
+      "luukvbaal/statuscol.nvim",
+      config = function()
+        require("plugins.statuscol")
+      end
+    },
+    {
       "kevinhwang91/nvim-ufo",
-      dependencies = { "kevinhwang91/promise-async" },
+      dependencies = { "kevinhwang91/promise-async", "luukvbaal/statuscol.nvim" },
       config = function() require("plugins.ufo") end
-    }
+    },
+    {
+      "winston0410/range-highlight.nvim",
+      dependencies = { "winston0410/cmd-parser.nvim" },
+      opts = {}
+    },
+
   })
 end
