@@ -17,7 +17,7 @@ M.telescope = function()
   local telescope_builtin = require("telescope.builtin")
   local telescope_extensions = require("telescope").extensions
 
----@diagnostic disable-next-line: duplicate-set-field
+  ---@diagnostic disable-next-line: duplicate-set-field
   function vim.getVisualSelection()
     vim.cmd('noau normal! "vy"')
     local text = vim.fn.getreg('v')
@@ -34,7 +34,7 @@ M.telescope = function()
   return {
     {
       "<leader>ff",
-      function() telescope_builtin.find_files({ hidden = false, no_ignore = false }) end,
+      function() telescope_builtin.find_files({ hidden = true, no_ignore = false }) end,
       desc =
       "Find Files"
     },
@@ -51,9 +51,26 @@ M.telescope = function()
     },
     {
       "<leader>fg",
-      function() telescope_builtin.live_grep() end,
+      function() telescope_builtin.live_grep({ '--hidden' }) end,
       desc =
       "Live Grep in Project"
+    },
+    {
+      "<leader>fG",
+      function()
+        local isCaseSensitive = vim.fn.input({ prompt = 'case-sensitive (y/n): ', default = 'y' })
+        local isHidden = vim.fn.input({ prompt = 'hidden (y/n): ', default = 'y' })
+        local args = {}
+        if isCaseSensitive == 'y' then
+          table.insert(args, '--case-sensitive')
+        end
+        if isHidden == 'y' then
+          table.insert(args, '--hidden')
+        end
+        telescope_builtin.live_grep { additional_args = args }
+      end,
+      desc =
+      "Live Grep in Project - Customize"
     },
     {
       "<leader>fs",
@@ -63,23 +80,6 @@ M.telescope = function()
       mode = 'v',
       desc =
       "Grep Current in Project"
-    },
-    {
-      "<leader>fG",
-      function()
-        local isCaseSensitive = vim.fn.input({ prompt = 'case-sensitive (y/n): ', default = 'y' })
-        local isHidden = vim.fn.input({ prompt = 'hidden (y/n): ', default = 'y' })
-        local args = {}
-        if isCaseSensitive == 'y' then
-          table.insert(args, "--case-sensitive")
-        end
-        if isHidden == 'y' then
-          table.insert(args, "--hidden")
-        end
-        telescope_builtin.live_grep { additional_args = args }
-      end,
-      desc =
-      "Live Grep in Project - Customize"
     },
     {
       "<leader>fu",

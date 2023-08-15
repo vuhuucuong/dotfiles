@@ -8,9 +8,6 @@ if vim.g.vscode then
   end
   vim.opt.rtp:prepend(lazypath)
 
-  -- Remap space as leader key
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
   -- VSCode extension
   require("lazy").setup({
     {
@@ -26,6 +23,9 @@ if vim.g.vscode then
     }
   })
 else
+  -- Remap space as leader key
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
   -- default settings
   require("core.options")
   require("core.keymaps").default()
@@ -38,9 +38,6 @@ else
   end
   vim.opt.rtp:prepend(lazypath)
 
-  -- Remap space as leader key
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
   require("lazy").setup({
 
     ---------- COLORSCHEME ----------
