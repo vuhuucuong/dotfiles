@@ -2,7 +2,7 @@
   name = Cuong Vu
   email = vuhuucuong1310@gmail.com
 [alias]
-  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
 [merge]
   tool = vimdiff
 [mergetool "vimdiff"]
