@@ -27,6 +27,8 @@ plugins=(
   zsh-completions
 )
 
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
 source $ZSH/oh-my-zsh.sh
 
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
@@ -68,4 +70,4 @@ path+="$(yarn global bin)"
 path+="$HOME/.local/bin"
 path+="/usr/local/opt/curl/bin"
 export PATH
-
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
