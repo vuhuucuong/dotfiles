@@ -5,16 +5,25 @@
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [core]
 	editor = code --wait
-	pager = diff-so-fancy | less --tabs=4 -RF
+	pager = delta
 [diff]
   colorMoved = default
   tool = default-difftool
+[difftool]
+	prompt = false
 [difftool "default-difftool"]
 	cmd = code --wait --diff $LOCAL $REMOTE
+  prompt = false
 [merge]
   tool = code
+  conflictstyle = diff3
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  side-by-side = true
+  line-numbers = true
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -27,7 +36,7 @@
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [interactive]
-	diffFilter = diff-so-fancy --patch
+  diffFilter = delta --color-only
 [color]
 	ui = true
 [color "diff-highlight"]
