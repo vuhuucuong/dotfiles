@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [aws]
 symbol = "  "
 
@@ -30,6 +32,10 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+
+[git_metrics]
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+disabled = false
 
 [golang]
 symbol = " "

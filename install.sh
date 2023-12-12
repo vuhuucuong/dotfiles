@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # copy home dotfiles
-cp -av home/. "$HOME/" &&
+rsync -av --progress home/ "$HOME" --exclude .git &&
   echo "All home dotfiles have been copied!"
 
 # copy all .config
-cp -rfv .config/. "$HOME/.config/" &&
+rsync -av --progress .config/ "$HOME/.config/" &&
   echo ".config has been copied!"
 
 # Install fzf
