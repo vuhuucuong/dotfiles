@@ -30,6 +30,7 @@ if [ ! -f $ANTIGEN_SCRIPT ]; then
 else
   echo -e "antigen is already installed!\n----------\n"
 fi
+
 # Install nvm
 NVM_DIR="$HOME/.nvm"
 if [ ! -d $NVM_DIR ]; then
