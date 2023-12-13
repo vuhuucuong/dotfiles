@@ -13,7 +13,7 @@ antigen bundle vi-mode
 antigen bundle git
 antigen bundle brew
 antigen bundle docker-compose
-antigen bundle docker
+# antigen bundle docker
 antigen bundle fzf
 antigen bundle gem
 antigen bundle node
