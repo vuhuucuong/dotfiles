@@ -10,40 +10,59 @@ rsync -av --progress .config/ "$HOME/.config/" &&
 
 # Install fzf
 FZF_DIR="$HOME/.fzf"
-OMZ_DIR="$HOME/.oh-my-zsh"
+
+echo -e "[INSTALLING APPS]\n"
+
 if [ ! -d $FZF_DIR ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git $FZF_DIR &&
     $FZF_DIR/install &&
-    echo "fzf has been installled!"
+    echo -e "fzf has been installed!\n----------\n"
+else
+  echo -e "fzf is already installed!\n----------\n"
 fi
 
-# Install oh my zsh
-if [ ! -d $OMZ_DIR ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
-    echo "oh my zsh has been installled!"
+ANTIGEN_SCRIPT="$HOME/.scripts/antigen/antigen.sh"
+# Install antigen oh my zsh plugin manager
+if [ ! -f $ANTIGEN_SCRIPT ]; then
+  echo "Installing antigen..."
+  curl -L git.io/antigen >"$ANTIGEN_SCRIPT" &&
+    echo -e "antigen has been installed!\n----------\n"
+else
+  echo -e "antigen is already installed!\n----------\n"
+fi
+# Install nvm
+NVM_DIR="$HOME/.nvm"
+if [ ! -d $NVM_DIR ]; then
+  echo "Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash &&
+    echo -e "nvm has been installed!\n----------\n"
+else
+  echo -e "nvm is already installed!\n----------\n"
 fi
 
-# Install zsh plugins
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
-    echo "zsh-autosuggestions has been installled!"
-fi
-
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
-    echo "zsh-syntax-highlighting has been installled!"
-fi
-
-if [ ! -d ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions ]; then
-  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions &&
-    echo "zsh-completions has been installled!"
+# yarn
+if ! command -v yarn &>/dev/null; then
+  echo "Installing yarn..."
+  curl -o- -L https://yarnpkg.com/install.sh | bash &&
+    echo -e "yarn has been installed!\n----------\n"
+else
+  echo -e "yarn is already installed!\n----------\n"
 fi
 
 # Install git plugins
 
-echo "Install git plugins..."
-if ! [ -x "$(diff-so-fancy)" ]; then
+# diff-so-fancy
+echo -e "[INSTALLING GIT PLUGINS]\n"
+if ! command -v diff-so-fancy &>/dev/null; then
   sudo apt install diff-so-fancy &&
-    echo "diff-so-fancy has been installled!"
+    echo -e "diff-so-fancy has been installed!\n----------\n"
+else
+  echo -e "diff-so-fancy is already installed!\n----------\n"
 fi
-echo "Please install git-delta!"
+
+# delta
+if ! command -v delta &>/dev/null; then
+  echo -e "Please install delta here: https://github.com/dandavison/delta\n----------\n"
+else
+  echo -e "delta is already installed!\n----------\n"
+fi
