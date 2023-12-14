@@ -18,3 +18,6 @@ zstyle ':autocomplete:*' delay 0.3  # seconds (float)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#b1b1b1,bold,underline"
 bindkey '^ ' autosuggest-accept
 bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+# aliases
+alias e='exa'
