@@ -30,6 +30,16 @@ if ! brew list antigen &>/dev/null; then
   BREW_PACKAGES+=("antigen")
 fi
 
+# Install atuin
+if ! brew list atuin &>/dev/null; then
+  BREW_PACKAGES+=("atuin")
+fi
+
+# Install exa
+if ! brew list exa &>/dev/null; then
+  BREW_PACKAGES+=("exa")
+fi
+
 # Install nvm
 if ! brew list nvm &>/dev/null; then
   BREW_PACKAGES+=("nvm")
@@ -40,10 +50,6 @@ if ! brew list yarn &>/dev/null; then
   BREW_PACKAGES+=("yarn")
 fi
 
-# Install atuin
-if ! brew list atuin &>/dev/null; then
-  BREW_PACKAGES+=("atuin")
-fi
 
 # Install git plugins
 
