@@ -8,6 +8,11 @@ rsync -av --progress home/ "$HOME" --exclude .git &&
 rsync -av --progress .config/ "$HOME/.config/" &&
   echo ".config has been copied!"
 
+if ! command -v brew &>/dev/null; then
+  echo -e "PLEASE INSTALL BREW FIRST: https://brew.sh"
+  exit 1
+fi
+
 echo -e "[INSTALLING APPS]\n"
 # Install fzf
 BREW_PACKAGES=()
