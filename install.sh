@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # copy home dotfiles
 rsync -av --progress home/ "$HOME" --exclude .git &&
@@ -8,62 +8,57 @@ rsync -av --progress home/ "$HOME" --exclude .git &&
 rsync -av --progress .config/ "$HOME/.config/" &&
   echo ".config has been copied!"
 
-# Install fzf
-FZF_DIR="$HOME/.fzf"
-
 echo -e "[INSTALLING APPS]\n"
+# Install fzf
+BREW_PACKAGES=()
 
-if [ ! -d $FZF_DIR ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git $FZF_DIR &&
-    $FZF_DIR/install &&
-    echo -e "fzf has been installed!\n----------\n"
-else
-  echo -e "fzf is already installed!\n----------\n"
+if ! brew list fzf &>/dev/null; then
+  BREW_PACKAGES+=("fzf")
 fi
 
-ANTIGEN_SCRIPT="$HOME/.scripts/antigen/antigen.sh"
+if ! brew list zoxide &>/dev/null; then
+  BREW_PACKAGES+=("zoxide")
+fi
+
 # Install antigen oh my zsh plugin manager
-if [ ! -f $ANTIGEN_SCRIPT ]; then
-  echo "Installing antigen..."
-  curl -L git.io/antigen >"$ANTIGEN_SCRIPT" &&
-    echo -e "antigen has been installed!\n----------\n"
-else
-  echo -e "antigen is already installed!\n----------\n"
+if ! brew list antigen &>/dev/null; then
+  BREW_PACKAGES+=("antigen")
 fi
 
 # Install nvm
-NVM_DIR="$HOME/.nvm"
-if [ ! -d $NVM_DIR ]; then
-  echo "Installing nvm..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash &&
-    echo -e "nvm has been installed!\n----------\n"
-else
-  echo -e "nvm is already installed!\n----------\n"
+if ! brew list nvm &>/dev/null; then
+  BREW_PACKAGES+=("nvm")
 fi
 
 # yarn
-if ! command -v yarn &>/dev/null; then
-  echo "Installing yarn..."
-  curl -o- -L https://yarnpkg.com/install.sh | bash &&
-    echo -e "yarn has been installed!\n----------\n"
-else
-  echo -e "yarn is already installed!\n----------\n"
+if ! brew list yarn &>/dev/null; then
+  BREW_PACKAGES+=("yarn")
+fi
+
+# Install atuin
+if ! brew list atuin &>/dev/null; then
+  BREW_PACKAGES+=("atuin")
 fi
 
 # Install git plugins
 
 # diff-so-fancy
-echo -e "[INSTALLING GIT PLUGINS]\n"
-if ! command -v diff-so-fancy &>/dev/null; then
-  sudo apt install diff-so-fancy &&
-    echo -e "diff-so-fancy has been installed!\n----------\n"
-else
-  echo -e "diff-so-fancy is already installed!\n----------\n"
+if ! brew list diff-so-fancy &>/dev/null; then
+  BREW_PACKAGES+=("diff-so-fancy")
 fi
 
 # delta
-if ! command -v delta &>/dev/null; then
-  echo -e "Please install delta here: https://github.com/dandavison/delta\n----------\n"
-else
-  echo -e "delta is already installed!\n----------\n"
+if ! brew list git-delta &>/dev/null; then
+  BREW_PACKAGES+=("git-delta")
 fi
+
+# install brew packages
+if [ ${#BREW_PACKAGES[@]} -gt 0 ]; then
+  echo -e "Installing packages: ${BREW_PACKAGES[@]}\n----------\n"
+  brew install "${BREW_PACKAGES[@]}" &&
+    echo -e "Installed: ${BREW_PACKAGES[@]}\n----------\n"
+fi
+
+echo -e "Sourcing .zshrc\n----------\n"
+source $HOME/.zshrc
+echo -e "Finished!\n----------\n"

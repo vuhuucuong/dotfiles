@@ -1,4 +1,4 @@
-source $HOME/.scripts/antigen/antigen.zsh
+source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -11,7 +11,7 @@ antigen bundle vi-mode
 antigen bundle git
 antigen bundle brew
 antigen bundle docker-compose
-# antigen bundle docker
+antigen bundle docker
 antigen bundle fzf
 antigen bundle gem
 antigen bundle node
