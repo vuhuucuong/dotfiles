@@ -13,7 +13,7 @@ symbol = " "
 
 [cmd_duration]
 min_time = 1
-format = "󰥔 [$duration]($style) '"
+format = "  [$duration]($style) '"
 
 [conda]
 symbol = " "
