@@ -1,5 +1,15 @@
 #!/usr/bin/env zsh
 
+if [ -z "$ZSH_VERSION" ]; then
+  echo "Please switch to Zsh shell before running this script."
+  exit 1
+fi
+
+if ! command -v brew &>/dev/null; then
+  echo -e "PLEASE INSTALL BREW FIRST: https://brew.sh"
+  exit 1
+fi
+
 # copy home dotfiles
 rsync -av --progress home/ "$HOME" --exclude .git &&
   echo "All home dotfiles have been copied!"
@@ -7,11 +17,6 @@ rsync -av --progress home/ "$HOME" --exclude .git &&
 # copy all .config
 rsync -av --progress .config/ "$HOME/.config/" &&
   echo ".config has been copied!"
-
-if ! command -v brew &>/dev/null; then
-  echo -e "PLEASE INSTALL BREW FIRST: https://brew.sh"
-  exit 1
-fi
 
 echo -e "[INSTALLING APPS]\n"
 # Install fzf
@@ -49,7 +54,6 @@ fi
 if ! brew list yarn &>/dev/null; then
   BREW_PACKAGES+=("yarn")
 fi
-
 
 # Install git plugins
 
