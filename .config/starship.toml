@@ -147,3 +147,6 @@ symbol = " "
 
 [scala]
 symbol = " "
+
+[sudo]
+disabled = false
