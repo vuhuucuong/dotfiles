@@ -1,5 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+right_format = "$cmd_duration"
+
 [aws]
 symbol = "  "
 
@@ -8,6 +10,11 @@ symbol = " "
 
 [c]
 symbol = " "
+
+[cmd_duration]
+min_time = 1
+format = "󰥔 [$duration]($style) '"
+show_notifications = true
 
 [conda]
 symbol = " "
@@ -66,6 +73,7 @@ symbol = " "
 
 [memory_usage]
 symbol = "󰍛 "
+disabled = false
 
 [meson]
 symbol = "󰔷 "
