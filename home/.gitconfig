@@ -4,15 +4,15 @@
 [alias]
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [core]
-	editor = code --wait
-	pager = delta
+  editor = code --wait
+  pager = delta
 [diff]
   colorMoved = default
   tool = default-difftool
 [difftool]
-	prompt = false
+  prompt = false
 [difftool "default-difftool"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
   prompt = false
 [merge]
   tool = code
@@ -25,30 +25,32 @@
   line-numbers = true
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [url "https://"]
-	insteadOf = git://
+  insteadOf = git://
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [interactive]
   diffFilter = delta --color-only
 [color]
-	ui = true
+  ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = 11
+  frag = magenta bold
+  func = 146 bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[init]
+  defaultBranch = main
