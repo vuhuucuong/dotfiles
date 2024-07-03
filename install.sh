@@ -40,6 +40,11 @@ if ! brew list atuin &>/dev/null; then
   BREW_PACKAGES+=("atuin")
 fi
 
+# Install thefuck
+if ! brew list thefuck &>/dev/null; then
+  BREW_PACKAGES+=("thefuck")
+fi
+
 # Install exa
 if ! brew list exa &>/dev/null; then
   BREW_PACKAGES+=("exa")

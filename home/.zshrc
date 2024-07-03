@@ -15,6 +15,7 @@ source "$HOME/.scripts/app.sh"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
+eval $(thefuck --alias)
 
 # load keybindings
 source "$HOME/.scripts/keybindings.sh"
