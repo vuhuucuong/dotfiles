@@ -4,7 +4,7 @@ source "$HOME/.scripts/env.sh"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  eval "$(/usr/local/bin shellenv)"
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # zsh plugin manager
