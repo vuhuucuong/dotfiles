@@ -4,6 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="code"
 
 export NVM_DIR="$HOME/.nvm"
+export PYENV_ROOT="$HOME/.pyenv"
 
 # PATH
 path+="$HOME/.yarn/bin"
