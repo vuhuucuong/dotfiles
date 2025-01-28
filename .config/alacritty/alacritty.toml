@@ -75,16 +75,16 @@ index = 17
 color = "#F5E0DC"
 
 [font]
-size = 13.0
+size = 14.0
 
 [font.bold]
-family = "MonaspiceNe Nerd Font"
+family = "Iosevka Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "MonaspiceNe Nerd Font"
+family = "Iosevka Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "MonaspiceNe Nerd Font"
+family = "Iosevka Nerd Font"
 style = "Regular"
