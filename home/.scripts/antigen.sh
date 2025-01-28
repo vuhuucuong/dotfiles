@@ -29,6 +29,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle marlonrichert/zsh-autocomplete@main
 
+antigen theme romkatv/powerlevel10k
 
 # Tell antigen that you're done.
 antigen apply
