@@ -55,6 +55,11 @@ if ! brew list nvm &>/dev/null; then
   BREW_PACKAGES+=("nvm")
 fi
 
+# Install pyenv
+if ! brew list pyenv &>/dev/null; then
+  BREW_PACKAGES+=("pyenv")
+fi
+
 # yarn
 if ! brew list yarn &>/dev/null; then
   BREW_PACKAGES+=("yarn")
