@@ -21,7 +21,7 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
 alias e='exa'
-alias f='thefuck'
+alias f='fuck'
 function zc(){
   z $@;
   echo "Opening $(pwd -P)";
