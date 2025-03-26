@@ -7,4 +7,9 @@
 
 # PYENV
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
 eval "$(pyenv init - zsh)"
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+eval $(thefuck --alias)
+eval "$(gh copilot alias -- zsh)"

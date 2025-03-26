@@ -16,5 +16,9 @@ if grep -q microsoft /proc/version; then
   path+="/mnt/c/Program Files/Microsoft VS Code/bin"
   path+="/mnt/c/Windows"
 fi
+# include env.secret.sh
+if [ -f "$HOME/.scripts/env.secret.sh" ]; then
+  source "$HOME/.scripts/env.secret.sh"
+fi
 
 export PATH

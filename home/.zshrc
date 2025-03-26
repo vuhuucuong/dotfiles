@@ -16,12 +16,8 @@ fi
 
 # zsh plugin manager
 source "$HOME/.scripts/antigen.sh"
-# load app
-source "$HOME/.scripts/app.sh"
-
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
-eval $(thefuck --alias)
+# load app eval
+source "$HOME/.scripts/eval.sh"
 
 # load keybindings
 source "$HOME/.scripts/keybindings.sh"

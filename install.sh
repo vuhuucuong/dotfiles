@@ -19,70 +19,41 @@ rsync -av --progress .config/ "$HOME/.config/" &&
   echo ".config has been copied!"
 
 echo -e "[INSTALLING APPS]\n"
-# Install fzf
-BREW_PACKAGES=()
+# Define packages to install
+PACKAGES=(
+  "fzf"
+  "zoxide"
+  "antigen"
+  "atuin"
+  "thefuck"
+  "exa"
+  "nvm"
+  "pyenv"
+  "yarn"
+  "diff-so-fancy"
+  "git-delta"
+  "gh"
+)
 
-if ! brew list fzf &>/dev/null; then
-  BREW_PACKAGES+=("fzf")
-fi
+# Filter out already installed packages
+BREW_PACKAGES=($(
+  for package in "${PACKAGES[@]}"; do
+    brew list "$package" &>/dev/null || echo "$package"
+  done
+))
 
-if ! brew list zoxide &>/dev/null; then
-  BREW_PACKAGES+=("zoxide")
-fi
-
-# Install antigen oh my zsh plugin manager
-if ! brew list antigen &>/dev/null; then
-  BREW_PACKAGES+=("antigen")
-fi
-
-# Install atuin
-if ! brew list atuin &>/dev/null; then
-  BREW_PACKAGES+=("atuin")
-fi
-
-# Install thefuck
-if ! brew list thefuck &>/dev/null; then
-  BREW_PACKAGES+=("thefuck")
-fi
-
-# Install exa
-if ! brew list exa &>/dev/null; then
-  BREW_PACKAGES+=("exa")
-fi
-
-# Install nvm
-if ! brew list nvm &>/dev/null; then
-  BREW_PACKAGES+=("nvm")
-fi
-
-# Install pyenv
-if ! brew list pyenv &>/dev/null; then
-  BREW_PACKAGES+=("pyenv")
-fi
-
-# yarn
-if ! brew list yarn &>/dev/null; then
-  BREW_PACKAGES+=("yarn")
-fi
-
-# Install git plugins
-
-# diff-so-fancy
-if ! brew list diff-so-fancy &>/dev/null; then
-  BREW_PACKAGES+=("diff-so-fancy")
-fi
-
-# delta
-if ! brew list git-delta &>/dev/null; then
-  BREW_PACKAGES+=("git-delta")
-fi
-
-# install brew packages
+# Install missing packages
 if [ ${#BREW_PACKAGES[@]} -gt 0 ]; then
-  echo -e "Installing packages: ${BREW_PACKAGES[@]}\n----------\n"
+  echo -e "Installing packages: ${BREW_PACKAGES[*]}\n----------\n"
   brew install "${BREW_PACKAGES[@]}" &&
-    echo -e "Installed: ${BREW_PACKAGES[@]}\n----------\n"
+    echo -e "Installed: ${BREW_PACKAGES[*]}\n----------\n"
 fi
+
+if ! gh extension list | grep -q "github/gh-copilot"; then
+  echo "Installing gh-copilot extension..."
+  gh extension install github/gh-copilot
+fi
+
 
 echo -e "Sourcing .zshrc\n----------\n"
 source $HOME/.zshrc
