@@ -29,6 +29,7 @@ PACKAGES=(
   "pyenv"
   "yarn"
   "gh"
+  "atuin"
 )
 
 # Filter out already installed packages
