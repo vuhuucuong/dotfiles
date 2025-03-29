@@ -31,7 +31,6 @@ PACKAGES=(
   "pyenv"
   "yarn"
   "diff-so-fancy"
-  "git-delta"
   "gh"
 )
 
