@@ -24,13 +24,10 @@ PACKAGES=(
   "fzf"
   "zoxide"
   "antigen"
-  "atuin"
   "thefuck"
-  "exa"
   "nvm"
   "pyenv"
   "yarn"
-  "diff-so-fancy"
   "gh"
 )
 

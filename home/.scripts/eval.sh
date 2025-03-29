@@ -10,6 +10,5 @@
 
 eval "$(pyenv init - zsh)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
 eval $(thefuck --alias)
 eval "$(gh copilot alias -- zsh)"

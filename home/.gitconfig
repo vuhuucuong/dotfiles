@@ -1,31 +1,39 @@
 [user]
-  name = Cuong Vu
-  email = vuhuucuong1310@gmail.com
+name = Cuong Vu
+email = vuhuucuong1310@gmail.com
 [alias]
-  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [core]
-  editor = code --wait
+editor = code --wait
+pager = delta
+[interactive]
+diffFilter = delta --color-only
+[delta]
+navigate = true # use n and N to move between diff sections
+dark = true     # or light = true, or omit for auto-detection
+side-by-side = true
+line-numbers = true
 [diff]
-    tool = vscode
+tool = vscode
 [difftool]
-    prompt = false
+prompt = false
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-  tool = code
-  conflictstyle = diff3
+tool = code
+conflictstyle = zdiff3
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 [url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
+insteadOf = https://github.com/
 [url "https://"]
-  insteadOf = git://
+insteadOf = git://
 [url "git@github.com:"]
-  insteadOf = https://github.com/
+insteadOf = https://github.com/
 [init]
-  defaultBranch = main
+defaultBranch = main
