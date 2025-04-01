@@ -29,6 +29,7 @@ PACKAGES=(
   "pyenv"
   "yarn"
   "atuin"
+  "nvim"
 )
 
 # Filter out already installed packages
