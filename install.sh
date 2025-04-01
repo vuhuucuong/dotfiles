@@ -28,7 +28,6 @@ PACKAGES=(
   "nvm"
   "pyenv"
   "yarn"
-  "gh"
   "atuin"
 )
 
