@@ -18,7 +18,7 @@
 Make sure you install these first:
 - [Brew](https://brew.sh/) for both Linux & MacOS
 - [Zsh shell + oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [Nerd Fonts](https://www.nerdfonts.com/) (required by Powerlevel10k for icons)
+- [Nerd Fonts](https://www.nerdfonts.com/) (required to display icons)
 
 ## Installation
 Run
