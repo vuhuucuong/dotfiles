@@ -2,7 +2,8 @@
 
 ## Overview
 🌟 A collection of my personal dotfiles
-![Dotfiles Screenshot](./screenshot.png)
+
+![Dotfiles Screenshot](./shell.png)
 
 ## What's Included
 
