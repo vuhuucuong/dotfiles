@@ -30,6 +30,7 @@ PACKAGES=(
   "yarn"
   "atuin"
   "nvim"
+  "delta"
 )
 
 # Filter out already installed packages
@@ -45,12 +46,6 @@ if [ ${#BREW_PACKAGES[@]} -gt 0 ]; then
   brew install "${BREW_PACKAGES[@]}" &&
     echo -e "Installed: ${BREW_PACKAGES[*]}\n----------\n"
 fi
-
-if ! gh extension list | grep -q "github/gh-copilot"; then
-  echo "Installing gh-copilot extension..."
-  gh extension install github/gh-copilot
-fi
-
 
 echo -e "Sourcing .zshrc\n----------\n"
 source $HOME/.zshrc
