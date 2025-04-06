@@ -20,8 +20,10 @@ bindkey '^ ' autosuggest-accept
 bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
-alias e='exa'
 alias f='fuck'
+if grep -q "WSL" /proc/version; then
+  alias e='/mnt/c/Windows/explorer.exe'
+fi
 function zc(){
   z $@;
   echo "Opening $(pwd -P)";
