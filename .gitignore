@@ -1,3 +1,4 @@
 # Environment secrets
 env.secret.sh
 .aider*
+# not ignore .aider.conf.yml ai!
