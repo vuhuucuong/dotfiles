@@ -1,6 +1,0 @@
-# aider --watch-files --notifications  --model  gemini/gemini-2.0-flash --browser
-watch-files: true
-notifications: true
-model: openrouter/qwen/qwen-2.5-coder-32b-instruct
-weak-model: gemini/gemini-2.0-flash
-code-theme: lightbulb

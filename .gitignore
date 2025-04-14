@@ -1,4 +1,3 @@
 # Environment secrets
 env.secret.sh
-.aider*
-!.aider.conf.yml
+
