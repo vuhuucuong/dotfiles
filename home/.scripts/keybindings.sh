@@ -12,7 +12,7 @@ pastefinish() {
 
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-zstyle ':autocomplete:*' delay 0.3  # seconds (float)
+zstyle ':autocomplete:*' delay 2  # seconds (float)
 
 # zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a6adc8,bold,underline"
@@ -22,7 +22,8 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 # aliases
 alias f='fuck'
 if grep -q "WSL" /proc/version; then
-  alias e='/mnt/c/Windows/explorer.exe'
+  alias open='/mnt/c/Windows/explorer.exe'
+  alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
 function zc(){
   z $@;

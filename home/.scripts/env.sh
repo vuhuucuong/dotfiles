@@ -16,7 +16,6 @@ if grep -q microsoft /proc/version; then
   path+="/mnt/c/Program Files/Microsoft VS Code/bin"
   path+="/mnt/c/Users/vuhuu/AppData/Local/Programs/cursor/resources/app/bin"
   path+="/mnt/c/Windows"
-  alias open="explorer.exe"
 fi
 # include env.secret.sh
 if [ -f "$HOME/.scripts/env.secret.sh" ]; then
