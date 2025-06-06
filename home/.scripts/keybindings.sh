@@ -21,10 +21,13 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
 alias f='fuck'
+alias ls='eza'
+
 if grep -q "WSL" /proc/version; then
   alias open='/mnt/c/Windows/explorer.exe'
   alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
+
 function zc(){
   z $@;
   echo "Opening $(pwd -P)";

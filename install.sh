@@ -31,7 +31,8 @@ PACKAGES=(
   "atuin"
   # "nvim"
   "delta"
-  "jandedobbeleer/oh-my-posh/oh-my-posh"
+  "jandedobbeleer/oh-my-posh/oh-my-posh",
+  "eza"
 )
 
 # Filter out already installed packages
