@@ -64,6 +64,12 @@
           "type": "git"
         },
         {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:sky",
+          "template": "  {{ .Full }} "
+        },
+        {
           "style": "plain",
           "foreground": "p:closer",
           "template": "\uf105",
