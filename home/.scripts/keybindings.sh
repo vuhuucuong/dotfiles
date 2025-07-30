@@ -23,7 +23,7 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 alias f='fuck'
 alias ls='eza'
 
-if grep -q "WSL" /proc/version; then
+if [ -f /proc/version ] && grep -q microsoft /proc/version; then
   alias open='/mnt/c/Windows/explorer.exe'
   alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
