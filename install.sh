@@ -5,10 +5,16 @@ if [ -z "$ZSH_VERSION" ]; then
   exit 1
 fi
 
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "oh-my-zsh not found. Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 if ! command -v brew &>/dev/null; then
   echo -e "PLEASE INSTALL BREW FIRST: https://brew.sh"
   exit 1
 fi
+
 
 # copy home dotfiles
 rsync -av --progress home/ "$HOME" --exclude .git &&
@@ -23,7 +29,7 @@ echo -e "[INSTALLING APPS]\n"
 PACKAGES=(
   "fzf"
   "zoxide"
-  "antigen"
+  "antidote"
   "thefuck"
   "nvm"
   "pyenv"

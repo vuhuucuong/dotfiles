@@ -9,7 +9,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # zsh plugin manager
-source "$HOME/.scripts/antigen.sh"
+source "$HOME/.scripts/antidote.sh"
 # load app eval
 source "$HOME/.scripts/eval.sh"
 
