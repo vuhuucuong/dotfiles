@@ -35,7 +35,7 @@ PACKAGES=(
   "pyenv"
   "yarn"
   "atuin"
-  # "nvim"
+  "nvim"
   "delta"
   "jandedobbeleer/oh-my-posh/oh-my-posh"
   "eza"
