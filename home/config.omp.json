@@ -35,6 +35,12 @@
       "alignment": "left",
       "segments": [
         {
+          "foreground": "p:os",
+          "style": "plain",
+          "template": "{{.Icon}} ",
+          "type": "os"
+        },
+        {
           "foreground": "p:pink",
           "properties": {
             "folder_icon": "..\ue5fe..",
