@@ -20,9 +20,6 @@ fi
 rsync -av --progress home/ "$HOME" --exclude .git &&
   echo "All home dotfiles have been copied!"
 
-# copy all .config
-rsync -av --progress .config/ "$HOME/.config/" &&
-  echo ".config has been copied!"
 
 echo -e "[INSTALLING APPS]\n"
 # Define packages to install
