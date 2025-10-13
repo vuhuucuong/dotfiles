@@ -19,7 +19,6 @@ bindkey '^ ' autosuggest-accept
 bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
-alias f='fuck'
 alias ls='eza'
 alias ze='zellij'
 

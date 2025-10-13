@@ -57,7 +57,6 @@ BREW_PACKAGES=(
   "fzf"
   "zoxide"
   "antidote"
-  "thefuck"
   "nvm"
   "pyenv"
   "yarn"
