@@ -10,7 +10,6 @@
 
 eval "$(pyenv init - zsh)"
 eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
 eval "$(atuin init zsh)"
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/config.omp.json)"
