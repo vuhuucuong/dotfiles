@@ -31,6 +31,7 @@ APT_PACKAGES=(
   "rsync"
   "vim"
   "wget"
+  "progress"
 )
 
 # Filter out already installed APT packages
