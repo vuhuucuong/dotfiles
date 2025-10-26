@@ -32,6 +32,7 @@ APT_PACKAGES=(
   "vim"
   "wget"
   "progress"
+  "gcc"
 )
 
 # Filter out already installed APT packages

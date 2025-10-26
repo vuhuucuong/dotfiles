@@ -21,6 +21,7 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 # aliases
 alias ls='eza'
 alias ze='zellij'
+alias c='code'
 
 if [ -f /proc/version ] && grep -q microsoft /proc/version; then
   alias open='/mnt/c/Windows/explorer.exe'
