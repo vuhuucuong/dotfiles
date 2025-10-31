@@ -14,7 +14,12 @@ for repo in "${ZSH_PLUGIN_REPOS[@]}"; do
   fi
 done
 
-ZSH_THEME="robbyrussell"
+# Install powerlevel10k theme if it doesn't exist
+if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+fi
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   pip
