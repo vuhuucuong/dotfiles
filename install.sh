@@ -64,7 +64,6 @@ BREW_PACKAGES=(
   "atuin"
   "neovim"
   "delta"
-  "jandedobbeleer/oh-my-posh/oh-my-posh"
   "eza"
   "zellij"
 )

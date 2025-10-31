@@ -8,11 +8,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-# zsh plugin manager
-source "$HOME/.scripts/antidote.sh"
 # load app eval
 source "$HOME/.scripts/eval.sh"
 
 # load keybindings
 source "$HOME/.scripts/keybindings.sh"
-
+source "$HOME/.scripts/oh-my-zsh.sh"
