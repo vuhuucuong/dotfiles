@@ -15,11 +15,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+
+source "$HOME/.scripts/oh-my-zsh.sh"
 # load app eval
 source "$HOME/.scripts/eval.sh"
-
 # load keybindings
-source "$HOME/.scripts/oh-my-zsh.sh"
 source "$HOME/.scripts/keybindings.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
