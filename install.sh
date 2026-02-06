@@ -66,6 +66,7 @@ BREW_PACKAGES=(
   "delta"
   "eza"
   "zellij"
+  "opencode"
 )
 
 # Filter out already installed packages
