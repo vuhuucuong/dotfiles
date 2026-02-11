@@ -20,35 +20,39 @@ fi
 rsync -av --progress home/ "$HOME" --exclude .git &&
   echo "All home dotfiles have been copied!"
 
+# Only install APT packages on Linux
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo -e "[INSTALLING APT PACKAGES]\n"
+  # Define APT packages to install
+  APT_PACKAGES=(
+    "curl"
+    "htop"
+    "iperf3"
+    "lsof"
+    "rsync"
+    "vim"
+    "wget"
+    "progress"
+    "gcc"
+  )
 
-echo -e "[INSTALLING APT PACKAGES]\n"
-# Define APT packages to install
-APT_PACKAGES=(
-  "curl"
-  "htop"
-  "iperf3"
-  "lsof"
-  "rsync"
-  "vim"
-  "wget"
-  "progress"
-  "gcc"
-)
+  # Filter out already installed APT packages
+  APT_PACKAGES_TO_INSTALL=($(
+    for package in "${APT_PACKAGES[@]}"; do
+      dpkg -l | grep -q "^ii  $package " || echo "$package"
+    done
+  ))
 
-# Filter out already installed APT packages
-APT_PACKAGES_TO_INSTALL=($(
-  for package in "${APT_PACKAGES[@]}"; do
-    dpkg -l | grep -q "^ii  $package " || echo "$package"
-  done
-))
-
-# Install missing APT packages
-if [ ${#APT_PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
-  echo -e "Installing APT packages: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
-  sudo apt update && sudo apt install -y "${APT_PACKAGES_TO_INSTALL[@]}" &&
-    echo -e "Installed: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
+  # Install missing APT packages
+  if [ ${#APT_PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
+    echo -e "Installing APT packages: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
+    sudo apt update && sudo apt install -y "${APT_PACKAGES_TO_INSTALL[@]}" &&
+      echo -e "Installed: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
+  else
+    echo -e "All APT packages are already installed.\n----------\n"
+  fi
 else
-  echo -e "All APT packages are already installed.\n----------\n"
+  echo -e "Skipping APT packages (not on Linux)\n----------\n"
 fi
 
 
