@@ -149,17 +149,12 @@ install_binaries() {
     local url="${entry%%|*}"
     local binary_name="${entry##*|}"
     local binary_path="$HOME/.local/bin/$binary_name"
-
-    if [ -f "$binary_path" ]; then
-      echo "Binary '$binary_name' already exists. Skipping..."
-      continue
-    fi
-
+    local temp_dir=$(mktemp -d)
+    
     echo "Downloading $binary_name from $url..."
     
     # Check if URL points to a tar.gz file
     if [[ "$url" == *.tar.gz ]]; then
-      local temp_dir=$(mktemp -d)
       local temp_archive="$temp_dir/archive.tar.gz"
       
       if curl -fsSL "$url" -o "$temp_archive"; then
@@ -169,13 +164,32 @@ install_binaries() {
         # Find the binary in the extracted files
         local extracted_binary=$(find "$temp_dir" -name "$binary_name" -type f | head -n 1)
         
-        if [ -n "$extracted_binary" ]; then
-          mv "$extracted_binary" "$binary_path"
-          chmod +x "$binary_path"
-          echo "Installed: $binary_name"
-        else
+        if [ -z "$extracted_binary" ]; then
           echo "Failed to find $binary_name in extracted archive"
+          rm -rf "$temp_dir"
+          continue
         fi
+        
+        # Calculate checksum of downloaded binary
+        local new_checksum=$(shasum -a 256 "$extracted_binary" | awk '{print $1}')
+        
+        # Check if binary exists and compare checksums
+        if [ -f "$binary_path" ]; then
+          local current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
+          
+          if [ "$current_checksum" = "$new_checksum" ]; then
+            echo "Binary '$binary_name' is up to date. Skipping..."
+            rm -rf "$temp_dir"
+            continue
+          else
+            echo "Checksum differs. Updating $binary_name..."
+          fi
+        fi
+        
+        # Install the binary
+        mv "$extracted_binary" "$binary_path"
+        chmod +x "$binary_path"
+        echo "Installed: $binary_name (checksum: $new_checksum)"
         
         # Clean up
         rm -rf "$temp_dir"
@@ -185,11 +199,35 @@ install_binaries() {
       fi
     else
       # Direct binary download
-      if curl -fsSL "$url" -o "$binary_path"; then
+      local temp_binary="$temp_dir/$binary_name"
+      
+      if curl -fsSL "$url" -o "$temp_binary"; then
+        # Calculate checksum of downloaded binary
+        local new_checksum=$(shasum -a 256 "$temp_binary" | awk '{print $1}')
+        
+        # Check if binary exists and compare checksums
+        if [ -f "$binary_path" ]; then
+          local current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
+          
+          if [ "$current_checksum" = "$new_checksum" ]; then
+            echo "Binary '$binary_name' is up to date. Skipping..."
+            rm -rf "$temp_dir"
+            continue
+          else
+            echo "Checksum differs. Updating $binary_name..."
+          fi
+        fi
+        
+        # Install the binary
+        mv "$temp_binary" "$binary_path"
         chmod +x "$binary_path"
-        echo "Installed: $binary_name"
+        echo "Installed: $binary_name (checksum: $new_checksum)"
+        
+        # Clean up
+        rm -rf "$temp_dir"
       else
         echo "Failed to download $binary_name"
+        rm -rf "$temp_dir"
       fi
     fi
   done
