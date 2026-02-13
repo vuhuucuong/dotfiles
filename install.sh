@@ -32,6 +32,8 @@ BREW_PACKAGES_MAC=(
   # "zellij"
   "anomalyco/tap/opencode"
   "rust"
+  "docker"
+  "docker-compose"
 )
 
 # Homebrew packages to install on Linux
@@ -49,6 +51,8 @@ BREW_PACKAGES_LINUX=(
   "zellij"
   "anomalyco/tap/opencode",
   "rust"
+  "docker"
+  "docker-compose"
 )
 
 # Binary URLs for macOS in format: "URL|BINARY_NAME"
