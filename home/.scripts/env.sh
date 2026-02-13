@@ -8,6 +8,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 # PATH
 path+="$HOME/.yarn/bin"
+path+="$HOME/.cargo/bin"
 path+="$HOME/.local/bin"
 path+="/usr/local/opt/curl/bin"
 
