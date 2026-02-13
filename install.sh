@@ -53,7 +53,6 @@ BREW_PACKAGES_LINUX=(
 BINARY_URLS_MAC=(
   # Add macOS binary URLs here
   # Example: "https://example.com/tool-mac|tool"
-	# "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz|eza"
   "https://github.com/zellij-org/zellij/releases/download/v0.43.1/zellij-x86_64-apple-darwin.tar.gz|zellij"
 )
 
