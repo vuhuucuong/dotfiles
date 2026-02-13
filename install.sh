@@ -17,8 +17,24 @@ APT_PACKAGES=(
   "gcc"
 )
 
-# Homebrew packages to install
-BREW_PACKAGES=(
+# Homebrew packages to install on macOS
+BREW_PACKAGES_MAC=(
+  "fzf"
+  "zoxide"
+  "antidote"
+  "nvm"
+  "pyenv"
+  "yarn"
+  "atuin"
+  "neovim"
+  "delta"
+  # "eza"
+  # "zellij"
+  # "opencode"
+)
+
+# Homebrew packages to install on Linux
+BREW_PACKAGES_LINUX=(
   "fzf"
   "zoxide"
   "antidote"
@@ -37,6 +53,8 @@ BREW_PACKAGES=(
 BINARY_URLS_MAC=(
   # Add macOS binary URLs here
   # Example: "https://example.com/tool-mac|tool"
+	# "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz|eza"
+  "https://github.com/zellij-org/zellij/releases/download/v0.43.1/zellij-x86_64-apple-darwin.tar.gz|zellij"
 )
 
 # Binary URLs for Linux in format: "URL|BINARY_NAME"
@@ -139,11 +157,41 @@ install_binaries() {
     fi
 
     echo "Downloading $binary_name from $url..."
-    if curl -fsSL "$url" -o "$binary_path"; then
-      chmod +x "$binary_path"
-      echo "Installed: $binary_name"
+    
+    # Check if URL points to a tar.gz file
+    if [[ "$url" == *.tar.gz ]]; then
+      local temp_dir=$(mktemp -d)
+      local temp_archive="$temp_dir/archive.tar.gz"
+      
+      if curl -fsSL "$url" -o "$temp_archive"; then
+        echo "Extracting $binary_name..."
+        tar -xzf "$temp_archive" -C "$temp_dir"
+        
+        # Find the binary in the extracted files
+        local extracted_binary=$(find "$temp_dir" -name "$binary_name" -type f | head -n 1)
+        
+        if [ -n "$extracted_binary" ]; then
+          mv "$extracted_binary" "$binary_path"
+          chmod +x "$binary_path"
+          echo "Installed: $binary_name"
+        else
+          echo "Failed to find $binary_name in extracted archive"
+        fi
+        
+        # Clean up
+        rm -rf "$temp_dir"
+      else
+        echo "Failed to download $binary_name"
+        rm -rf "$temp_dir"
+      fi
     else
-      echo "Failed to download $binary_name"
+      # Direct binary download
+      if curl -fsSL "$url" -o "$binary_path"; then
+        chmod +x "$binary_path"
+        echo "Installed: $binary_name"
+      else
+        echo "Failed to download $binary_name"
+      fi
     fi
   done
 
@@ -153,8 +201,16 @@ install_binaries() {
 # Install Homebrew packages
 install_brew_packages() {
   echo -e "[INSTALLING BREW PACKAGES]\n"
-  
-  # Filter out already installed packages
+    # Select appropriate package list based on OS
+  local BREW_PACKAGES=()
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    BREW_PACKAGES=("${BREW_PACKAGES_MAC[@]}")
+    echo "Using macOS packages..."
+  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    BREW_PACKAGES=("${BREW_PACKAGES_LINUX[@]}")
+    echo "Using Linux packages..."
+  fi
+    # Filter out already installed packages
   local PACKAGES_TO_INSTALL=($(
     for package in "${BREW_PACKAGES[@]}"; do
       brew list "$package" &>/dev/null || echo "$package"
@@ -164,7 +220,7 @@ install_brew_packages() {
   # Install missing packages
   if [ ${#PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
     echo -e "Installing packages: ${PACKAGES_TO_INSTALL[*]}\n----------\n"
-    brew install "${PACKAGES_TO_INSTALL[@]}" &&
+    brew install --verbose "${PACKAGES_TO_INSTALL[@]}" &&
       echo -e "Installed: ${PACKAGES_TO_INSTALL[*]}\n----------\n"
   else
     echo -e "All Brew packages are already installed.\n----------\n"
