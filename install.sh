@@ -30,7 +30,7 @@ BREW_PACKAGES_MAC=(
   "delta"
   # "eza"
   # "zellij"
-  # "opencode"
+  "anomalyco/tap/opencode"
 )
 
 # Homebrew packages to install on Linux
@@ -46,7 +46,7 @@ BREW_PACKAGES_LINUX=(
   "delta"
   "eza"
   "zellij"
-  "opencode"
+  "anomalyco/tap/opencode"
 )
 
 # Binary URLs for macOS in format: "URL|BINARY_NAME"
