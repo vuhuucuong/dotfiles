@@ -33,7 +33,6 @@ plugins=(
   node
   nvm
   sudo
-  tmux
   yarn
   man
   zsh-syntax-highlighting
