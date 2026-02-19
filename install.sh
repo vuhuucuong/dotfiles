@@ -30,7 +30,6 @@ BREW_PACKAGES_MAC=(
   "delta"
   # "eza"
   # "zellij"
-  "anomalyco/tap/opencode"
   "rust"
   "docker"
   "docker-compose"
@@ -50,7 +49,6 @@ BREW_PACKAGES_LINUX=(
   "delta"
   "eza"
   "zellij"
-  "anomalyco/tap/opencode",
   "rust"
   "docker"
   "docker-compose"
