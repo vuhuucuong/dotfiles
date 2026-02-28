@@ -35,6 +35,7 @@ BREW_PACKAGES_MAC=(
   "docker-compose"
   "iperf3"
   "shfmt"
+  "pnpm"
 )
 
 # Homebrew packages to install on Linux
@@ -54,6 +55,7 @@ BREW_PACKAGES_LINUX=(
   "docker"
   "docker-compose"
   "shfmt"
+  "pnpm"
 )
 
 # Binary URLs for macOS in format: "URL|BINARY_NAME"
