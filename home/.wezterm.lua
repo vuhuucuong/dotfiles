@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 config.default_domain = "WSL:Ubuntu-24.04"
 
 -- Font (covers both Linux "Iosevka Nerd Font" and Windows Nerd Fonts v3 "IosevkaNFM")
-config.font = wezterm.font_with_fallback({ "MonaspiceNe Nerd Font", "MonaspiceNeNFM" })
+config.font = wezterm.font_with_fallback({ "MonaspiceNe Nerd Font Mono", "MonaspiceNeNFM" })
 config.font_size = 14.0
 
 -- Theme

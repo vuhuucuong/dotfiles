@@ -16,6 +16,7 @@ path+="/usr/local/opt/curl/bin"
 if [ -f /proc/version ] && grep -q microsoft /proc/version; then
   path+="/mnt/c/Program Files/Microsoft VS Code/bin"
   path+="/mnt/c/Users/vuhuu/AppData/Local/Programs/cursor/resources/app/bin"
+  path+="/mnt/c/Program Files/WezTerm"
   path+="/mnt/c/Windows"
 fi
 # include env.secret.sh
