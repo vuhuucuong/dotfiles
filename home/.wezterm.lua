@@ -12,6 +12,9 @@ config.font_size = 14.0
 -- Theme
 config.color_scheme = "Catppuccin Mocha"
 
+-- Scrollbar
+config.enable_scroll_bar = true
+
 -- Keybindings
 config.keys = {
   -- Split panes (vim hjkl)
