@@ -27,6 +27,10 @@ config.default_cursor_style = "BlinkingBlock"
 -- Disable close confirmations
 config.window_close_confirmation = "NeverPrompt"
 
+-- macOS: treat both opt keys as ALT (no special chars)
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = false
+
 -- Keybindings
 config.keys = {
   -- Split panes (vim hjkl)
