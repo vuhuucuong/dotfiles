@@ -273,6 +273,27 @@ install_brew_packages() {
   fi
 }
 
+# Copy .wezterm.lua to Windows user profile (WSL only)
+copy_wezterm_to_windows() {
+  if ! grep -q microsoft /proc/version 2>/dev/null; then
+    echo -e "⏭️  Skipping Windows WezTerm copy (not on WSL)\n----------\n"
+    return
+  fi
+
+  local win_home
+  win_home=$(wslpath "$(cmd.exe /c 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')")
+
+  if [ -z "$win_home" ] || [ ! -d "$win_home" ]; then
+    echo -e "⚠️  Could not resolve Windows user profile path. Skipping WezTerm copy.\n----------\n"
+    return
+  fi
+
+  echo "📁 Copying .wezterm.lua to Windows profile ($win_home)..."
+  cp "$HOME/.wezterm.lua" "$win_home/.wezterm.lua" &&
+    echo -e "✅ .wezterm.lua copied to $win_home\n----------\n" ||
+    echo -e "❌ Failed to copy .wezterm.lua to Windows profile\n----------\n"
+}
+
 # Source the updated .zshrc
 reload_zshrc() {
   echo -e "🔄 Sourcing .zshrc\n----------\n"
@@ -286,6 +307,7 @@ main() {
   install_oh_my_zsh
   check_brew
   copy_dotfiles
+  copy_wezterm_to_windows
   install_apt_packages
   install_brew_packages
   install_binaries
