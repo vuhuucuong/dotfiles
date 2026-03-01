@@ -15,6 +15,15 @@ config.color_scheme = "Catppuccin Mocha"
 -- Scrollbar
 config.enable_scroll_bar = true
 
+-- Window padding
+config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
+
+-- Dim inactive panes
+config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.7 }
+
+-- Cursor style
+config.default_cursor_style = "BlinkingBlock"
+
 -- Keybindings
 config.keys = {
   -- Split panes (vim hjkl)
@@ -28,6 +37,29 @@ config.keys = {
   { key = "j", mods = "ALT", action = act.ActivatePaneDirection("Down") },
   { key = "h", mods = "ALT", action = act.ActivatePaneDirection("Left") },
   { key = "k", mods = "ALT", action = act.ActivatePaneDirection("Up") },
+
+  -- Tab management
+  { key = "t", mods = "ALT", action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
+  { key = "1", mods = "ALT", action = act.ActivateTab(0) },
+  { key = "2", mods = "ALT", action = act.ActivateTab(1) },
+  { key = "3", mods = "ALT", action = act.ActivateTab(2) },
+  { key = "4", mods = "ALT", action = act.ActivateTab(3) },
+  { key = "5", mods = "ALT", action = act.ActivateTab(4) },
+  { key = "6", mods = "ALT", action = act.ActivateTab(5) },
+  { key = "7", mods = "ALT", action = act.ActivateTab(6) },
+  { key = "8", mods = "ALT", action = act.ActivateTab(7) },
+  { key = "9", mods = "ALT", action = act.ActivateTab(8) },
+  { key = "[", mods = "ALT", action = act.ActivateTabRelative(-1) },
+  { key = "]", mods = "ALT", action = act.ActivateTabRelative(1) },
+
+  -- Pane management
+  { key = "q", mods = "ALT", action = act.CloseCurrentPane({ confirm = true }) },
+  { key = "z", mods = "ALT", action = act.TogglePaneZoomState },
+
+  -- Scroll
+  { key = "u", mods = "ALT", action = act.ScrollByPage(-0.5) },
+  { key = "d", mods = "ALT", action = act.ScrollByPage(0.5) },
 }
 
 return config
