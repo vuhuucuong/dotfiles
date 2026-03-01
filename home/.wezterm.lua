@@ -24,6 +24,9 @@ config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.7 }
 -- Cursor style
 config.default_cursor_style = "BlinkingBlock"
 
+-- Disable close confirmations
+config.window_close_confirmation = "NeverPrompt"
+
 -- Keybindings
 config.keys = {
   -- Split panes (vim hjkl)
@@ -40,7 +43,7 @@ config.keys = {
 
   -- Tab management
   { key = "t", mods = "ALT", action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
+  { key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = false }) },
   { key = "1", mods = "ALT", action = act.ActivateTab(0) },
   { key = "2", mods = "ALT", action = act.ActivateTab(1) },
   { key = "3", mods = "ALT", action = act.ActivateTab(2) },
@@ -54,7 +57,7 @@ config.keys = {
   { key = "]", mods = "ALT", action = act.ActivateTabRelative(1) },
 
   -- Pane management
-  { key = "q", mods = "ALT", action = act.CloseCurrentPane({ confirm = true }) },
+  { key = "q", mods = "ALT", action = act.CloseCurrentPane({ confirm = false }) },
   { key = "z", mods = "ALT", action = act.TogglePaneZoomState },
 
   -- Scroll
