@@ -1,8 +1,31 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "npx -y ccstatusline@latest",
-    "padding": 0
+    "command": "bash ~/.claude/statusline-command.sh"
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/fetch-usage.sh > /dev/null 2>&1 &"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/fetch-usage.sh > /dev/null 2>&1 &"
+          }
+        ]
+      }
+    ]
+  }
 }
