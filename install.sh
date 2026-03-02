@@ -39,6 +39,7 @@ BREW_PACKAGES_MAC=(
   "iperf3"
   "shfmt"
   "pnpm"
+  "oven-sh/bun/bun" # brew tap oven-sh/bun
 )
 
 # Homebrew packages to install on Linux
@@ -58,6 +59,7 @@ BREW_PACKAGES_LINUX=(
   "rust"
   "shfmt"
   "pnpm"
+  "oven-sh/bun/bun" # brew tap oven-sh/bun
 )
 
 # Binary URLs for macOS in format: "URL|BINARY_NAME"
