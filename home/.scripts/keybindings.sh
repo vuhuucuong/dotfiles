@@ -14,7 +14,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a6adc8,bold,underline"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#b4befe,bold,underline"
 bindkey '^ ' autosuggest-accept
 bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 

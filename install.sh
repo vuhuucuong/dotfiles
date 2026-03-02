@@ -7,6 +7,7 @@
 # APT packages to install on Linux
 APT_PACKAGES=(
   "curl"
+  "unzip"
   "htop"
   "iperf3"
   "lsof"
@@ -20,6 +21,7 @@ APT_PACKAGES=(
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
 	"jq"
+	"unzip"
   "fzf"
   "zoxide"
   "antidote"
