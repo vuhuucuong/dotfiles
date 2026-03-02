@@ -19,6 +19,7 @@ APT_PACKAGES=(
 
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
+	"jq"
   "fzf"
   "zoxide"
   "antidote"
@@ -40,6 +41,7 @@ BREW_PACKAGES_MAC=(
 
 # Homebrew packages to install on Linux
 BREW_PACKAGES_LINUX=(
+	"jq"
   "fzf"
   "zoxide"
   "antidote"
@@ -102,6 +104,8 @@ copy_dotfiles() {
   echo "📁 Copying home dotfiles..."
   rsync -av --progress home/ "$HOME" --exclude .git &&
     echo "✅ All home dotfiles have been copied!"
+  # Ensure Claude Code status line script is executable
+  chmod +x "$HOME/.claude/statusline.sh" 2>/dev/null || true
 }
 
 # Install APT packages on Linux

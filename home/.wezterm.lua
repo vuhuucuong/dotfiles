@@ -5,9 +5,24 @@ local config = wezterm.config_builder()
 -- Default to Ubuntu-24.04 WSL distro
 config.default_domain = "WSL:Ubuntu-24.04"
 
--- Font (covers both Linux "Iosevka Nerd Font" and Windows Nerd Fonts v3 "IosevkaNFM")
-config.font = wezterm.font_with_fallback({ "MonaspiceNe Nerd Font Mono", "MonaspiceNeNFM" })
+-- Font: MonaspiceNe (Neon) as base, with Monaspace variants for bold/italic
+config.font = wezterm.font("MonaspiceNe Nerd Font Mono")
 config.font_size = 14.0
+config.font_rules = {
+  {
+    italic = true,
+    font = wezterm.font("MonaspiceRn Nerd Font Mono", { style = "Italic" }),
+  },
+  {
+    intensity = "Bold",
+    font = wezterm.font("MonaspiceNe Nerd Font Mono", { weight = "Bold" }),
+  },
+  {
+    intensity = "Bold",
+    italic = true,
+    font = wezterm.font("MonaspiceRn Nerd Font Mono", { weight = "Bold", style = "Italic" }),
+  },
+}
 
 -- Theme
 config.color_scheme = "Catppuccin Mocha"
