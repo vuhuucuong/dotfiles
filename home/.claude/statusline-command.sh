@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # --- config ---
-TIMEZONE=+7            # hours offset from UTC (e.g. -1, +1, +7, -5.5)
 CACHE_FILE="/tmp/.claude_usage_cache"
+TZ_CACHE_FILE="/tmp/.claude_tz_cache"
 
 # --- colors (Catppuccin Mocha palette) ---
 C_RESET="\033[0m"
@@ -22,17 +22,18 @@ SEP="${C_OVERLAY} • ${C_RESET}"
 #  Helper functions
 # ══════════════════════════════════════════════════
 
-# Compute UTC offset in seconds from TIMEZONE config.
-# Supports integers (+7, -5) and half-hours (+5.5, -3.5).
-compute_utc_offset() {
-  case "$TIMEZONE" in
-    -*) _tz_mult=-1 ;;
-    *)  _tz_mult=1 ;;
-  esac
-  _tz_abs=$(echo "$TIMEZONE" | sed 's/^[+-]//')
-  _tz_whole=$(echo "$_tz_abs" | cut -d. -f1)
-  _tz_frac=$(echo "$_tz_abs" | grep '\.' | cut -d. -f2)
-  echo $(( _tz_mult * (_tz_whole * 3600 + ${_tz_frac:-0} * 60) ))
+# Fetch UTC offset in seconds from time.now API, cached in /tmp until reboot.
+fetch_utc_offset() {
+  if [ -f "$TZ_CACHE_FILE" ]; then cat "$TZ_CACHE_FILE"; return; fi
+  response=$(curl -sf --max-time 3 "https://time.now/developer/api/ip" 2>/dev/null) || { echo 0; return; }
+  raw=$(echo "$response" | jq -r '.utc_offset // "+00:00"')
+  case "$raw" in -*) _sign=-1 ;; *) _sign=1 ;; esac
+  _abs=$(echo "$raw" | sed 's/^[+-]//')
+  _hh=$(echo "$_abs" | cut -d: -f1 | sed 's/^0*//' )
+  _mm=$(echo "$_abs" | cut -d: -f2 | sed 's/^0*//' )
+  _offset=$(( _sign * (${_hh:-0} * 3600 + ${_mm:-0} * 60) ))
+  echo "$_offset" > "$TZ_CACHE_FILE"
+  echo "$_offset"
 }
 
 # Parse an ISO 8601 timestamp to epoch seconds.
@@ -183,7 +184,7 @@ render_context() {
 # ══════════════════════════════════════════════════
 
 input=$(cat)
-_utc_offset=$(compute_utc_offset)
+_utc_offset=$(fetch_utc_offset)
 
 parse_session_info
 load_usage_cache

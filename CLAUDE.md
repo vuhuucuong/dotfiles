@@ -50,6 +50,10 @@ install.sh          # Bootstrap script
 - **Secrets**: Place private env vars in `~/.scripts/env.secret.sh` (not tracked in git, sourced last by `env.sh`).
 - **WSL-specific logic**: Gated by `grep -q microsoft /proc/version` checks in `env.sh` and `install.sh`.
 
+## Workflow Rules
+
+- **After editing any file under `home/` or `install.sh`**: Always ask the user if they want to run `./install.sh` to deploy the changes.
+
 ## Shell Aliases (from keybindings.sh)
 
 - `ls` → `eza`
