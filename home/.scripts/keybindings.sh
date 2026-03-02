@@ -22,6 +22,7 @@ bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 alias ls='eza'
 alias ze='zellij'
 alias c='code'
+alias cl='claude'
 
 if [ -f /proc/version ] && grep -q microsoft /proc/version; then
   alias open='/mnt/c/Windows/explorer.exe'
@@ -32,5 +33,11 @@ function zc(){
   z $@;
   echo "Opening $(pwd -P)";
   code .;
+}
+
+function zcl(){
+  z $@;
+  echo "Opening $(pwd -P)";
+  claude .;
 }
 
