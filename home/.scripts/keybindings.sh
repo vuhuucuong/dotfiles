@@ -38,6 +38,6 @@ function zc(){
 function zcl(){
   z $@;
   echo "Opening $(pwd -P)";
-  claude .;
+  claude;
 }
 
