@@ -52,8 +52,6 @@ BREW_PACKAGES_LINUX=(
   "eza"
   "zellij"
   "rust"
-  "docker"
-  "docker-compose"
   "shfmt"
   "pnpm"
 )
