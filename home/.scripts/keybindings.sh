@@ -13,6 +13,20 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+# WSL: convert Windows paths (C:\foo) to WSL paths (/mnt/c/foo) on paste/drag-drop
+if grep -q microsoft /proc/version 2>/dev/null; then
+  _wsl_paste_convert() {
+    local before_len=${#LBUFFER}
+    zle .$WIDGET
+    local pasted="${LBUFFER:$before_len}"
+    if [[ "$pasted" == *\\* ]]; then
+      pasted="$(printf '%s' "$pasted" | sed 's|\\|/|g; s|\([A-Za-z]\):/|/mnt/\L\1/|g')"
+      LBUFFER="${LBUFFER:0:$before_len}${pasted}"
+    fi
+  }
+  zle -N bracketed-paste _wsl_paste_convert
+fi
+
 # zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#b4befe,bold,underline"
 bindkey '^ ' autosuggest-accept
