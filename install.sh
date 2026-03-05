@@ -79,6 +79,8 @@ BINARY_URLS_LINUX=(
 # FUNCTIONS
 # ============================================
 
+_section() { printf "\n\033[1;34m┌─ %s\033[0m\n" "$*"; }
+
 # Check if running in Zsh
 check_zsh() {
   if [ -z "$ZSH_VERSION" ]; then
@@ -105,36 +107,31 @@ check_brew() {
 
 # Copy dotfiles from home/ to $HOME
 copy_dotfiles() {
-  echo "📁 Copying home dotfiles..."
-  rsync -av --progress home/ "$HOME" --exclude .git &&
-    echo "✅ All home dotfiles have been copied!"
-  # Ensure Claude Code status line script is executable
+  _section "Dotfiles"
+  rsync -a home/ "$HOME" --exclude .git
   chmod +x "$HOME/.claude/statusline.sh" 2>/dev/null || true
+  echo "✅ Dotfiles copied"
 }
 
 # Install APT packages on Linux
 install_apt_packages() {
   if [[ "$OSTYPE" != "linux-gnu"* ]]; then
-    echo -e "⏭️  Skipping APT packages (not on Linux)\n----------\n"
     return
   fi
 
-  echo -e "📦 [INSTALLING APT PACKAGES]\n"
-  
-  # Filter out already installed APT packages
+  _section "APT Packages"
   local APT_PACKAGES_TO_INSTALL=($(
     for package in "${APT_PACKAGES[@]}"; do
       dpkg -l | grep -q "^ii  $package " || echo "$package"
     done
   ))
 
-  # Install missing APT packages
   if [ ${#APT_PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
-    echo -e "🔧 Installing APT packages: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
-    sudo apt update && sudo apt install -y "${APT_PACKAGES_TO_INSTALL[@]}" &&
-      echo -e "✅ Installed: ${APT_PACKAGES_TO_INSTALL[*]}\n----------\n"
+    echo "  Installing: ${APT_PACKAGES_TO_INSTALL[*]}"
+    sudo apt-get update -qq && sudo apt-get install -y -qq "${APT_PACKAGES_TO_INSTALL[@]}"
+    echo "✅ APT: installed ${APT_PACKAGES_TO_INSTALL[*]}"
   else
-    echo -e "✅ All APT packages are already installed.\n----------\n"
+    echo "✅ APT: all packages already installed"
   fi
 }
 
@@ -149,97 +146,82 @@ _finalize_binary() {
     local current_checksum
     current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
     if [ "$current_checksum" = "$new_checksum" ]; then
-      echo "✅ '$binary_name' is up to date. Skipping..."
+      echo "  ✅ $binary_name up to date"
       return 0
     fi
-    echo "🔄 Checksum differs. Updating $binary_name..."
   fi
 
   mv "$source_path" "$binary_path"
   chmod +x "$binary_path"
-  echo "✅ Installed: $binary_name (checksum: $new_checksum)"
+  echo "  ✅ $binary_name installed"
 }
 
 # Install binaries to ~/.local/bin
 install_binaries() {
-  echo -e "📦 [INSTALLING BINARIES]\n"
-  
-  # Select appropriate binary list based on OS
+  _section "Binaries"
   local BINARY_URLS=()
   if [[ "$OSTYPE" == "darwin"* ]]; then
     BINARY_URLS=("${BINARY_URLS_MAC[@]}")
-    echo "ℹ️  Using macOS binaries..."
   elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     BINARY_URLS=("${BINARY_URLS_LINUX[@]}")
-    echo "ℹ️  Using Linux binaries..."
   fi
 
-  # Create ~/.local/bin if it doesn't exist
   mkdir -p "$HOME/.local/bin"
 
   if [ ${#BINARY_URLS[@]} -eq 0 ]; then
-    echo -e "⏭️  No binaries configured for this OS.\n----------\n"
+    echo "✅ Binaries: none configured"
     return
   fi
 
   for entry in "${BINARY_URLS[@]}"; do
     local url="${entry%%|*}"
     local binary_name="${entry##*|}"
-    local binary_path="$HOME/.local/bin/$binary_name"
     local temp_dir=$(mktemp -d)
-    
-    echo "⬇️  Downloading $binary_name from $url..."
 
+    echo "  ⬇️  $binary_name..."
     if [[ "$url" == *.tar.gz ]]; then
-      curl -fsSL "$url" -o "$temp_dir/archive.tar.gz" || { echo "❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
-      echo "📦 Extracting $binary_name..."
+      curl -fsSL "$url" -o "$temp_dir/archive.tar.gz" || { echo "  ❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
       tar -xzf "$temp_dir/archive.tar.gz" -C "$temp_dir"
       local extracted=$(find "$temp_dir" -name "$binary_name" -type f | head -n 1)
-      [ -z "$extracted" ] && { echo "❌ Could not find $binary_name in archive"; rm -rf "$temp_dir"; continue; }
+      [ -z "$extracted" ] && { echo "  ❌ Could not find $binary_name in archive"; rm -rf "$temp_dir"; continue; }
       _finalize_binary "$extracted" "$binary_name"
     else
-      curl -fsSL "$url" -o "$temp_dir/$binary_name" || { echo "❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
+      curl -fsSL "$url" -o "$temp_dir/$binary_name" || { echo "  ❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
       _finalize_binary "$temp_dir/$binary_name" "$binary_name"
     fi
     rm -rf "$temp_dir"
   done
-
-  echo -e "✅ Binary installation complete.\n----------\n"
+  echo "✅ Binaries done"
 }
 
 # Install Homebrew packages
 install_brew_packages() {
-  echo -e "📦 [INSTALLING BREW PACKAGES]\n"
-    # Select appropriate package list based on OS
+  _section "Brew Packages"
   local BREW_PACKAGES=()
   if [[ "$OSTYPE" == "darwin"* ]]; then
     BREW_PACKAGES=("${BREW_PACKAGES_MAC[@]}")
-    echo "ℹ️  Using macOS packages..."
   elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     BREW_PACKAGES=("${BREW_PACKAGES_LINUX[@]}")
-    echo "ℹ️  Using Linux packages..."
   fi
-    # Filter out already installed packages
+
   local PACKAGES_TO_INSTALL=($(
     for package in "${BREW_PACKAGES[@]}"; do
       brew list "$package" &>/dev/null || echo "$package"
     done
   ))
 
-  # Install missing packages
   if [ ${#PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
-    echo -e "🔧 Installing packages: ${PACKAGES_TO_INSTALL[*]}\n----------\n"
-    brew install --verbose "${PACKAGES_TO_INSTALL[@]}" &&
-      echo -e "✅ Installed: ${PACKAGES_TO_INSTALL[*]}\n----------\n"
+    echo "  Installing: ${PACKAGES_TO_INSTALL[*]}"
+    brew install "${PACKAGES_TO_INSTALL[@]}"
+    echo "✅ Brew: installed ${PACKAGES_TO_INSTALL[*]}"
   else
-    echo -e "✅ All Brew packages are already installed.\n----------\n"
+    echo "✅ Brew: all packages already installed"
   fi
 }
 
 # Copy .wezterm.lua to Windows user profile (WSL only)
 copy_wezterm_to_windows() {
   if ! grep -q microsoft /proc/version 2>/dev/null; then
-    echo -e "⏭️  Skipping Windows WezTerm copy (not on WSL)\n----------\n"
     return
   fi
 
@@ -247,21 +229,19 @@ copy_wezterm_to_windows() {
   win_home=$(wslpath "$(cmd.exe /c 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')")
 
   if [ -z "$win_home" ] || [ ! -d "$win_home" ]; then
-    echo -e "⚠️  Could not resolve Windows user profile path. Skipping WezTerm copy.\n----------\n"
+    echo "⚠️  Could not resolve Windows profile path, skipping WezTerm copy"
     return
   fi
 
-  echo "📁 Copying .wezterm.lua to Windows profile ($win_home)..."
   cp "$HOME/.wezterm.lua" "$win_home/.wezterm.lua" &&
-    echo -e "✅ .wezterm.lua copied to $win_home\n----------\n" ||
-    echo -e "❌ Failed to copy .wezterm.lua to Windows profile\n----------\n"
+    echo "✅ .wezterm.lua → $win_home" ||
+    echo "❌ Failed to copy .wezterm.lua to Windows profile"
 }
 
 # Source the updated .zshrc
 reload_zshrc() {
-  echo -e "🔄 Sourcing .zshrc\n----------\n"
   source "$HOME/.zshrc"
-  echo -e "🎉 Finished!\n----------\n"
+  echo "🎉 Done!"
 }
 
 # Main execution

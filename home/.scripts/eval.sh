@@ -10,5 +10,5 @@ if [[ -d $PYENV_ROOT/bin ]]; then
   path=("$PYENV_ROOT/bin" $path)
   eval "$(pyenv init - zsh)"
 fi
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
+_require_cmd zoxide && eval "$(zoxide init zsh)"
+_require_cmd atuin  && eval "$(atuin init zsh)"

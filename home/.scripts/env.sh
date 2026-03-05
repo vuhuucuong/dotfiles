@@ -1,3 +1,6 @@
+# Warn if a required command is missing. Returns 1 if missing so callers can short-circuit.
+_require_cmd() { command -v "$1" &>/dev/null || { echo "warning: '$1' not found" >&2; return 1; }; }
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"

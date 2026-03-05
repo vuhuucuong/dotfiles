@@ -33,10 +33,10 @@ bindkey '^ ' autosuggest-accept
 bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
-alias ls='eza'
-alias ze='zellij'
-alias c='code'
-alias cl='claude'
+_require_cmd eza    && alias ls='eza'
+_require_cmd zellij && alias ze='zellij'
+_require_cmd code   && alias c='code'
+_require_cmd claude && alias cl='claude'
 
 if grep -q microsoft /proc/version 2>/dev/null; then
   alias open='/mnt/c/Windows/explorer.exe'
@@ -44,12 +44,14 @@ if grep -q microsoft /proc/version 2>/dev/null; then
 fi
 
 function zc(){
+  _require_cmd zoxide || return 1
   z $@;
   echo "Opening $(pwd -P)";
   code .;
 }
 
 function zcl(){
+  _require_cmd zoxide || return 1
   z $@;
   echo "Opening $(pwd -P)";
   claude;
