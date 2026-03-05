@@ -6,8 +6,9 @@
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # PYENV
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-eval "$(pyenv init - zsh)"
+if [[ -d $PYENV_ROOT/bin ]]; then
+  path=("$PYENV_ROOT/bin" $path)
+  eval "$(pyenv init - zsh)"
+fi
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"

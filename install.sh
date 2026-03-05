@@ -138,6 +138,28 @@ install_apt_packages() {
   fi
 }
 
+# Shared finalization: compare checksums, install, and clean up
+_finalize_binary() {
+  local source_path="$1" binary_name="$2"
+  local binary_path="$HOME/.local/bin/$binary_name"
+  local new_checksum
+  new_checksum=$(shasum -a 256 "$source_path" | awk '{print $1}')
+
+  if [ -f "$binary_path" ]; then
+    local current_checksum
+    current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
+    if [ "$current_checksum" = "$new_checksum" ]; then
+      echo "✅ '$binary_name' is up to date. Skipping..."
+      return 0
+    fi
+    echo "🔄 Checksum differs. Updating $binary_name..."
+  fi
+
+  mv "$source_path" "$binary_path"
+  chmod +x "$binary_path"
+  echo "✅ Installed: $binary_name (checksum: $new_checksum)"
+}
+
 # Install binaries to ~/.local/bin
 install_binaries() {
   echo -e "📦 [INSTALLING BINARIES]\n"
@@ -167,84 +189,19 @@ install_binaries() {
     local temp_dir=$(mktemp -d)
     
     echo "⬇️  Downloading $binary_name from $url..."
-    
-    # Check if URL points to a tar.gz file
+
     if [[ "$url" == *.tar.gz ]]; then
-      local temp_archive="$temp_dir/archive.tar.gz"
-      
-      if curl -fsSL "$url" -o "$temp_archive"; then
-        echo "📦 Extracting $binary_name..."
-        tar -xzf "$temp_archive" -C "$temp_dir"
-        
-        # Find the binary in the extracted files
-        local extracted_binary=$(find "$temp_dir" -name "$binary_name" -type f | head -n 1)
-        
-        if [ -z "$extracted_binary" ]; then
-          echo "❌ Failed to find $binary_name in extracted archive"
-          rm -rf "$temp_dir"
-          continue
-        fi
-        
-        # Calculate checksum of downloaded binary
-        local new_checksum=$(shasum -a 256 "$extracted_binary" | awk '{print $1}')
-        
-        # Check if binary exists and compare checksums
-        if [ -f "$binary_path" ]; then
-          local current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
-          
-          if [ "$current_checksum" = "$new_checksum" ]; then
-            echo "Binary '$binary_name' is up to date. Skipping..."
-            rm -rf "$temp_dir"
-            continue
-          else
-            echo "Checksum differs. Updating $binary_name..."
-          fi
-        fi
-        
-        # Install the binary
-        mv "$extracted_binary" "$binary_path"
-        chmod +x "$binary_path"
-        echo "✅ Installed: $binary_name (checksum: $new_checksum)"
-        
-        # Clean up
-        rm -rf "$temp_dir"
-      else
-        echo "❌ Failed to download $binary_name"
-        rm -rf "$temp_dir"
-      fi
+      curl -fsSL "$url" -o "$temp_dir/archive.tar.gz" || { echo "❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
+      echo "📦 Extracting $binary_name..."
+      tar -xzf "$temp_dir/archive.tar.gz" -C "$temp_dir"
+      local extracted=$(find "$temp_dir" -name "$binary_name" -type f | head -n 1)
+      [ -z "$extracted" ] && { echo "❌ Could not find $binary_name in archive"; rm -rf "$temp_dir"; continue; }
+      _finalize_binary "$extracted" "$binary_name"
     else
-      # Direct binary download
-      local temp_binary="$temp_dir/$binary_name"
-      
-      if curl -fsSL "$url" -o "$temp_binary"; then
-        # Calculate checksum of downloaded binary
-        local new_checksum=$(shasum -a 256 "$temp_binary" | awk '{print $1}')
-        
-        # Check if binary exists and compare checksums
-        if [ -f "$binary_path" ]; then
-          local current_checksum=$(shasum -a 256 "$binary_path" | awk '{print $1}')
-          
-          if [ "$current_checksum" = "$new_checksum" ]; then
-            echo "✅ Binary '$binary_name' is up to date. Skipping..."
-            rm -rf "$temp_dir"
-            continue
-          else
-            echo "🔄 Checksum differs. Updating $binary_name..."
-          fi
-        fi
-        
-        # Install the binary
-        mv "$temp_binary" "$binary_path"
-        chmod +x "$binary_path"
-        echo "✅ Installed: $binary_name (checksum: $new_checksum)"
-        
-        # Clean up
-        rm -rf "$temp_dir"
-      else
-        echo "❌ Failed to download $binary_name"
-        rm -rf "$temp_dir"
-      fi
+      curl -fsSL "$url" -o "$temp_dir/$binary_name" || { echo "❌ Failed to download $binary_name"; rm -rf "$temp_dir"; continue; }
+      _finalize_binary "$temp_dir/$binary_name" "$binary_name"
     fi
+    rm -rf "$temp_dir"
   done
 
   echo -e "✅ Binary installation complete.\n----------\n"

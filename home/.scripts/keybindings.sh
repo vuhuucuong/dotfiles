@@ -38,7 +38,7 @@ alias ze='zellij'
 alias c='code'
 alias cl='claude'
 
-if [ -f /proc/version ] && grep -q microsoft /proc/version; then
+if grep -q microsoft /proc/version 2>/dev/null; then
   alias open='/mnt/c/Windows/explorer.exe'
   alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
