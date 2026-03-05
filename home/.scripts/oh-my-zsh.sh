@@ -1,5 +1,5 @@
 # Install zsh-users plugins if they don't exist
-ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 ZSH_PLUGIN_REPOS=(
   "zsh-users/zsh-syntax-highlighting"
@@ -16,7 +16,7 @@ done
 
 # Install powerlevel10k theme if it doesn't exist
 if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  git clone --depth=1 "https://github.com/romkatv/powerlevel10k.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -39,4 +39,4 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
 )
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"

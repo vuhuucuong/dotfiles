@@ -3,7 +3,7 @@
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic 
+  zle -N self-insert url-quote-magic
 }
 
 pastefinish() {
@@ -13,8 +13,9 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
-# WSL: convert Windows paths (C:\foo) to WSL paths (/mnt/c/foo) on paste/drag-drop
+# WSL-specific settings
 if grep -q microsoft /proc/version 2>/dev/null; then
+  # Convert Windows paths (C:\foo) to WSL paths (/mnt/c/foo) on paste/drag-drop
   _wsl_paste_convert() {
     local before_len=${#LBUFFER}
     zle .$WIDGET
@@ -25,6 +26,9 @@ if grep -q microsoft /proc/version 2>/dev/null; then
     fi
   }
   zle -N bracketed-paste _wsl_paste_convert
+
+  alias open='/mnt/c/Windows/explorer.exe'
+  alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
 
 # zsh-users/zsh-autosuggestions
@@ -38,22 +42,16 @@ _require_cmd zellij && alias ze='zellij'
 _require_cmd code   && alias c='code'
 _require_cmd claude && alias cl='claude'
 
-if grep -q microsoft /proc/version 2>/dev/null; then
-  alias open='/mnt/c/Windows/explorer.exe'
-  alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
-fi
-
-function zc(){
+function zc() {
   _require_cmd zoxide || return 1
-  z $@;
-  echo "Opening $(pwd -P)";
-  code .;
+  z "$@"
+  echo "Opening $(pwd -P)"
+  code .
 }
 
-function zcl(){
+function zcl() {
   _require_cmd zoxide || return 1
-  z $@;
-  echo "Opening $(pwd -P)";
-  claude;
+  z "$@"
+  echo "Opening $(pwd -P)"
+  claude
 }
-

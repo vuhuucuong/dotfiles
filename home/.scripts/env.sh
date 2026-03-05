@@ -15,10 +15,13 @@ path+="$HOME/.cargo/bin"
 path+="$HOME/.local/bin"
 path+="/usr/local/opt/curl/bin"
 
-# check if windows wsl
+# Check if running in WSL
 if [ -f /proc/version ] && grep -q microsoft /proc/version; then
+  _win_user=$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')
+  _win_home="/mnt/c/Users/$_win_user"
+
   path+="/mnt/c/Program Files/Microsoft VS Code/bin"
-  path+="/mnt/c/Users/vuhuu/AppData/Local/Programs/cursor/resources/app/bin"
+  path+="$_win_home/AppData/Local/Programs/cursor/resources/app/bin"
   path+="/mnt/c/Program Files/WezTerm"
   path+="/mnt/c/Windows"
 
@@ -26,14 +29,14 @@ if [ -f /proc/version ] && grep -q microsoft /proc/version; then
   # Skips /mnt/c/Windows (too many system binaries) and names that shadow native commands
   for _win_dir in \
     "/mnt/c/Program Files/Microsoft VS Code/bin" \
-    "/mnt/c/Users/vuhuu/AppData/Local/Programs/cursor/resources/app/bin" \
+    "$_win_home/AppData/Local/Programs/cursor/resources/app/bin" \
     "/mnt/c/Program Files/WezTerm"; do
     for _exe in "$_win_dir"/*.exe(N); do
       _cmd="${${_exe##*/}%.exe}"
       (( $+commands[$_cmd] )) || alias "$_cmd"="'$_exe'"
     done
   done
-  unset _win_dir _exe _cmd
+  unset _win_user _win_home _win_dir _exe _cmd
 fi
 # include env.secret.sh
 if [ -f "$HOME/.scripts/env.secret.sh" ]; then

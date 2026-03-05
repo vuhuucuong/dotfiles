@@ -20,8 +20,8 @@ APT_PACKAGES=(
 
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
-	"jq"
-	"unzip"
+  "jq"
+  "unzip"
   "fzf"
   "zoxide"
   "antidote"
@@ -44,7 +44,7 @@ BREW_PACKAGES_MAC=(
 
 # Homebrew packages to install on Linux
 BREW_PACKAGES_LINUX=(
-	"jq"
+  "jq"
   "fzf"
   "zoxide"
   "antidote"
@@ -100,7 +100,7 @@ install_oh_my_zsh() {
 # Check if Homebrew is installed
 check_brew() {
   if ! command -v brew &>/dev/null; then
-    echo -e "❌ PLEASE INSTALL BREW FIRST: https://brew.sh"
+    echo "❌ PLEASE INSTALL BREW FIRST: https://brew.sh"
     exit 1
   fi
 }

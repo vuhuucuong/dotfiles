@@ -5,16 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 # load ENV & path
 source "$HOME/.scripts/env.sh"
-# check os
+# Check OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
-
 
 source "$HOME/.scripts/oh-my-zsh.sh"
 # load app eval
@@ -23,4 +21,4 @@ source "$HOME/.scripts/eval.sh"
 source "$HOME/.scripts/keybindings.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
