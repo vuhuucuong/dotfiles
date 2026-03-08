@@ -1,3 +1,3 @@
 # Global Claude Rules
 
-@wsl.md
+@context/wsl.md
