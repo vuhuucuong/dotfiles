@@ -6,60 +6,64 @@
 
 # APT packages to install on Linux
 APT_PACKAGES=(
-  "curl"
-  "unzip"
-  "htop"
-  "iperf3"
-  "lsof"
-  "rsync"
-  "vim"
-  "wget"
-  "progress"
-  "gcc"
+  "curl"      # HTTP client
+  "gcc"       # C compiler
+  "htop"      # interactive process viewer
+  "iperf3"    # network bandwidth testing
+  "lsof"      # list open files
+  "progress"  # show progress of coreutils commands
+  "rsync"     # file synchronization
+  "unzip"     # archive extraction
+  "vim"       # text editor
+  "wget"      # file downloader
 )
 
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
-  "jq"
-  "unzip"
-  "fzf"
-  "zoxide"
-  "antidote"
-  "nvm"
-  "pyenv"
-  "yarn"
-  "atuin"
-  "neovim"
-  "delta"
-  # "eza"
-  # "zellij"
-  "rust"
-  "docker"
-  "docker-compose"
-  "iperf3"
-  "shfmt"
-  "pnpm"
-  "oven-sh/bun/bun" # brew tap oven-sh/bun
+  "antidote"         # zsh plugin manager
+  "atuin"            # shell history manager
+  "delta"            # git diff pager
+  "docker"           # container runtime
+  "docker-compose"   # multi-container orchestration
+  # "eza"            # modern ls replacement (Linux preferred)
+  "fd"               # fast find alternative
+  "fzf"              # fuzzy finder
+  "iperf3"           # network bandwidth testing
+  "jq"               # JSON processor
+  "neovim"           # text editor
+  "nvm"              # Node version manager
+  "oven-sh/bun/bun"  # JavaScript runtime (brew tap oven-sh/bun)
+  "pnpm"             # fast package manager
+  "pyenv"            # Python version manager
+  "ripgrep"          # fast grep alternative
+  "rust"             # Rust toolchain
+  "shfmt"            # shell script formatter
+  "unzip"            # archive extraction
+  "yarn"             # JavaScript package manager
+  # "zellij"         # terminal multiplexer (installed via binary on macOS)
+  "zoxide"           # smart directory jumper
 )
 
 # Homebrew packages to install on Linux
 BREW_PACKAGES_LINUX=(
-  "jq"
-  "fzf"
-  "zoxide"
-  "antidote"
-  "nvm"
-  "pyenv"
-  "yarn"
-  "atuin"
-  "neovim"
-  "delta"
-  "eza"
-  "zellij"
-  "rust"
-  "shfmt"
-  "pnpm"
-  "oven-sh/bun/bun" # brew tap oven-sh/bun
+  "antidote"         # zsh plugin manager
+  "atuin"            # shell history manager
+  "delta"            # git diff pager
+  "eza"              # modern ls replacement
+  "fd"               # fast find alternative
+  "fzf"              # fuzzy finder
+  "jq"               # JSON processor
+  "neovim"           # text editor
+  "nvm"              # Node version manager
+  "oven-sh/bun/bun"  # JavaScript runtime (brew tap oven-sh/bun)
+  "pnpm"             # fast package manager
+  "pyenv"            # Python version manager
+  "ripgrep"          # fast grep alternative
+  "rust"             # Rust toolchain
+  "shfmt"            # shell script formatter
+  "yarn"             # JavaScript package manager
+  "zellij"           # terminal multiplexer
+  "zoxide"           # smart directory jumper
 )
 
 # Binary URLs for macOS in format: "URL|BINARY_NAME"
