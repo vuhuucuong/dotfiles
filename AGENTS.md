@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Overview
 
-Personal dotfiles for macOS, Linux, and WSL. All configuration files live under `home/` and are deployed to `$HOME` via `rsync` when `install.sh` runs.
+Personal dotfiles for macOS, Linux, and WSL. All configuration files live under `home/` and are deployed to `$HOME` via `stow` (symlinks) when `install.sh` runs.
 
 ## Installation
 
@@ -16,7 +16,7 @@ The script must be run with Zsh. Prerequisites: Zsh, Homebrew, and oh-my-zsh (au
 
 To re-deploy dotfiles only (without reinstalling packages):
 ```bash
-rsync -av --progress home/ "$HOME" --exclude .git
+stow -t "$HOME" --restow --no-folding home
 ```
 
 On WSL, `.wezterm.lua` is also copied to the Windows user profile (`%USERPROFILE%`).
@@ -83,7 +83,7 @@ Bootstrap script. Key sections:
 
 - Verifies shell is Zsh
 - Auto-installs oh-my-zsh if missing
-- Deploys dotfiles via `rsync -a home/ "$HOME" --exclude .git`
+- Deploys dotfiles via `stow --restow --no-folding home` (creates symlinks in `$HOME`)
 - On WSL: copies `.wezterm.lua` to Windows user profile via `wslpath`
 - Binary installs use SHA-256 checksum validation, stored in `~/.local/bin`
 

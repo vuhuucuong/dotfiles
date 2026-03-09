@@ -38,6 +38,7 @@ BREW_PACKAGES_MAC=(
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
   "shfmt"            # shell script formatter
+  "stow"             # symlink farm manager
   "unzip"            # archive extraction
   "yarn"             # JavaScript package manager
   # "zellij"         # terminal multiplexer (installed via binary on macOS)
@@ -61,6 +62,7 @@ BREW_PACKAGES_LINUX=(
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
   "shfmt"            # shell script formatter
+  "stow"             # symlink farm manager
   "yarn"             # JavaScript package manager
   "zellij"           # terminal multiplexer
   "zoxide"           # smart directory jumper
@@ -109,12 +111,32 @@ check_brew() {
   fi
 }
 
-# Copy dotfiles from home/ to $HOME
+# Deploy dotfiles from home/ to $HOME via stow symlinks
 copy_dotfiles() {
   _section "Dotfiles"
-  rsync -a home/ "$HOME" --exclude .git
-  chmod +x "$HOME/.claude/statusline.sh" 2>/dev/null || true
-  echo "✅ Dotfiles copied"
+  local dotfiles_dir backup_dir backed_up rel_path target backup_path
+  dotfiles_dir="$(cd "$(dirname "$0")" && pwd)"
+  backup_dir="$HOME/.backup"
+  backed_up=0
+
+  while IFS= read -r -d '' src_file; do
+    rel_path="${src_file#"$dotfiles_dir/home/"}"
+    target="$HOME/$rel_path"
+    if [[ -e "$target" && ! -L "$target" ]]; then
+      backup_path="$backup_dir/$rel_path"
+      mkdir -p "$(dirname "$backup_path")"
+      cp -p "$target" "$backup_path"
+      rm "$target"
+      backed_up=$((backed_up + 1))
+    fi
+  done < <(find "$dotfiles_dir/home" -type f -print0)
+
+  [[ $backed_up -gt 0 ]] && echo "  Backed up $backed_up file(s) to $backup_dir"
+
+  stow --dir="$dotfiles_dir" --target="$HOME" --restow --no-folding home
+
+  chmod +x "$HOME/.claude/statusline-command.sh" 2>/dev/null || true
+  echo "✅ Dotfiles symlinked via stow"
 }
 
 # Install APT packages on Linux
@@ -253,11 +275,11 @@ main() {
   check_zsh
   install_oh_my_zsh
   check_brew
-  copy_dotfiles
-  copy_wezterm_to_windows
   install_apt_packages
   install_brew_packages
   install_binaries
+  copy_dotfiles
+  copy_wezterm_to_windows
   reload_zshrc
 }
 
