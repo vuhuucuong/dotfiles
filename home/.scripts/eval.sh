@@ -1,5 +1,5 @@
 # FZF
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+_require_cmd fzf && eval "$(fzf --zsh)"
 
 # NVM
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"                                       # This loads nvm

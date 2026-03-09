@@ -1,18 +1,3 @@
-# zsh-users/zsh-syntax-highlighting
-# This speeds up pasting w/ autosuggest
-# https://github.com/zsh-users/zsh-autosuggestions/issues/238
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic
-}
-
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-
 # WSL-specific settings
 if grep -q microsoft /proc/version 2>/dev/null; then
   # Convert Windows paths (C:\foo) to WSL paths (/mnt/c/foo) on paste/drag-drop
@@ -30,11 +15,6 @@ if grep -q microsoft /proc/version 2>/dev/null; then
   alias open='/mnt/c/Windows/explorer.exe'
   alias cleanWSL='find . -name "*:Zone.Identifier" -type f -delete'
 fi
-
-# zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#b4befe,bold,underline"
-bindkey '^ ' autosuggest-accept
-bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 # aliases
 _require_cmd eza    && alias ls='eza'
