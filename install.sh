@@ -21,6 +21,7 @@ APT_PACKAGES=(
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
   "antidote"         # zsh plugin manager
+  "bat"              # cat clone with syntax highlighting
   "atuin"            # shell history manager
   "delta"            # git diff pager
   "docker"           # container runtime
@@ -48,6 +49,7 @@ BREW_PACKAGES_MAC=(
 # Homebrew packages to install on Linux
 BREW_PACKAGES_LINUX=(
   "antidote"         # zsh plugin manager
+  "bat"              # cat clone with syntax highlighting
   "atuin"            # shell history manager
   "delta"            # git diff pager
   "eza"              # modern ls replacement
