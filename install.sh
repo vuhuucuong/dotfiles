@@ -105,12 +105,49 @@ install_oh_my_zsh() {
   fi
 }
 
-# Check if Homebrew is installed
-check_brew() {
-  if ! command -v brew &>/dev/null; then
-    echo "❌ PLEASE INSTALL BREW FIRST: https://brew.sh"
-    exit 1
+# Check all prerequisites and print actionable install guides if any are missing
+check_prerequisites() {
+  _section "Prerequisites"
+  local missing=()
+
+  command -v git  &>/dev/null || missing+=("git")
+  command -v curl &>/dev/null || missing+=("curl")
+  command -v brew &>/dev/null || missing+=("brew")
+
+  if [ ${#missing[@]} -eq 0 ]; then
+    echo "✅ All prerequisites met"
+    return
   fi
+
+  for tool in "${missing[@]}"; do
+    echo ""
+    echo "❌ Missing: $tool"
+    case "$tool" in
+      git)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          echo "   Install: xcode-select --install"
+          echo "       or: brew install git"
+        else
+          echo "   Install: sudo apt-get install -y git"
+        fi
+        ;;
+      curl)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          echo "   Install: brew install curl"
+        else
+          echo "   Install: sudo apt-get install -y curl"
+        fi
+        ;;
+      brew)
+        echo '   Install: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+        echo "   Details: https://brew.sh"
+        ;;
+    esac
+  done
+
+  echo ""
+  echo "Please install the above and re-run ./install.sh"
+  exit 1
 }
 
 # Deploy dotfiles from home/ to $HOME via stow symlinks
@@ -275,8 +312,8 @@ reload_zshrc() {
 # Main execution
 main() {
   check_zsh
+  check_prerequisites
   install_oh_my_zsh
-  check_brew
   install_apt_packages
   install_brew_packages
   install_binaries
