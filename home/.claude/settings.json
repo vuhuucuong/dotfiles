@@ -1,4 +1,13 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch",
+      "WebSearch",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(curl:*)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -27,13 +36,5 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
-  "effortLevel": "high",
-  "permissions": {
-    "allow": [
-      "WebFetch",
-      "WebSearch",
-      "Bash(grep:*)",
-      "Bash(wc:*)"
-    ]
-  }
+  "effortLevel": "high"
 }
