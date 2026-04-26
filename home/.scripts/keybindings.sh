@@ -17,10 +17,10 @@ if grep -q microsoft /proc/version 2>/dev/null; then
 fi
 
 # aliases
-_require_cmd eza    && alias ls='eza'
-_require_cmd zellij && alias ze='zellij'
-_require_cmd code   && alias c='code'
-_require_cmd claude && alias cl='claude'
+_require_cmd eza     && alias ls='eza'
+_require_cmd zellij  && alias ze='zellij'
+_require_cmd code    && alias c='code'
+_require_cmd copilot && alias cop='copilot'
 
 function zc() {
   _require_cmd zoxide || return 1
@@ -29,11 +29,11 @@ function zc() {
   code .
 }
 
-function zcl() {
+function zcop() {
   _require_cmd zoxide || return 1
   z "$@"
   echo "Opening $(pwd -P)"
-  claude
+  copilot
 }
 
 # Preview file content using bat (https://github.com/sharkdp/bat)

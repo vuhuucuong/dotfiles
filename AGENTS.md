@@ -49,12 +49,20 @@ home/                              # Mirrors $HOME — deployed as-is
   .zsh_plugins.txt                 # Antidote plugin list
   .docker/config.json              # Docker CLI plugins path
   .claude/
-    CLAUDE.md                      # Global Claude rules entry point
+    CLAUDE.md                      # Global Claude & Copilot CLI entry point
     context/
       wsl.md                       # WSL path handling rules for Claude
     settings.json                  # Claude Code client settings
     fetch-usage.sh                 # Fetch/cache Claude API usage stats
     statusline-command.sh          # Render usage + context info in statusline
+  .copilot/
+    COPILOT.md                     # Global Copilot CLI rules entry point
+    context/
+      wsl.md                       # WSL path handling rules for Copilot CLI
+    settings.json                  # Copilot CLI client settings
+    statusline-command.sh          # Render model/context info in statusline
+    skills/
+      ask/SKILL.md                 # Read-only research/answer skill
 install.sh                         # Bootstrap script (261 lines)
 AGENTS.md                          # This file — AI agent guidance
 README.md                          # Installation and setup guide
@@ -68,6 +76,7 @@ README.md                          # Installation and setup guide
 - **Secrets**: Place private env vars in `~/.scripts/env.secret.sh` (not tracked in git, sourced last by `env.sh`).
 - **WSL-specific logic**: Gated by `grep -q microsoft /proc/version` checks in `env.sh` and `install.sh`.
 - **Claude context files**: Go under `home/.claude/context/<topic>.md`, imported in `home/.claude/CLAUDE.md` via `@context/<topic>.md`.
+- **Copilot CLI context files**: Go under `home/.copilot/context/<topic>.md`, imported in `home/.copilot/COPILOT.md` via `@context/<topic>.md`.
 
 ## Workflow Rules
 
@@ -343,10 +352,10 @@ Instructs Claude to auto-convert Windows paths (`C:\` → `/mnt/c/`) and immedia
 | `ls` | `eza` | eza installed |
 | `ze` | `zellij` | zellij installed |
 | `c` | `code` | code installed |
-| `cl` | `claude` | claude installed |
+| `cop` | `copilot` | copilot CLI installed |
 | `open` | `explorer.exe` | WSL only |
 | `zc [dir]` | zoxide + `code .` | function |
-| `zcl [dir]` | zoxide + `claude .` | function |
+| `zcop [dir]` | zoxide + `copilot` | function |
 
 ## Platform Matrix
 
