@@ -21,24 +21,24 @@ APT_PACKAGES=(
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
   "antidote"         # zsh plugin manager
-  "bat"              # cat clone with syntax highlighting
+  # "bat"              # cat clone with syntax highlighting
   "atuin"            # shell history manager
   "delta"            # git diff pager
   "docker"           # container runtime
   "docker-compose"   # multi-container orchestration
   # "eza"            # modern ls replacement (Linux preferred)
-  "fd"               # fast find alternative
+  # "fd"               # fast find alternative
   "fzf"              # fuzzy finder
   "iperf3"           # network bandwidth testing
   "jq"               # JSON processor
   "neovim"           # text editor
   "nvm"              # Node version manager
   "oven-sh/bun/bun"  # JavaScript runtime (brew tap oven-sh/bun)
-  "pnpm"             # fast package manager
+  # "pnpm"             # fast package manager
   "pyenv"            # Python version manager
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
-  "shfmt"            # shell script formatter
+  # "shfmt"            # shell script formatter
   "stow"             # symlink farm manager
   "unzip"            # archive extraction
   "yarn"             # JavaScript package manager
@@ -75,6 +75,9 @@ BINARY_URLS_MAC=(
   # Add macOS binary URLs here
   # Example: "https://example.com/tool-mac|tool"
   "https://github.com/zellij-org/zellij/releases/download/v0.43.1/zellij-x86_64-apple-darwin.tar.gz|zellij"
+  "https://github.com/sharkdp/bat/releases/download/v0.26.1/bat-v0.26.1-x86_64-apple-darwin.tar.gz|bat"
+	"https://github.com/sharkdp/fd/releases/download/v10.0.0/fd-v10.0.0-x86_64-apple-darwin.tar.gz|fd"
+	"https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_darwin_amd64.tar.gz|shfmt"
 )
 
 # Binary URLs for Linux in format: "URL|BINARY_NAME"
