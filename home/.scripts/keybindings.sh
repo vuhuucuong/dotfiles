@@ -20,20 +20,12 @@ fi
 _require_cmd eza     && alias ls='eza'
 _require_cmd zellij  && alias ze='zellij'
 _require_cmd code    && alias c='code'
-_require_cmd copilot && alias cop='copilot'
 
 function zc() {
   _require_cmd zoxide || return 1
   z "$@"
   echo "Opening $(pwd -P)"
   code .
-}
-
-function zcop() {
-  _require_cmd zoxide || return 1
-  z "$@"
-  echo "Opening $(pwd -P)"
-  copilot
 }
 
 # Preview file content using bat (https://github.com/sharkdp/bat)

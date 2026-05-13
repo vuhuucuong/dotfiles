@@ -352,10 +352,8 @@ Instructs Claude to auto-convert Windows paths (`C:\` → `/mnt/c/`) and immedia
 | `ls` | `eza` | eza installed |
 | `ze` | `zellij` | zellij installed |
 | `c` | `code` | code installed |
-| `cop` | `copilot` | copilot CLI installed |
 | `open` | `explorer.exe` | WSL only |
 | `zc [dir]` | zoxide + `code .` | function |
-| `zcop [dir]` | zoxide + `copilot` | function |
 
 ## Platform Matrix
 
