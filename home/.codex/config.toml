@@ -1,0 +1,18 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+plan_mode_reasoning_effort = "high"
+
+[projects."/home/cuong"]
+trust_level = "trusted"
+
+[projects."/home/cuong/code/arr"]
+trust_level = "trusted"
+
+[projects."/home/cuong/code/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/cuong/code/openwrt"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4

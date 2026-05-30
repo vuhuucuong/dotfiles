@@ -52,6 +52,8 @@ home/                              # Mirrors $HOME — deployed as-is
     CLAUDE.md                      # Global Claude & Copilot CLI entry point
     context/
       wsl.md                       # WSL path handling rules for Claude
+    skills/
+      ask/SKILL.md                 # Read-only research/answer skill
     settings.json                  # Claude Code client settings
     fetch-usage.sh                 # Fetch/cache Claude API usage stats
     statusline-command.sh          # Render usage + context info in statusline
@@ -59,8 +61,12 @@ home/                              # Mirrors $HOME — deployed as-is
     COPILOT.md                     # Global Copilot CLI rules entry point
     context/
       wsl.md                       # WSL path handling rules for Copilot CLI
-    settings.json                  # Copilot CLI client settings
-    statusline-command.sh          # Render model/context info in statusline
+  .codex/
+    AGENTS.md                      # Global Codex CLI rules entry point
+    config.toml                    # Codex CLI client settings
+    rules/default.rules            # Codex persisted command approval rules
+    context/
+      wsl.md                       # WSL path handling rules for Codex
     skills/
       ask/SKILL.md                 # Read-only research/answer skill
 install.sh                         # Bootstrap script (261 lines)
@@ -77,6 +83,7 @@ README.md                          # Installation and setup guide
 - **WSL-specific logic**: Gated by `grep -q microsoft /proc/version` checks in `env.sh` and `install.sh`.
 - **Claude context files**: Go under `home/.claude/context/<topic>.md`, imported in `home/.claude/CLAUDE.md` via `@context/<topic>.md`.
 - **Copilot CLI context files**: Go under `home/.copilot/context/<topic>.md`, imported in `home/.copilot/COPILOT.md` via `@context/<topic>.md`.
+- **Codex context files**: Go under `home/.codex/context/<topic>.md`; include critical global rules directly in `home/.codex/AGENTS.md`.
 
 ## Workflow Rules
 
@@ -342,6 +349,42 @@ Countdown format: `2d 5h` / `3h 45m` / `30m`. Timezone cached in `/tmp/.claude_t
 ### `.claude/context/wsl.md`
 
 Instructs Claude to auto-convert Windows paths (`C:\` → `/mnt/c/`) and immediately read image files when a Windows path is provided — no prompting.
+
+---
+
+### `.copilot/COPILOT.md`
+
+Global Copilot CLI rules entry point. Imports `context/wsl.md`.
+
+---
+
+### `.copilot/context/wsl.md`
+
+Instructs Copilot CLI to auto-convert Windows paths (`C:\` → `/mnt/c/`) and immediately read image files when a Windows path is provided — no prompting.
+
+---
+
+### `.codex/AGENTS.md`
+
+Global Codex CLI rules entry point. Contains the WSL path handling rule directly so it does not depend on Claude/Copilot-style context imports.
+
+---
+
+### `.codex/config.toml`
+
+Codex CLI settings, including default model, reasoning effort, trusted project roots, and TUI model availability state. Runtime/auth files under `~/.codex` are intentionally not tracked.
+
+---
+
+### `.codex/rules/default.rules`
+
+Codex persisted command approval rules. Currently allows `curl` commands by prefix.
+
+---
+
+### `.codex/context/wsl.md`
+
+Standalone copy of the WSL path handling rule for reuse and documentation.
 
 ---
 

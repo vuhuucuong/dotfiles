@@ -21,6 +21,9 @@ Personal dotfiles for macOS, Linux, and WSL (Windows Subsystem for Linux).
 | `.config/alacritty/` | Alacritty terminal emulator config |
 | `.scripts/` | Helper scripts sourced by `.zshrc` (env, evals, keybindings) |
 | `.docker/config.json` | Docker CLI config |
+| `.claude/` | Claude Code global settings, context, statusline, and skills |
+| `.copilot/` | GitHub Copilot CLI global rules and context |
+| `.codex/` | Codex CLI global rules, settings, approval rules, context, and skills |
 
 ### Zsh plugins (via antidote)
 
@@ -112,4 +115,3 @@ The script will:
 `fzf` `zoxide` `antidote` `nvm` `pyenv` `yarn` `atuin` `neovim` `delta` `rust` `docker` `docker-compose` `iperf3` `shfmt` `pnpm`
 
 > Already-installed packages are skipped automatically — safe to re-run.
-
