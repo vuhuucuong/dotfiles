@@ -38,8 +38,8 @@ BREW_PACKAGES_MAC=(
   "pyenv"            # Python version manager
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
+  "rsync"            # file synchronization
   # "shfmt"            # shell script formatter
-  "stow"             # symlink farm manager
   "unzip"            # archive extraction
   "yarn"             # JavaScript package manager
   # "zellij"         # terminal multiplexer (installed via binary on macOS)
@@ -64,7 +64,6 @@ BREW_PACKAGES_LINUX=(
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
   "shfmt"            # shell script formatter
-  "stow"             # symlink farm manager
   "yarn"             # JavaScript package manager
   "zellij"           # terminal multiplexer
   "zoxide"           # smart directory jumper
@@ -153,32 +152,93 @@ check_prerequisites() {
   exit 1
 }
 
-# Deploy dotfiles from home/ to $HOME via stow symlinks
+# Resolve a symlink target to an absolute path without requiring GNU realpath.
+_resolve_symlink_target() {
+  local link_path="$1"
+  local link_target link_dir link_name
+
+  link_target="$(readlink "$link_path")" || return 1
+  if [[ "$link_target" != /* ]]; then
+    link_target="$(dirname "$link_path")/$link_target"
+  fi
+
+  link_dir="$(cd "$(dirname "$link_target")" 2>/dev/null && pwd -P)" || return 1
+  link_name="$(basename "$link_target")"
+  printf "%s/%s\n" "$link_dir" "$link_name"
+}
+
+_replace_repo_symlinked_parent_dirs() {
+  local rel_path="$1"
+  local dotfiles_dir="$2"
+  local rel_dir component current_path target_dir resolved_target
+
+  rel_dir="$(dirname "$rel_path")"
+  [[ "$rel_dir" == "." ]] && return
+
+  current_path=""
+  for component in ${(s:/:)rel_dir}; do
+    current_path="${current_path:+$current_path/}$component"
+    target_dir="$HOME/$current_path"
+
+    if [[ ! -L "$target_dir" ]]; then
+      continue
+    fi
+
+    resolved_target="$(_resolve_symlink_target "$target_dir" 2>/dev/null || true)"
+    if [[ "$resolved_target" == "$dotfiles_dir/home" || "$resolved_target" == "$dotfiles_dir/home/"* ]]; then
+      rm "$target_dir"
+      mkdir -p "$target_dir"
+      replaced_dirs=$((replaced_dirs + 1))
+    fi
+  done
+}
+
+# Deploy dotfiles from home/ to $HOME as real files.
 copy_dotfiles() {
   _section "Dotfiles"
-  local dotfiles_dir backup_dir backed_up rel_path target backup_path
+  local dotfiles_dir backup_dir backed_up replaced_links replaced_dirs src_file rel_path target backup_path resolved_target
   dotfiles_dir="$(cd "$(dirname "$0")" && pwd)"
   backup_dir="$HOME/.backup"
   backed_up=0
+  replaced_links=0
+  replaced_dirs=0
 
   while IFS= read -r -d '' src_file; do
     rel_path="${src_file#"$dotfiles_dir/home/"}"
+    _replace_repo_symlinked_parent_dirs "$rel_path" "$dotfiles_dir"
+
     target="$HOME/$rel_path"
-    if [[ -e "$target" && ! -L "$target" ]]; then
+
+    if [[ -L "$target" ]]; then
+      resolved_target="$(_resolve_symlink_target "$target" 2>/dev/null || true)"
+      if [[ "$resolved_target" == "$dotfiles_dir/home/"* ]]; then
+        rm "$target"
+        replaced_links=$((replaced_links + 1))
+        continue
+      fi
+    fi
+
+    if [[ -e "$target" || -L "$target" ]]; then
       backup_path="$backup_dir/$rel_path"
       mkdir -p "$(dirname "$backup_path")"
-      cp -p "$target" "$backup_path"
+      cp -a "$target" "$backup_path"
       rm "$target"
       backed_up=$((backed_up + 1))
     fi
   done < <(find "$dotfiles_dir/home" -type f -print0)
 
   [[ $backed_up -gt 0 ]] && echo "  Backed up $backed_up file(s) to $backup_dir"
+  if [[ $replaced_dirs -eq 1 ]]; then
+    echo "  Replaced 1 repo symlinked directory with a real directory"
+  elif [[ $replaced_dirs -gt 1 ]]; then
+    echo "  Replaced $replaced_dirs repo symlinked directories with real directories"
+  fi
+  [[ $replaced_links -gt 0 ]] && echo "  Replaced $replaced_links repo symlink(s) with real files"
 
-  stow --dir="$dotfiles_dir" --target="$HOME" --restow --no-folding home
+  rsync -a "$dotfiles_dir/home/" "$HOME/"
 
   chmod +x "$HOME/.claude/statusline-command.sh" 2>/dev/null || true
-  echo "✅ Dotfiles symlinked via stow"
+  echo "✅ Dotfiles copied via rsync"
 }
 
 # Install APT packages on Linux

@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Overview
 
-Personal dotfiles for macOS, Linux, and WSL. All configuration files live under `home/` and are deployed to `$HOME` via `stow` (symlinks) when `install.sh` runs.
+Personal dotfiles for macOS, Linux, and WSL. All configuration files live under `home/` and are copied to `$HOME` via `rsync` when `install.sh` runs.
 
 ## Installation
 
@@ -16,7 +16,7 @@ The script must be run with Zsh. Prerequisites: Zsh, Homebrew, and oh-my-zsh (au
 
 To re-deploy dotfiles only (without reinstalling packages):
 ```bash
-stow -t "$HOME" --restow --no-folding home
+rsync -a home/ "$HOME/"
 ```
 
 On WSL, `.wezterm.lua` is also copied to the Windows user profile (`%USERPROFILE%`).
@@ -99,7 +99,7 @@ Bootstrap script. Key sections:
 
 - Verifies shell is Zsh
 - Auto-installs oh-my-zsh if missing
-- Deploys dotfiles via `stow --restow --no-folding home` (creates symlinks in `$HOME`)
+- Deploys dotfiles via `rsync -a home/ "$HOME/"` (copies real files into `$HOME`)
 - On WSL: copies `.wezterm.lua` to Windows user profile via `wslpath`
 - Binary installs use SHA-256 checksum validation, stored in `~/.local/bin`
 
@@ -108,8 +108,8 @@ Bootstrap script. Key sections:
 | Variable | Contents |
 |---|---|
 | `APT_PACKAGES` | curl, unzip, htop, iperf3, lsof, rsync, vim, wget, progress, gcc |
-| `BREW_PACKAGES_MAC` | jq, fzf, zoxide, antidote, nvm, pyenv, yarn, atuin, neovim, delta, rust, docker, docker-compose, shfmt, pnpm, oven-sh/bun/bun |
-| `BREW_PACKAGES_LINUX` | Same as Mac + eza, zellij |
+| `BREW_PACKAGES_MAC` | antidote, atuin, delta, docker, docker-compose, fzf, iperf3, jq, neovim, nvm, oven-sh/bun/bun, pyenv, ripgrep, rust, rsync, unzip, yarn, zoxide |
+| `BREW_PACKAGES_LINUX` | antidote, bat, atuin, delta, eza, fd, fzf, jq, neovim, nvm, oven-sh/bun/bun, pnpm, pyenv, ripgrep, rust, shfmt, yarn, zellij, zoxide |
 | `BINARY_URLS_MAC` | zellij v0.43.1 (x86_64-apple-darwin) |
 
 **Helper functions:** `_section`, `_require_cmd`, `_finalize_binary`, `check_zsh`, `install_oh_my_zsh`, `check_brew`, `copy_dotfiles`, `install_apt_packages`, `install_brew_packages`, `copy_wezterm_to_windows`
