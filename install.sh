@@ -21,28 +21,28 @@ APT_PACKAGES=(
 # Homebrew packages to install on macOS
 BREW_PACKAGES_MAC=(
   "antidote"         # zsh plugin manager
-  # "bat"              # cat clone with syntax highlighting
+  "bat"              # cat clone with syntax highlighting
   "atuin"            # shell history manager
   "delta"            # git diff pager
   "docker"           # container runtime
   "docker-compose"   # multi-container orchestration
-  # "eza"            # modern ls replacement (Linux preferred)
-  # "fd"               # fast find alternative
+  "eza"            # modern ls replacement (Linux preferred)
+  "fd"               # fast find alternative
   "fzf"              # fuzzy finder
   "iperf3"           # network bandwidth testing
   "jq"               # JSON processor
   "neovim"           # text editor
   "nvm"              # Node version manager
   "oven-sh/bun/bun"  # JavaScript runtime (brew tap oven-sh/bun)
-  # "pnpm"             # fast package manager
+  "pnpm"             # fast package manager
   "pyenv"            # Python version manager
   "ripgrep"          # fast grep alternative
   "rust"             # Rust toolchain
   "rsync"            # file synchronization
-  # "shfmt"            # shell script formatter
+  "shfmt"            # shell script formatter
   "unzip"            # archive extraction
   "yarn"             # JavaScript package manager
-  # "zellij"         # terminal multiplexer (installed via binary on macOS)
+  "zellij"         # terminal multiplexer (installed via binary on macOS)
   "zoxide"           # smart directory jumper
 )
 
