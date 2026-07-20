@@ -121,7 +121,7 @@ Bootstrap script. Key sections:
 Load order:
 1. Powerlevel10k instant prompt
 2. `~/.scripts/env.sh`
-3. Homebrew shellenv (Linux: `/home/linuxbrew/...`, macOS: `/usr/local/bin/brew`)
+3. Homebrew shellenv (Linux: `/home/linuxbrew/...`, macOS: `/opt/homebrew/bin/brew`)
 4. `~/.scripts/oh-my-zsh.sh`
 5. `~/.scripts/eval.sh`
 6. `~/.scripts/keybindings.sh`
@@ -239,9 +239,9 @@ Pure-style Powerlevel10k prompt.
 
 ### `.wezterm.lua`
 
-**Default domain:** `WSL:Ubuntu-24.04`
+**Default domain:** local on macOS/Linux; on Windows, `WSL:Ubuntu-24.04` when available, otherwise the first detected WSL distribution
 
-**Font:** MonaspiceNe Nerd Font Mono (14pt); italic variant: MonaspiceRn
+**Font:** MonaspiceNe Nerd Font Mono (14pt; Windows abbreviated family name); italic variant: MonaspiceRn; JetBrains Mono fallback
 
 **Theme:** Catppuccin Mocha; scrollbar enabled; 8px padding; BlinkingBlock cursor
 
@@ -402,9 +402,9 @@ Standalone copy of the WSL path handling rule for reuse and documentation.
 
 | Feature | macOS | Linux | WSL |
 |---|---|---|---|
-| Homebrew path | `/usr/local/bin/brew` | `/home/linuxbrew/.linuxbrew/bin/brew` | `/home/linuxbrew/.linuxbrew/bin/brew` |
+| Homebrew path | `/opt/homebrew/bin/brew` | `/home/linuxbrew/.linuxbrew/bin/brew` | `/home/linuxbrew/.linuxbrew/bin/brew` |
 | eza/zellij install | Binary (zellij) | Homebrew | Homebrew |
-| WezTerm domain | — | — | `WSL:Ubuntu-24.04` |
+| WezTerm domain | `local` | `local` | `WSL:Ubuntu-24.04` or first detected WSL distro |
 | Windows PATH aliases | No | No | Yes (VS Code, Cursor, WezTerm) |
 | Paste path conversion | No | No | Yes (C:\ → /mnt/c/) |
 | `.wezterm.lua` copy | No | No | Yes → `%USERPROFILE%` |

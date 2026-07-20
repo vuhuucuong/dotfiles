@@ -72,11 +72,15 @@ The WezTerm config uses **MonaspiceNe Nerd Font Mono** (`MonaspiceNe Nerd Font M
 
 Download from [nerdfonts.com](https://www.nerdfonts.com/font-downloads) or via the Nerd Fonts GitHub releases. Install the font and set it in your terminal emulator.
 
-### 4. WezTerm (optional — Windows/WSL users)
+### 4. WezTerm (optional)
 
 Download from [wezfurlong.org/wezterm](https://wezfurlong.org/wezterm/installation.html).
 
-The install script automatically copies `.wezterm.lua` to your Windows user profile (`%USERPROFILE%`) when running inside WSL.
+The same config supports macOS, Linux, and Windows. On Windows it launches the
+`Ubuntu-24.04` WSL distribution when available, falling back to the first
+detected WSL distribution. The install script automatically copies
+`.wezterm.lua` to your Windows user profile (`%USERPROFILE%`) when running
+inside WSL.
 
 ---
 

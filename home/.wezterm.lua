@@ -1,26 +1,49 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
+local is_macos = wezterm.target_triple:find("apple") ~= nil
+local is_windows = wezterm.target_triple:find("windows") ~= nil
 
--- Default to Ubuntu-24.04 WSL distro
-config.default_domain = "WSL:Ubuntu-24.04"
+-- Launch into WSL on Windows, while macOS and Linux use the local domain.
+if is_windows then
+  local wsl_domains = wezterm.default_wsl_domains()
+
+  if #wsl_domains > 0 then
+    local default_wsl_domain = wsl_domains[1].name
+
+    for _, domain in ipairs(wsl_domains) do
+      if domain.distribution == "Ubuntu-24.04" then
+        default_wsl_domain = domain.name
+        break
+      end
+    end
+
+    config.wsl_domains = wsl_domains
+    config.default_domain = default_wsl_domain
+  end
+end
 
 -- Font: MonaspiceNe (Neon) as base, with Monaspace variants for bold/italic
-config.font = wezterm.font("MonaspiceNe Nerd Font Mono")
+local regular_font = is_windows and "MonaspiceNeNFM" or "MonaspiceNe Nerd Font Mono"
+local italic_font = is_windows and "MonaspiceRnNFM" or "MonaspiceRn Nerd Font Mono"
+config.font = wezterm.font_with_fallback({ regular_font, "JetBrains Mono" })
 config.font_size = 14.0
 config.font_rules = {
   {
     italic = true,
-    font = wezterm.font("MonaspiceRn Nerd Font Mono", { style = "Italic" }),
+    font = wezterm.font_with_fallback({ italic_font, "JetBrains Mono" }, { style = "Italic" }),
   },
   {
     intensity = "Bold",
-    font = wezterm.font("MonaspiceNe Nerd Font Mono", { weight = "Bold" }),
+    font = wezterm.font_with_fallback({ regular_font, "JetBrains Mono" }, { weight = "Bold" }),
   },
   {
     intensity = "Bold",
     italic = true,
-    font = wezterm.font("MonaspiceRn Nerd Font Mono", { weight = "Bold", style = "Italic" }),
+    font = wezterm.font_with_fallback(
+      { italic_font, "JetBrains Mono" },
+      { weight = "Bold", style = "Italic" }
+    ),
   },
 }
 
@@ -43,8 +66,10 @@ config.default_cursor_style = "BlinkingBlock"
 config.window_close_confirmation = "NeverPrompt"
 
 -- macOS: treat both opt keys as ALT (no special chars)
-config.send_composed_key_when_left_alt_is_pressed = false
-config.send_composed_key_when_right_alt_is_pressed = false
+if is_macos then
+  config.send_composed_key_when_left_alt_is_pressed = false
+  config.send_composed_key_when_right_alt_is_pressed = false
+end
 
 -- Keybindings
 config.keys = {
