@@ -24,8 +24,8 @@ if is_windows then
 end
 
 -- Font: MonaspiceNe (Neon) as base, with Monaspace variants for bold/italic
-local regular_font = is_windows and "MonaspiceNeNFM" or "MonaspiceNe Nerd Font Mono"
-local italic_font = is_windows and "MonaspiceRnNFM" or "MonaspiceRn Nerd Font Mono"
+local regular_font = "MonaspiceNe Nerd Font Mono"
+local italic_font = "MonaspiceRn Nerd Font Mono"
 config.font = wezterm.font_with_fallback({ regular_font, "JetBrains Mono" })
 config.font_size = 14.0
 config.font_rules = {
