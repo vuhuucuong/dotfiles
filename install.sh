@@ -91,6 +91,10 @@ BINARY_URLS_LINUX=(
 
 _section() { printf "\n\033[1;34m┌─ %s\033[0m\n" "$*"; }
 
+is_wsl() {
+  grep -qi microsoft /proc/version 2>/dev/null
+}
+
 # Check if running in Zsh
 check_zsh() {
   if [ -z "$ZSH_VERSION" ]; then
@@ -115,21 +119,6 @@ check_prerequisites() {
   command -v git  &>/dev/null || missing+=("git")
   command -v curl &>/dev/null || missing+=("curl")
   command -v brew &>/dev/null || missing+=("brew")
-
-  local nerd_font_installed=false
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    find "$HOME/Library/Fonts" "/Library/Fonts" -iname '*Monaspice*' -type f -print -quit 2>/dev/null | grep -q . && nerd_font_installed=true
-  elif [[ "$OSTYPE" == "linux-gnu"* ]] && command -v fc-list &>/dev/null; then
-    fc-list 2>/dev/null | grep -qi 'Monaspice' && nerd_font_installed=true
-  fi
-
-  if [[ "$nerd_font_installed" != true ]]; then
-    echo ""
-    echo "❌ Missing: Monaspice Nerd Font"
-    echo "   Download: https://www.nerdfonts.com/font-downloads"
-    echo "   Install the Monaspace Nerd Font family, then re-run ./install.sh"
-    exit 1
-  fi
 
   if [ ${#missing[@]} -eq 0 ]; then
     echo "✅ All prerequisites met"
@@ -364,7 +353,7 @@ install_brew_packages() {
 
 # Copy .wezterm.lua to Windows user profile (WSL only)
 copy_wezterm_to_windows() {
-  if ! grep -q microsoft /proc/version 2>/dev/null; then
+  if ! is_wsl; then
     return
   fi
 
