@@ -6,6 +6,8 @@ local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 -- Launch into WSL on Windows, while macOS and Linux use the local domain.
 if is_windows then
+  -- Avoid the OpenGL initialization failure on Windows.
+  config.front_end = "WebGpu"
   local wsl_domains = wezterm.default_wsl_domains()
 
   if #wsl_domains > 0 then
